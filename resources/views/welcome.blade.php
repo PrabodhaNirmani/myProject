@@ -1,45 +1,78 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
-<a href="{{route('test')}}">this</a>
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@extends ('mine.master1')
+@section('title')
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+Home Page
+@endsection
+@section('header')
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+@include ('includes.header')
+@endsection
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+@section('body')
 
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Laravel 5</div>
+<div class="container">
+
+    <div class="section">
+
+        <!--   Icon Section   -->
+        <div class="row">
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <a href="#" data-activates="nav-mobile" class="wave-button-input teal-text">
+                            <i class="material-icons">search</i></a></h2>
+                    <h5 class="center">
+                        <a href="#" data-activates="nav-mobile" class="wave-button-input teal-text">Search</a></h5>
+
+                    <p class="light" align="center">
+                        Searching schools which are located in a particular district
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                            <i class="material-icons">assignment</i></a></h2>
+                    <h5 class="center">
+                        <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                            Register</a></h5>
+
+                    <p class="light" align="center">
+                        Register students
+                    </p>
+                </div>
+            </div>
+
+            <div class="col s12 m4">
+                <div class="icon-block">
+                    <h2 class="center brown-text">
+                        <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                            <i class="material-icons">grade</i></a></h2>
+                    <h5 class="center">
+                        <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a></h5>
+
+                    <p class="light" align="center">
+                        Checking results of grade one entries
+                    </p>
+                </div>
             </div>
         </div>
-    </body>
-</html>
+
+    </div>
+</div>
+
+
+@endsection
+@section('javascript')
+
+<script>
+
+    $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $('.collapsible').collapsible();
+    });
+</script>
+@endsection
