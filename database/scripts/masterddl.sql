@@ -225,7 +225,9 @@ for each row
 delimiter ;
 
 
+-- creating indexes
 
+create index school_city on school(city);
 
 
 
