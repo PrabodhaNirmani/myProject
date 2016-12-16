@@ -10,7 +10,7 @@
 
 namespace App\Http\Controllers;
 
-class CustomConnection
+class DatabaseController extends Controller
 {
     public static function db_connect()
 
@@ -31,7 +31,7 @@ class CustomConnection
 
     public static function insert($entity){
 
-        $connection = CustomConnection::db_connect();
+        $connection = DatabaseController::db_connect();
         $table = $entity->getTableName();
         $fieldNames = $entity->getFieldNames();
         $values = [];
@@ -43,9 +43,20 @@ class CustomConnection
         $values = implode("','", $values);
         $fields = implode(',', $fieldNames);
         $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
-        //$query = "insert into user values ('Thirasara','thira','admin')";
         mysqli_query($connection, $query);
         return $query;
+    }
+    
+    public static function update($entity){
+        
+    }
+    
+    public static function delete($entity){
+        
+    }
+    
+    public static function search($entity){
+        
     }
 }
 

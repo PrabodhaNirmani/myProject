@@ -8,9 +8,9 @@
 
 namespace App\Models;
 
+use App\Orm\EntityInterface;
 
-
-class User
+class User implements  EntityInterface
 {
     private $tableName = 'user';
     private $fieldNames = ['user_name','password','user_type'];

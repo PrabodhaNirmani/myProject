@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-//namespace App\Http\Persistene;
-//
+
 use App\Http\Persistene;
 use App\Models\User;
 class HomeController extends Controller
@@ -29,7 +28,7 @@ class HomeController extends Controller
         $myUser->setUser_Name('Thirasara');
         $myUser->setPassword('thiraaa');
         $myUser->setUser_Type('admin');
-        $path = CustomConnection::insert($myUser);
+        $path = DatabaseController::insert($myUser);
         return view('loginSuccess',compact('path'));
     }
 
