@@ -20,3 +20,9 @@ Route::get('/test', [
     'as' => 'test'
 
 ]);
+
+Route::get('/testing', [
+    'uses' => 'HomeController@login',
+    'as' => 'login'
+
+]);

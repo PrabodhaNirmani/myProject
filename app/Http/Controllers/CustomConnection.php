@@ -18,7 +18,7 @@ class CustomConnection
         $server_name = "localhost";
         $username = "root";
         $password = "";
-        $db = "laravel";
+        $db = "ministry_of_education";
         $conn = new \mysqli($server_name, $username, $password, $db);
 
 
@@ -27,10 +27,25 @@ class CustomConnection
             die("Connection failed: " . $conn->connect_error);
         }
         return $conn;
+    }
 
-//echo "Connected successfully";
+    public static function insert($entity){
 
-//mysqli_query($conn,"INSERT INTO ministry_of_education.user(user_name,password,user_type) VALUES ('sdsds','efe','admin')");
+        $connection = CustomConnection::db_connect();
+        $table = $entity->getTableName();
+        $fieldNames = $entity->getFieldNames();
+        $values = [];
+        foreach ($fieldNames as $field){
+            $method = 'get'.$field;
+            $values [] = $entity->$method();
+        }
+
+        $values = implode("','", $values);
+        $fields = implode(',', $fieldNames);
+        $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
+        //$query = "insert into user values ('Thirasara','thira','admin')";
+        mysqli_query($connection, $query);
+        return $query;
     }
 }
 

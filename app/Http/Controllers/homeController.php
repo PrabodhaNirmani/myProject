@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 //namespace App\Http\Persistene;
 //
 use App\Http\Persistene;
-
+use App\Models\User;
 class HomeController extends Controller
 {
     public function testDB(){
@@ -21,8 +21,16 @@ class HomeController extends Controller
                 return view('viewTest',compact('row'));
             }
         }
-
-
+    }
+    
+    public function login(){
+        
+        $myUser = new User();
+        $myUser->setUser_Name('Thirasara');
+        $myUser->setPassword('thiraaa');
+        $myUser->setUser_Type('admin');
+        $path = CustomConnection::insert($myUser);
+        return view('loginSuccess',compact('path'));
     }
 
 
