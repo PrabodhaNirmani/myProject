@@ -34,36 +34,6 @@
         </form>
         <br><br>
         <br><br>
-        @if($schools!=null)
-            <table class="striped">
-                <thead>
-                <tr>
-                    <th data-field="id">School ID.</th>
-                    <th data-field="name">School Name</th>
-                    <th data-field="type">Type</th>
-                    <th data-field="street">Street</th>
-                    <th data-field="vacancies">No. of Vacancies</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                @foreach($schools as $school)
-                <tr>
-                    <td>{{$school[0]}}</td>
-                    <td>{{$school[1]}}</td>
-                    <td>{{$school[5]}}</td>
-                    <td>{{$school[3]}}</td>
-                    <td>{{$school[2]}}</td>
-
-                </tr>
-                @endforeach
-
-                </tbody>
-            </table>
-            <br><br><br>
-
-        @endif
-
     </div>
 
 @endsection
