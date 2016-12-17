@@ -29,26 +29,18 @@ class DatabaseController extends Controller
         return $conn;
     }
 
-    public static function insert($entity){
+    public static function insert($table,$fields,$values){
 
         $connection = DatabaseController::db_connect();
-        $table = $entity->getTableName();
-        $fieldNames = $entity->getFieldNames();
-        $values = [];
-        foreach ($fieldNames as $field){
-            $method = 'get'.$field;
-            $values [] = $entity->$method();
-        }
-
         $values = implode("','", $values);
-        $fields = implode(',', $fieldNames);
+        $fields = implode(',', $fields);
         $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
         $result=mysqli_query($connection, $query);
         return $result;
     }
     
-    public static function update($entity){
-        
+    public static function update($table,$fields,$values){
+
     }
     
     public static function delete($entity){
