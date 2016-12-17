@@ -67,7 +67,7 @@ class HomeController extends Controller
      return view('login');
     }
     public function testing(Request $request){
-        $user = Auth::user()->user_name;
+        $user = Auth::user()->user_type;
         return view('loginSuccess',compact('user'));
     }
 
