@@ -16,29 +16,15 @@
     </div>
     <div class="container">
         {{--routes--}}
-        <form action="{{route('searchSchoolResults')}}" method="post">
+        <form action="#" method="post">
             <div class="row">
                 <div class="col s10">
-                    <div class="row">
-                        <div class="input-field col s4">
-
-                            <label for="district">District</label>
-
-                        </div>
-
-                        <div class="input-field col s4">
-                            <select name="district" id="district" class="browser-default">
-
-                                {{--<option disabled selected>District</option>--}}
-                                @foreach($districts as $district)
-                                    <option>{{$district[0]}}</option>
-                                @endforeach
-
-                            </select>
-                        </div>
+                    <div class="input-field col s6">
+                        <input id="district" type="search" class="validate" required>
+                        <label for="district">District</label>
                     </div>
                 </div>
-                <div class="col s1">
+                <div class="col s1">#}
                     <button class="btn-floating btn-large" type="submit" name="action">
                         <i class="material-icons">search</i>
                     </button>
