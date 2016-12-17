@@ -44,6 +44,18 @@ Route::get('/loginView', [
     'as' => 'loginView',
 
 ]);
+//search schools
+Route::get('/searchSchool', [
+    'uses' => 'HomeController@getSearchSchool',
+    'as' => 'searchSchool',
+
+]);
+
+Route::post('/searchSchoolResults', [
+    'uses' => 'HomeController@postSearchSchool',
+    'as' => 'searchSchoolResults',
+
+]);
 
 
 

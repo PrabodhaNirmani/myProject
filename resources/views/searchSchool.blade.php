@@ -16,15 +16,29 @@
     </div>
     <div class="container">
         {{--routes--}}
-        <form action="#" method="post">
+        <form action="{{route('searchSchoolResults')}}" method="post">
             <div class="row">
                 <div class="col s10">
-                    <div class="input-field col s6">
-                        <input id="district" type="search" class="validate" required>
-                        <label for="district">District</label>
+                    <div class="row">
+                        <div class="input-field col s4">
+
+                            <label for="district">District</label>
+
+                        </div>
+
+                        <div class="input-field col s4">
+                            <select name="district" id="district" class="browser-default">
+
+                                {{--<option disabled selected>District</option>--}}
+                                @foreach($districts as $district)
+                                    <option>{{$district[0]}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="col s1">#}
+                <div class="col s1">
                     <button class="btn-floating btn-large" type="submit" name="action">
                         <i class="material-icons">search</i>
                     </button>
@@ -34,6 +48,36 @@
         </form>
         <br><br>
         <br><br>
+        @if($schools!=null)
+            <table class="striped">
+                <thead>
+                <tr>
+                    <th data-field="id">School ID.</th>
+                    <th data-field="name">School Name</th>
+                    <th data-field="type">Type</th>
+                    <th data-field="street">Street</th>
+                    <th data-field="vacancies">No. of Vacancies</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                @foreach($schools as $school)
+                <tr>
+                    <td>{{$school[0]}}</td>
+                    <td>{{$school[1]}}</td>
+                    <td>{{$school[5]}}</td>
+                    <td>{{$school[3]}}</td>
+                    <td>{{$school[2]}}</td>
+
+                </tr>
+                @endforeach
+
+                </tbody>
+            </table>
+            <br><br><br>
+
+        @endif
+
     </div>
 
 @endsection

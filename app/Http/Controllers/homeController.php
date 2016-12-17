@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\applicant;
+use App\Models\District;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -74,8 +75,41 @@ class HomeController extends Controller
     }
 
     public function loginView(){
-     return view('login');
+        return view('login');
     }
+    public function getSearchSchool(){
+        $districts=District::getDistrict();
+        $schools=null;
+        $error=null;
+        return view('searchSchool',compact('districts','schools','error'));
+    }
+
+    public function postSearchSchool(Request $request){
+        $district=$request['district'];
+//        echo $district;
+        $connection=DatabaseController::db_connect();
+        $sql="SELECT * FROM school WHERE city='$district'";
+        $result=mysqli_query($connection,$sql);
+//        echo $result;
+        $schools=array();
+        if(mysqli_num_rows($result)>0){
+            while($row=mysqli_fetch_row($result)){
+                array_push($schools,$row);
+
+            }
+            $error=null;
+
+        }
+        else{
+            $error="No Schools Found";
+            $schools=null;
+        }
+
+//      $schools=null;
+        $districts=District::getDistrict();
+        return view('searchSchool',compact('districts','schools','error'));
+    }
+
     public function testing(Request $request){
         $user = Auth::user()->user_type;
         return view('loginSuccess',compact('user'));
