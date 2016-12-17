@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Persistene;
 use App\Models\User;
+use Auth;
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
     public function testDB(){
@@ -22,7 +24,7 @@ class HomeController extends Controller
         }
     }
     
-    public function login(){
+    public function signup(){
         
         $myUser = new User();
         $myUser->setUser_Name('Thirasara');
@@ -31,6 +33,43 @@ class HomeController extends Controller
         $path = DatabaseController::insert($myUser);
         return view('loginSuccess',compact('path'));
     }
+    
+    public function login(Request $request){
+
+
+
+        $user_name = $request['username'];
+        $password = $request['password'];
+
+        $user = User::authenticate($user_name,$password);
+
+
+        if ($user!=null){
+
+            Auth::login($user);
+//            dd(Auth::user());
+            if ($user->getUser_Type() == 'admin'){
+                return route('testing');
+
+            }else{
+
+                return view('welcome');
+            }
+
+        }else{
+            return view('login');
+
+        }
+
+    }
+
+    public function loginView(){
+     return view('login');
+    }
+    public function testing(Request $request){
+        return view('loginSuccess',compact('request'));
+    }
+
 
 
 }
