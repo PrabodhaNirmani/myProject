@@ -49,7 +49,7 @@ class HomeController extends Controller
             Auth::login($user);
 //            dd(Auth::user());
             if ($user->getUser_Type() == 'admin'){
-                return route('testing');
+                return redirect()->route('testing');
 
             }else{
 
@@ -67,8 +67,8 @@ class HomeController extends Controller
      return view('login');
     }
     public function testing(Request $request){
-        $user = Auth::user()->id;
-        return view('loginSuccess',compact('request'));
+        $user = Auth::user()->user_name;
+        return view('loginSuccess',compact('user'));
     }
 
 

@@ -16,6 +16,7 @@ class User implements  EntityInterface,Authenticatable
     private $tableName = 'user';
     private $fieldNames = ['user_name','password','user_type'];
 
+    private $id = null;
     private $user_name = null;
     private $password = null;
     private $user_type = null;
@@ -69,6 +70,16 @@ class User implements  EntityInterface,Authenticatable
         return $this->fieldNames;
     }
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
     /**
      * Get the name of the unique identifier for the user.
      *
@@ -76,7 +87,7 @@ class User implements  EntityInterface,Authenticatable
      */
     public function getAuthIdentifierName()
     {
-        return "user_name";
+        return "id";
 
     }
 
@@ -89,7 +100,7 @@ class User implements  EntityInterface,Authenticatable
     {
 
 
-        return $this->user_name;
+        return $this->id;
 
     }
 
