@@ -59,9 +59,10 @@ class HomeController extends Controller
     }
     
     public function application(Request $request){
+        $applicant=new Applicant();
         $error='Invalid Birthday Entry';
         try{
-            $result=Applicant::createApplicant($request);
+            $applicant->createApplicant($request);
         }catch (\mysqli_sql_exception $e){
             return view('application',compact('error'));
         }
@@ -75,9 +76,31 @@ class HomeController extends Controller
         try{
             $result=$applicant_guardian->createApplicantGuardian($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application',compact('error'));
+            return view('application2',compact('error'));
         }
-        return view('application2');
+        return view('application3');
+
+    }
+    public function application_part3(Request $request){
+        $applicant_guardian=new ApplicantPriority();
+        $error='Invalid Entry';
+        try{
+            $result=$applicant_guardian->createApplicantPriority($request);
+        }catch (\mysqli_sql_exception $e){
+            return view('application3',compact('error'));
+        }
+        return view('application4');
+
+    }
+    public function application_part4(Request $request){
+        $applicant_guardian=new ApplicantGuardian();
+        $error='Invalid Entry';
+        try{
+            $result=$applicant_guardian->createApplicantSibiling($request);
+        }catch (\mysqli_sql_exception $e){
+            return view('application4',compact('error'));
+        }
+        return view('application');
 
     }
 
