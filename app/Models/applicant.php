@@ -11,8 +11,10 @@ namespace App\Models;
 
 use App\Orm\EntityInterface;
 use Illuminate\Http\Request;
+use Auth;
+use App\Http\Controllers\DatabaseController;
 
-class applicant extends User 
+class applicant extends User
 {
     private $tableName = 'applicant';
     private $fieldNames = ['applicant_id','first_name','last_name','sex','medium','religion','birth_day'];
@@ -23,7 +25,8 @@ class applicant extends User
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
-        array_push($values,Auth::user()->id);
+        //Auth::user()->id
+        array_push($values,4);
         foreach ($fields as $field){
             array_push($values,$request[$field]);
         }

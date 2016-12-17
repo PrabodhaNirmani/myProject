@@ -11,7 +11,8 @@ namespace App\Models;
 
 use App\Orm\EntityInterface;
 use Illuminate\Http\Request;
-
+use Auth;
+use App\Http\Controllers\DatabaseController;
 class ApplicantSibiling 
 {
     private $tableName = 'applicant_sibiling';
