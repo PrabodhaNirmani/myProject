@@ -17,12 +17,32 @@ Route::get('/', function () {
 
 Route::get('/test', [
     'uses' => 'HomeController@testDB',
-    'as' => 'test'
+    'as' => 'test',
+    
 
 ]);
 
-Route::get('/testing', [
+Route::post('/testing', [
+    'uses' => 'HomeController@testing',
+    'as' => 'testing',
+
+]);
+
+Route::post('/login', [
     'uses' => 'HomeController@login',
-    'as' => 'login'
+    'as' => 'login',
+]);
+
+Route::get('/loginView', [
+    'uses' => 'HomeController@loginView',
+    'as' => 'loginView',
 
 ]);
+
+
+
+
+
+
+
+

@@ -13,7 +13,7 @@
                 </li>
 
                 <li>
-                    <div class="col"><a  href="#" >Sign in</a></div>
+                    <div class="col"><a  href="{{route('loginView')}}" >Sign in</a></div>
                 </li>
             </ul>
 
