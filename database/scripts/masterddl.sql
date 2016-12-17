@@ -8,7 +8,7 @@ USE ministry_of_education;
 
 CREATE TABLE user
 (
-	user_id   INT NOT NULL auto_increment PRIMARY KEY,
+	id   INT NOT NULL auto_increment PRIMARY KEY,
 	user_name VARCHAR(255) NOT NULL,
 	password  VARCHAR(255) NOT NULL,
 	user_type VARCHAR(10) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE applicant
 	religion     VARCHAR(12) NOT NULL,
 	birth_day    DATE NOT NULL,
 	age          INT,
-	FOREIGN KEY(applicant_id) REFERENCES user(user_id) ON DELETE CASCADE
+	FOREIGN KEY(applicant_id) REFERENCES user(id) ON DELETE CASCADE
 )
 	engine = innodb
 	DEFAULT charset = utf8;
@@ -62,7 +62,7 @@ CREATE TABLE school
 	street         VARCHAR(50),
 	city           VARCHAR(20) NOT NULL,
 	max_no_student INT,
-	FOREIGN KEY(school_id) REFERENCES user(user_id) ON DELETE CASCADE
+	FOREIGN KEY(school_id) REFERENCES user(id) ON DELETE CASCADE
 )
 	engine = innodb
 	DEFAULT charset = utf8;

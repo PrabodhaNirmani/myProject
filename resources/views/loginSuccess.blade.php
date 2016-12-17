@@ -1,4 +1,4 @@
 <html>
-<body>Lucky number: {{$request}}</body>
+<body>Lucky number: {{$path}}</body>
 
 </html>

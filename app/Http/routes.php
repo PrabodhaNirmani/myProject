@@ -22,6 +22,12 @@ Route::get('/test', [
 
 ]);
 
+Route::get('/signup', [
+    'uses' => 'HomeController@signup',
+    'as' => 'signup',
+
+
+]);
 Route::get('/testing', [
     'uses' => 'HomeController@testing',
     'as' => 'testing',
