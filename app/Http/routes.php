@@ -71,3 +71,17 @@ Route::post('/searchSchoolResults', [
     'as' => 'searchSchoolResults',
 
 ]);
+
+//role school
+
+Route::get('/updateVacancies', [
+    'uses' => 'SchoolController@getUpdateVacancies',
+    'as' => 'updateVacancies',
+
+]);
+
+Route::post('/submitUpdateVacancies', [
+    'uses' => 'SchoolController@postUpdateVacancies',
+    'as' => 'submitUpdateVacancies',
+
+]);
