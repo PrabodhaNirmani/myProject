@@ -85,10 +85,12 @@ CREATE TABLE applicant_priority
 
 CREATE TABLE student
 (
+	school_id       INT NOT NULL, 
 	admission_no    INT NOT NULL auto_increment PRIMARY KEY,
 	first_name      VARCHAR(255) NOT NULL,
 	last_name       VARCHAR(255),
-	registered_date DATE
+	registered_date DATE,
+	FOREIGN KEY (school_id) REFERENCES school(school_id) ON DELETE CASCADE
 )
 	engine = innodb
 	DEFAULT charset = utf8;
@@ -131,7 +133,7 @@ CREATE TABLE guardian_past_pupil
 	DEFAULT charset = utf8;
 
 
-drop trigger validate_birthday ;
+drop trigger if exists validate_birthday ;
 
 delimiter @
 create trigger validate_birthday before insert on applicant
@@ -139,7 +141,7 @@ for each row
 	begin
 		declare msg varchar(128);
 		declare age real;
-		set age =(select datediff((select year_boundary from session_date),new.birth_day)/365);
+		set age =(select generate_age(new.birth_day));
 		if(age<5 or age>6) then
 			set msg = concat('Invalid Applicant');
 			signal sqlstate '45000' set message_text = msg;
@@ -153,7 +155,7 @@ delimiter ;
 
 -- Doesn't allow applicants to add to wrong type of schools
 
-drop trigger validate_school;
+drop trigger if exists validate_school;
 
 delimiter @
 create trigger validate_school before insert on applicant_priority
@@ -180,7 +182,7 @@ delimiter ;
 --applicant_guardian -> national_id_no
 
 
-
+drop trigger if exists validate_birthday_update;
 
 delimiter @
 create trigger validate_birthday_update before update on applicant
@@ -188,7 +190,7 @@ for each row
 	begin
 		declare msg varchar(128);
 		declare age real;
-		set age =(select datediff((select year_boundary from session_date),new.birth_day)/365);
+		set age =(select generate_age(new.birth_day));
 		if(age<5 or age>6) then
 			set msg = concat('Invalid Applicant');
 			signal sqlstate '45000' set message_text = msg;
@@ -200,7 +202,7 @@ delimiter ;
 
 
 
-drop trigger validate_school_update;
+drop trigger if exists validate_school_update;
 
 delimiter @
 create trigger validate_school_update before update on applicant_priority
@@ -229,7 +231,22 @@ delimiter ;
 
 create index school_city on school(city);
 
+create index student_school on student(school_id);
 
+--creating functions
+
+drop function if exists generate_age;
+
+delimiter @
+
+create function generate_age(birthday date) returns real
+begin
+	declare age real;
+	set age =(select datediff((select year_boundary from session_date),birthday)/365);
+	return age;
+end@
+
+delimiter ;
 
 
 
