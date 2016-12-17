@@ -11,6 +11,8 @@ namespace App\Models;
 use App\Orm\EntityInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Http\Controllers\DatabaseController;
+use Illuminate\Http\Request;
+
 class User implements  EntityInterface,Authenticatable
 {
     private $tableName = 'user';
@@ -150,9 +152,19 @@ class User implements  EntityInterface,Authenticatable
         // TODO: Implement getRememberTokenName() method.
     }
 
-    public static function authenticate($user_name,$password){
+    public static function authenticate(Request $request){
 
-        $row =DatabaseController::search($user_name,$password);
+        $user_name = $request['user_name'];
+        $password = $request['password'];
+        $connection = DatabaseController::db_connect();
+        $sql1="SELECT id,user_name,password,user_type FROM user where (user_name ='".$user_name."'and password ='".$password."')";
+        $val=mysqli_query($connection,$sql1);
+        if (mysqli_num_rows($val)) {
+            $row=mysqli_fetch_row($val);
+        }
+        else{
+            $row = null;
+        }
 
         if (count($row) == 0){
             return null;

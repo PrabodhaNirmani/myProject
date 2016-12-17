@@ -17,16 +17,21 @@ class School
 {
     private $fieldNames =['school_id','school_name','school_type','street','city','max_no_student'];
     private $tableName = 'school';
+
     public function addSchool(Request $request){
+
+        $user = new User();
         
         $values = [];
         foreach ($this->fieldNames as $field){
             array_push($values,$request[$field]);
         }
         
-        DatabaseController::insert()
+        DatabaseController::insert($this->tableName,$this->fieldNames,$values);
 
 
     }
+
+
 
 }
