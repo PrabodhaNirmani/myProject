@@ -85,3 +85,16 @@ Route::post('/submitUpdateVacancies', [
     'as' => 'submitUpdateVacancies',
 
 ]);
+
+
+Route::get('/viewApplicants', [
+    'uses' => 'SchoolController@getApplicantList',
+    'as' => 'viewApplicants',
+
+]);
+
+Route::post('/viewApplication', [
+    'uses' => 'SchoolController@postGetApplication',
+    'as' => 'viewApplication',
+
+]);

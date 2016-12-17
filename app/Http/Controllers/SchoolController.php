@@ -23,5 +23,17 @@ class SchoolController extends Controller
 //        return view('registerSchool',compact('district_row'));
     }
 
+    public function getApplicantList(){
+        $applicants=null;
+
+        return view('applicantList',compact('applicants'));
+    }
+
+    public function postGetApplication(Request $request){
+//        $district_row=District::getDistrict();
+//
+//        return view('registerSchool',compact('district_row'));
+    }
+
 
 }
