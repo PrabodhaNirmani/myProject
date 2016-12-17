@@ -33,6 +33,7 @@ class HomeController extends Controller
         $path = DatabaseController::insert($myUser);
         return view('loginSuccess',compact('path'));
     }
+    
     public function login(Request $request){
 
 
