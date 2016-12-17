@@ -159,9 +159,10 @@ class User implements  EntityInterface,Authenticatable
         }
 
         $user = new User();
-        $user->setUser_Name($row[0]);
-        $user->setPassword($row[1]);
-        $user->setUser_Type($row[2]);
+        $user->setId($row[0]);
+        $user->setUser_Name($row[1]);
+        $user->setPassword($row[2]);
+        $user->setUser_Type($row[3]);
         return $user;
     }
 }
