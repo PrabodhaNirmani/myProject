@@ -43,8 +43,8 @@ class DatabaseController extends Controller
         $values = implode("','", $values);
         $fields = implode(',', $fieldNames);
         $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
-        mysqli_query($connection, $query);
-        return $query;
+        $result=mysqli_query($connection, $query);
+        return $result;
     }
     
     public static function update($entity){
