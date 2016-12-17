@@ -22,7 +22,7 @@ Route::get('/test', [
 
 ]);
 
-Route::post('/testing', [
+Route::get('/testing', [
     'uses' => 'HomeController@testing',
     'as' => 'testing',
 
