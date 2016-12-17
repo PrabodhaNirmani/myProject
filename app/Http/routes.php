@@ -98,3 +98,15 @@ Route::post('/viewApplication', [
     'as' => 'viewApplication',
 
 ]);
+
+////////////student_controller
+Route::get('/getApplication', [
+    'uses' => 'StudentController@getApplication',
+    'as' => 'getApplication',
+
+]);
+Route::post('/getApplicationPart1', [
+    'uses' => 'StudentController@getApplicationPart1',
+    'as' => 'getApplicationPart1',
+
+]);

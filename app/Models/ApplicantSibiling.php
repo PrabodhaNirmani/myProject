@@ -13,17 +13,18 @@ use App\Orm\EntityInterface;
 use Illuminate\Http\Request;
 use Auth;
 use App\Http\Controllers\DatabaseController;
-class ApplicantGuardian 
+class ApplicantSibiling 
 {
-    private $tableName = 'applicant_guardian';
-    private $fieldNames = ['applicant_id','guardian_type','first_name','last_name','national_id_name','nationality_srilankan','religion','address_no','address_street','address_city','tele_no','div_sec_area','grama_nil_res_no'];
-  
+    private $tableName = 'applicant_sibiling';
+    private $fieldNames = ['applicant_id','present_stu_id1','present_stu_id2','present_stu_id3'];
+    
 
-    public function createApplicantGuardian(Request $request){
-        
+    public function createApplicantSibiling(Request $request){
+
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
+        array_push($values,Auth::user()->id);
         foreach ($fields as $field){
             array_push($values,$request[$field]);
         }
