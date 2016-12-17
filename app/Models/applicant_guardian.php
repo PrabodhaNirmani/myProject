@@ -113,7 +113,7 @@ class applicant_guardian implements EntityInterface
         $this->last_name = $last_name;
     }
 
-    public static function createApplicant(Request $request){
+    public static function createApplicantGuardian(Request $request){
 
         $applicant=new applicant();
         $applicant->setApplicantId(Auth::user()->id);
