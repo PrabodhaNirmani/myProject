@@ -10,7 +10,7 @@ namespace App\Models;
 
 use App\Orm\EntityInterface;
 use Illuminate\Contracts\Auth\Authenticatable;
-
+use App\Http\Controllers\DatabaseController;
 class User implements  EntityInterface,Authenticatable
 {
     private $tableName = 'user';
@@ -76,7 +76,8 @@ class User implements  EntityInterface,Authenticatable
      */
     public function getAuthIdentifierName()
     {
-        // TODO: Implement getAuthIdentifierName() method.
+        return "user_name";
+
     }
 
     /**
@@ -86,7 +87,10 @@ class User implements  EntityInterface,Authenticatable
      */
     public function getAuthIdentifier()
     {
-        // TODO: Implement getAuthIdentifier() method.
+
+
+        return $this->user_name;
+
     }
 
     /**
@@ -96,7 +100,12 @@ class User implements  EntityInterface,Authenticatable
      */
     public function getAuthPassword()
     {
-        // TODO: Implement getAuthPassword() method.
+        return $this->password;
+    }
+
+    public function getAuthAccountType()
+    {
+        return $this->user_type;
     }
 
     /**
@@ -128,5 +137,20 @@ class User implements  EntityInterface,Authenticatable
     public function getRememberTokenName()
     {
         // TODO: Implement getRememberTokenName() method.
+    }
+
+    public static function authenticate($user_name,$password){
+
+        $row =DatabaseController::search($user_name,$password);
+
+        if (count($row) == 0){
+            return null;
+        }
+
+        $user = new User();
+        $user->setUser_Name($row[0]);
+        $user->setPassword($row[1]);
+        $user->setUser_Type($row[2]);
+        return $user;
     }
 }

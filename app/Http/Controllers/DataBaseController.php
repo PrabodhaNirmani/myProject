@@ -55,8 +55,19 @@ class DatabaseController extends Controller
         
     }
     
-    public static function search($entity){
-        
+    public static function search($user_name,$password){
+
+        $connection = DatabaseController::db_connect();
+        $sql1="SELECT user_name,password,user_type FROM user where (user_name ='".$user_name."'and password ='".$password."')";
+        $val=mysqli_query($connection,$sql1);
+        if (mysqli_num_rows($val)) {
+                $row=mysqli_fetch_row($val);
+                return $row;
+            }
+        else{
+            return null;
+        }
+            
     }
 }
 
