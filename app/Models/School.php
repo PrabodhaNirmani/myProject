@@ -8,29 +8,30 @@
 
 namespace App\Models;
 
-use App\Orm\EntityInterface;
 
-class School implements EntityInterface
+use App\Http\Controllers\DatabaseController;
+use Illuminate\Http\Request;
+use Auth;
+
+class School
 {
-    
+    private $fieldNames =['school_id','school_name','school_type','street','city','max_no_student'];
+    private $tableName = 'school';
 
-    public function setTableName($table)
-    {
+    public function addSchool(Request $request){
+
+        $user = new User();
         
+        $values = [];
+        foreach ($this->fieldNames as $field){
+            array_push($values,$request[$field]);
+        }
+        
+        DatabaseController::insert($this->tableName,$this->fieldNames,$values);
+
+
     }
 
-    public function setFieldNames($fieldNames)
-    {
-        // TODO: Implement setFieldNames() method.
-    }
 
-    public function getTableName()
-    {
-        // TODO: Implement getTableName() method.
-    }
 
-    public function getFieldNames()
-    {
-        // TODO: Implement getFieldNames() method.
-    }
 }

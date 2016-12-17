@@ -12,7 +12,7 @@ namespace App\Models;
 use App\Orm\EntityInterface;
 use Illuminate\Http\Request;
 
-class applicant_priority implements EntityInterface
+class ApplicantPriority implements EntityInterface
 {
     private $tableName = 'applicant_guardian';
     private $fieldNames = ['guardian_type','first_name','last_name','national_id_name','nationality_srilankan','religion','address_no','address_street','address_city','tele_no','div_sec_area','grama_nil_res_no'];

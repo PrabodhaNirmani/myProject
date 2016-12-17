@@ -36,13 +36,9 @@ class HomeController extends Controller
     }
     
     public function login(Request $request){
+
+        $user = User::authenticate($request);
         
-        $user_name = $request['username'];
-        $password = $request['password'];
-
-        $user = User::authenticate($user_name,$password);
-
-
         if ($user!=null){
 
             Auth::login($user);
@@ -65,7 +61,19 @@ class HomeController extends Controller
     public function application(Request $request){
         $error='Invalid Birthday Entry';
         try{
-            $result=applicant::createApplicant($request);
+            $result=Applicant::createApplicant($request);
+        }catch (\mysqli_sql_exception $e){
+            return view('application',compact('error'));
+        }
+        return view('application2');
+
+    }
+
+    public function application_part2(Request $request){
+        $applicant_guardian=new ApplicantGuardian();
+        $error='Invalid Birthday Entry';
+        try{
+            $result=$applicant_guardian->createApplicantGuardian($request);
         }catch (\mysqli_sql_exception $e){
             return view('application',compact('error'));
         }
