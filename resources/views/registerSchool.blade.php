@@ -14,7 +14,6 @@
         <h1 class="header center teal-text text-darken-2">School Registration Form</h1>
         <div class="row">
             {{--routes--}}
-
             <form class="col s12" action="#" method="post">
                 <div class="row">
                     <div class="input-field col s12">
@@ -24,14 +23,10 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s4">
-
                         <label for="district">District</label>
-
                     </div>
-
                     <div class="input-field col s4">
                         <select name="district" id="district" class="browser-default">
-
                             {{--<option disabled selected>District</option>--}}
                             @foreach($district_row as $row)
                                 <option>{{$row[0]}}</option>
@@ -40,7 +35,6 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="input-field col s12">
                         <input name="address" id="address" type="text" class="validate" required>

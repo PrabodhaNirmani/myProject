@@ -16,20 +16,22 @@
             <form class="col s12" name="action">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="school_id" id="school_id" type="number" class="validate" value="{{ $vacancies }}" readonly>
+                        <input id="school_id" id="school_id" type="number" class="validate" value="{{ $vacancies }}"
+                               readonly>
                         <label for="school_id">School ID.</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="school_name" id="school_name" type="text" class="validate" value="{{ $vacancies }}" readonly>
+                        <input id="school_name" id="school_name" type="text" class="validate" value="{{ $vacancies }}"
+                               readonly>
                         <label for="school_name">School Name</label>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="current_value" id="current_value" type="number" class="validate" value="{{ $vacancies }}" readonly>
+                        <input name="current_value" id="current_value" type="number" class="validate"
+                               value="{{ $vacancies }}" readonly>
                         <label for="current_value">Current Value</label>
                     </div>
                 </div>

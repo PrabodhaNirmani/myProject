@@ -21,15 +21,12 @@
                 <div class="col s10">
                     <div class="row">
                         <div class="input-field col s4">
-
                             <label for="district">District</label>
-
                         </div>
-
                         <div class="input-field col s4">
                             <select name="district" id="district" class="browser-default">
-
                                 {{--<option disabled selected>District</option>--}}
+
                                 @foreach($districts as $district)
                                     <option>{{$district[0]}}</option>
                                 @endforeach
@@ -48,17 +45,18 @@
         </form>
         <br><br>
         <br><br>
+
         @if($error!=null)
             <div class="container col s10 offset-l1">
                 <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
             </div>
             <br><br><br><br>
+
         @elseif($schools!=null)
             <div class="container col s6 offset-l1">
                 <div class="card-panel teal lighten-2" align="center"><h5>{{$city}}</h5></div>
             </div>
-    <br><br>
-
+            <br><br>
             <table class="striped">
                 <thead>
                 <tr>
@@ -69,8 +67,8 @@
                     <th data-field="vacancies">No. of Vacancies</th>
                 </tr>
                 </thead>
-
                 <tbody>
+
                 @foreach($schools as $school)
                     <tr>
                         <td>{{$school[0]}}</td>
@@ -78,7 +76,6 @@
                         <td>{{$school[5]}}</td>
                         <td>{{$school[3]}}</td>
                         <td>{{$school[2]}}</td>
-
                     </tr>
                 @endforeach
 

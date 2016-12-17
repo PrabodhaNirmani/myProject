@@ -18,23 +18,18 @@
         {{--route--}}
         <form action="#" method="post">
             <div class="row">
-
                 <div class="col s10">
                     <div class="input-field col s6">
                         <input id="district" type="search" class="validate" required>
                         <label for="district">District</label>
                     </div>
-
                 </div>
-
                 <div class="col s1">#}
                     <button class="btn-floating btn-large" type="submit" name="action">
                         <i class="material-icons">search</i>
                     </button>
                     <input type="hidden" name="_token" value="{{Session::token()}}">
-
                 </div>
-
             </div>
         </form>
         <br><br>
