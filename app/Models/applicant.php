@@ -21,7 +21,6 @@ class applicant extends User
 
 
     public function createApplicant(Request $request){
-
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
