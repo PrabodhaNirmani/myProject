@@ -12,102 +12,104 @@
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantPriority')}}">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">whatshot</i>The order of the preference to
-                        Schools
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="serial">Serial No.</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <label for="schools">Name of the School</label>
-                                </div>
-                                <div class="input-field col s4">
-                                    <label for="catSchool">Category of school (National/Provincial)</label>
-                                </div>
-                                <div class="input-field col s2">
-                                    <label for="distance">Distance to the School from the place of residence</label>
-                                </div>
-                            </div>
-                            <br><br><br>
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no1">1.</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input id="school1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input id="type1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s2">
-                                    <input id="dist1" type="text" class="validate" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no2">2.</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input id="school1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input id="type1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s2">
-                                    <input id="dist1" type="text" class="validate" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no3">3.</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input id="school1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input id="type1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s2">
-                                    <input id="dist1" type="text" class="validate" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no4">4.</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input id="school1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input id="type1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s2">
-                                    <input id="dist1" type="text" class="validate" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no5">5.</label>
-                                </div>
-                                <div class="input-field col s5">
-                                    <input id="school1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input id="type1" type="text" class="validate" required>
-                                </div>
-                                <div class="input-field col s2">
-                                    <input id="dist1" type="text" class="validate" required>
-                                </div>
-                            </div>
+                    <div class="header">The order of the preference to Schools</div>
+
+                    <div class="row">
+                        <div class="input-field col s1">
+                            <label for="serial">Serial No.</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <label for="schools">Name of the School</label>
+                        </div>
+
+                        <div class="input-field col s2">
+                            <label for="distance">Distance to the School from the place of residence</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <label for="no_of_schools">No. of schools passing from residence</label>
                         </div>
                     </div>
-                </li>
-            </ul>
+                    <br><br><br>
+                    <php
+                        $i=0;
+                     ?>
+            @for($i=0;$i<5;$i++)
+
+                    <div class="row">
+                        <div class="input-field col s1">
+                            <input name="no{{$i}}" id="no{{$i}}" type="text" class="validate" value="{{$i+1}}" readonly>
+                        </div>
+                        <div class="input-field col s5">
+                            <input name="school{{$i}}" id="school{{$i}}" type="text" class="validate" required>
+                        </div>
+
+                        <div class="input-field col s2">
+                            <input name="distance{{$i}}" id="distance{{$i}}" type="text" class="validate" required>
+                        </div>
+                        <div class="input-field col s4">
+                            <input name="no_schools{{$i}}" id="no_schools{{$i}}" type="text" class="validate" required>
+                        </div>
+                    </div>
+                        @endfor
+                    {{--<div class="row">--}}
+                        {{--<div class="input-field col s1">--}}
+                            {{--<label for="no2">2.</label>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s5">--}}
+                            {{--<input id="school1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s4">--}}
+                            {{--<input id="type1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s2">--}}
+                            {{--<input id="dist1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="input-field col s1">--}}
+                            {{--<label for="no3">3.</label>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s5">--}}
+                            {{--<input id="school1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s4">--}}
+                            {{--<input id="type1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s2">--}}
+                            {{--<input id="dist1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="input-field col s1">--}}
+                            {{--<label for="no4">4.</label>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s5">--}}
+                            {{--<input id="school1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s4">--}}
+                            {{--<input id="type1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s2">--}}
+                            {{--<input id="dist1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="input-field col s1">--}}
+                            {{--<label for="no5">5.</label>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s5">--}}
+                            {{--<input id="school1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s4">--}}
+                            {{--<input id="type1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                        {{--<div class="input-field col s2">--}}
+                            {{--<input id="dist1" type="text" class="validate" required>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+
+
+
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>

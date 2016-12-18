@@ -126,7 +126,7 @@ Route::post('/submitApplicantGuardian', [
     'as' => 'submitApplicantGuardian',
 
 ]);
-Route::post('/getApplicantPriority', [
+Route::get('/getApplicantPriority', [
     'uses' => 'StudentController@getApplicantPriority',
     'as' => 'getApplicantPriority',
 
