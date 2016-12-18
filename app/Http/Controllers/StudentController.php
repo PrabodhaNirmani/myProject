@@ -18,19 +18,22 @@ use App\Models\Applicant;
 
 class StudentController extends Controller
 {
-    public function getApplication(){
-        return view('application');
+    public function getApplicationPart1(){
+        $error=null;
+        return view('applicationSection1',compact('error'));
     }
     
-    public function getApplicationPart1(Request $request){
+    public function postApplicationPart1(Request $request){
         $applicant=new Applicant();
-        $error='Invalid Birthday Entry';
+        
         try{
             $result=$applicant->createApplicant($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application',compact('error'));
+            $error='Invalid Birthday Entry';
+            return view('applicationSection1',compact('error'));
         }
-        return view('application');
+        $error=null;
+        return view('applicationSection1',compact('error'));
 
     }
 

@@ -100,13 +100,13 @@ Route::post('/viewApplication', [
 ]);
 
 ////////////student_controller
-Route::get('/getApplication', [
-    'uses' => 'StudentController@getApplication',
+Route::get('/getApplicationPart1', [
+    'uses' => 'StudentController@getApplicationPart1',
     'as' => 'getApplication',
 
 ]);
-Route::post('/getApplicationPart1', [
-    'uses' => 'StudentController@getApplicationPart1',
-    'as' => 'getApplicationPart1',
+Route::post('/submitApplicationPart1', [
+    'uses' => 'StudentController@postApplicationPart1',
+    'as' => 'submitApplicationPart1',
 
 ]);
