@@ -62,30 +62,31 @@
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s2">
-                                <label for="gender">Gender</label>
+                            <div class="input-field col s6">
+                                <div class="input-field col s5">
+                                    <label for="gender">Gender</label>
+                                </div>
+                                <div class="input-field col s7">
+                                    <select name="gender" id="medium" class="browser-default">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-field col s2">
-                                <input onclick="document.getElementById('female').checked=false;"
-                                       type="radio" name="male" id="male"><label>Male</label>
+                            <div class="input-field col s6">
+                                <div class="input-field col s6">
+                                    <label for="birth_day">Date of Birth :</label>
+                                </div>
+                                <div class="input-field col s6">
+                                    <input id="birth_day" name="birth_day" type="date" class="picker-date" required>
+
+                                </div>
 
                             </div>
-                            <div class="input-field col s2">
-                                <input onclick="document.getElementById('male').checked=false;"
-                                       type="radio" name="female" id="female"><label>Female</label>
-                            </div>
+
+
                         </div>
 
-                        <div class="row input-field col">
-                            <div class="input-field col s3">
-                                <label for="birth_day">Date of Birth :</label>
-                            </div>
-                            <div class="input-field col s3">
-                                <input id="birth_day" name="birth_day" type="date" class="picker-date" required>
-
-                            </div>
-
-                        </div>
 
             <button class="btn waves-effect waves-light" type="submit" name="action">Next
                 <i class="material-icons right">send</i>
