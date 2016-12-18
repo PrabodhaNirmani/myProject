@@ -10,12 +10,31 @@
 @section('body')
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
+        @if($error!=null)<br>
+        <div class="container">
+            <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+        </div>
+        <br>
+        @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantGuardian')}}">
-                    <div class="header">Details of the Guardian</div>
+                    <div class="header">Details of the Parent/Guardian</div>
+                    <div class="row">
+
+                        <div class="input-field col s2">
+                            <label for="guardian_type">Guardian Type</label>
+                        </div>
+                        <div class="input-field col s2">
+                            <select name="guardian_type" id="guardian_type" class="browser-default">
+                                <option>Father</option>
+                                <option>Mother</option>
+                                <option>Guardian</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="input-field col s8">
-                            <input name="first_name" id="full_name" type="text" class="validate" required>
+                            <input name="first_name" id="first_name" type="text" class="validate" required>
                             <label for="first_name">First Name</label>
                         </div>
                         <div class="input-field col s4">
@@ -25,12 +44,12 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s4">
-                            <input id="id" type="text" class="validate" required maxlength="10" minlength="10">
-                            <label for="id">National Identity Card Number</label>
+                            <input id="national_id_no" type="text" name="national_id_no" class="validate" required maxlength="10" minlength="10">
+                            <label for="national_id_no">National Identity Card Number</label>
                         </div>
                         <div class="input-field col s5">
-                            <input type="checkbox" class="filled-in" id="filled-in-box" name="nationality" />
-                            <label for="filled-in-box">Whether Guardian is in SriLanka</label>
+                            <input type="checkbox" class="filled-in" id="filled-in-box" name="nationality_srilankan" />
+                            <label for="nationality_srilankan">Whether Guardian is in SriLanka</label>
 
                         </div>
                         <div class="input-field col s3">
@@ -56,18 +75,18 @@
                                 <label for="address">Permanent Address :</label>
                             </div>
                             <div class="input-field col s1">
-                                <input id="street_no" name="street_no" type="text" class="validate" required>
-                                <label for="street_no">Street No.</label>
+                                <input id="address_no" name="address_no" type="text" class="validate" required>
+                                <label for="address_no">Street No.</label>
 
                             </div>
                             <div class="input-field col s3">
-                                <input id="street_name" name="street_name" type="text" class="validate" required>
-                                <label for="street_name">Street Name</label>
+                                <input id="address_street" name="address_street" type="text" class="validate" required>
+                                <label for="address_street">Street Name</label>
 
                             </div>
                             <div class="input-field col s3">
-                                <input id="city" name="city" type="text" class="validate" required>
-                                <label for="city">City</label>
+                                <input id="address_city" name="address_city" type="text" class="validate" required>
+                                <label for="address_city">City</label>
 
                             </div>
                             <div class="input-field col s3">
@@ -94,12 +113,12 @@
                             <label for="tele_no">Telephone Number</label>
                         </div>
                         <div class="input-field col s5">
-                            <input name="secretary_division" id="secretary_division" type="text" class="validate" required>
-                            <label for="secretary_division">Divisional Secretary Area</label>
+                            <input name="div_sec_area" id="div_sec_area" type="text" class="validate" required>
+                            <label for="div_sec_area">Divisional Secretary Area</label>
                         </div>
                         <div class="input-field col s3">
-                            <input name="grama_division_no" id="grama_division_no" type="text" class="validate" required>
-                            <label for="grama_division_no">Grama Niladari division no.</label>
+                            <input name="grama_nil_res_no" id="grama_nil_res_no" type="text" class="validate" required>
+                            <label for="grama_nil_res_no">Grama Niladari division no.</label>
                         </div>
                     </div>
             <button class="btn waves-effect waves-light" type="submit" name="action">Next

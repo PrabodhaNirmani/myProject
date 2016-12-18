@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\District;
+use App\Models\Error;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -28,12 +29,21 @@ class StudentController extends Controller
     
     public function postApplicant(Request $request){
         $applicant=new Applicant();
-        
-        try{
-            $result=$applicant->createApplicant($request);
-        }catch (\mysqli_sql_exception $e){
-            $error='Invalid Birthday Entry';
-            return view('applicationSection1',compact('error'));
+        $result=$applicant->createApplicant($request);
+        if(mysqli_errno($result)!=1) {
+            $err = new Error(mysqli_error($result), mysqli_errno($result));
+            if ($err->error_no == 1062) {
+                $error = 'Applicant already exist';
+                return view('applicationSection1', compact('error'));
+            }
+            elseif ($err->error_no == 1644) {
+                $error = 'Invalid Birthday Entry';
+                return view('applicationSection1', compact('error'));
+            }
+            else{
+                $error = $err->error_description;
+                return view('applicationSection1', compact('error'));
+            }
         }
         $error=null;
         $districts=District::getDistrict();
@@ -49,11 +59,20 @@ class StudentController extends Controller
 
     public function postApplicantGuardian(Request $request){
         $applicant_guardian=new ApplicantGuardian();
-        $error='Invalid Entry';
-        try{
-            $result=$applicant_guardian->createApplicantGuardian($request);
-        }catch (\mysqli_sql_exception $e){
-            return view('applicationSection2',compact('error'));
+        $result=$applicant_guardian->createApplicantGuardian($request);
+
+        if(mysqli_errno($result)!=1) {
+            $err = new Error(mysqli_error($result), mysqli_errno($result));
+            $districts=District::getDistrict();
+            if ($err->error_no == 1062) {
+                $error = 'Applicant Guardian already exist';
+                return view('applicationSection2', compact('error','districts'));
+            }
+            else{
+                $error = $err->error_description;
+
+                return view('applicationSection2', compact('error','districts'));
+            }
         }
         $error=null;
         return view('applicationSection3',compact('error'));
