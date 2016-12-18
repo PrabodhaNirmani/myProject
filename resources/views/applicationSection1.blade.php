@@ -11,14 +11,14 @@
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
-        <form action="{{route('submitApplicationPart1')}}">
+        <form action="{{route('submitApplicationPart1')}}" method="post">
             <div class="row">
                 <div class="input-field col s4">
                     <input name="applicant_id" id="applicant_id" type="text" class="validate" readonly>
                     <label for="applicant_id">Applicant ID</label>
                 </div>
                 <div class="input-field col s4">
-                    <input id="category" type="text" class="validate" required>
+                    <input name="category" id="category" type="text" class="validate" required>
                     <label for="category">Category applied for</label>
                 </div>
             </div>
@@ -26,11 +26,11 @@
 
                         <div class="row">
                             <div class="input-field col s7">
-                                <input id="full_name" type="text" class="validate" required>
+                                <input name="full_name" id="full_name" type="text" class="validate" required>
                                 <label for="full_name">Name in full</label>
                             </div>
                             <div class="input-field col s5">
-                                <input id="initials" type="text" class="validate" required>
+                                <input name="initial" id="initials" type="text" class="validate" required>
                                 <label for="initials">Name with initials</label>
                             </div>
                         </div>
@@ -62,37 +62,35 @@
                         </div>
 
                         <div class="row">
-                            <div class="input-field col s6">
-                                <div class="">
-                                    <div class="
-                                    ">
-                                    <label for="gender">Gender</label>
-                                    <input onclick="document.getElementById('female').checked=false;"
-                                           type="radio" name="male" id="male"><label>Male</label>
-                                    <input onclick="document.getElementById('male').checked=false;"
-                                           type="radio" name="female" id="female"><label>Female</label>
-
-                                </div>
+                            <div class="input-field col s2">
+                                <label for="gender">Gender</label>
                             </div>
+                            <div class="input-field col s2">
+                                <input onclick="document.getElementById('female').checked=false;"
+                                       type="radio" name="male" id="male"><label>Male</label>
 
+                            </div>
+                            <div class="input-field col s2">
+                                <input onclick="document.getElementById('male').checked=false;"
+                                       type="radio" name="female" id="female"><label>Female</label>
+                            </div>
                         </div>
+
                         <div class="row input-field col">
                             <div class="input-field col s3">
                                 <label for="birth_day">Date of Birth :</label>
                             </div>
                             <div class="input-field col s3">
-                                <input id="birth_day" name="birth_day" type="date" class="picker__date-display" required>
+                                <input id="birth_day" name="birth_day" type="date" class="picker-date" required>
 
                             </div>
 
                         </div>
 
-
-
-
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <button class="btn waves-effect waves-light" type="submit" name="action">Next
                 <i class="material-icons right">send</i>
             </button>
+            <input type="hidden" name="_token" value="{{Session::token()}}">
         </form>
 
 
