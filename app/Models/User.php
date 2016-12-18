@@ -218,9 +218,8 @@ class User implements  EntityInterface,Authenticatable
 
 
         $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
-
-
-        if (mysqli_connect_errno($result)){
+        
+        if (mysqli_connect_errno($result) ==0){
             $user = new User();
             $user->setUser_Name($user_name);
             $user->setPassword($password);

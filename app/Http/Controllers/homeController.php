@@ -71,6 +71,8 @@ class HomeController extends Controller
         if ($request['confirm_password'] == $request['password']) {
 
             $user = User::signUp($request);
+//            $type = get_class($user);
+//            return view('test',compact('user'));
             if (get_class($user) == 'App\Models\Error'){
 
                 if ($user->error_no == 1062){
@@ -175,14 +177,15 @@ class HomeController extends Controller
     }
     
     public function signUpView(){
-        return view('register');
+        $error = null;
+        return view('register',compact('error'));
     }
     
     public function getDashboard(){
         $user = [];
-        //array_push($user,Auth::user()->user_name);
-        //array_push($user,Auth::user()->user_type);
-       // array_push($user,Auth::user()->id);
+        array_push($user,Auth::user()->user_name);
+        array_push($user,Auth::user()->user_type);
+        array_push($user,Auth::user()->id);
         return view('dashboard',compact($user));
     }
 
@@ -193,6 +196,7 @@ class HomeController extends Controller
     public function testing(){
         $user = Auth::user()->user_name;
         return view('loginSuccess',compact('user'));
+        
     }
 
 
