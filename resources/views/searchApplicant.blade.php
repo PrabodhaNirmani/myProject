@@ -10,7 +10,7 @@
 @section('body')
 
     <div class="container">
-        <h1 class="header center teal-text text-darken-2 ">Applicants' List</h1>
+        <h1 class="header center teal-text text-darken-2 ">Applicant List</h1>
         <br><br><br>
     </div>
     <div class="container">

@@ -132,6 +132,12 @@ CREATE TABLE guardian_past_pupil
 	engine = innodb
 	DEFAULT charset = utf8;
 
+CREATE TABLE session_date
+(
+   year_boundary DATE NOT NULL
+)
+	engine = innodb
+	DEFAULT charset = utf8;
 
 drop trigger if exists validate_birthday ;
 
