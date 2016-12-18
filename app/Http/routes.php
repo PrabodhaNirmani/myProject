@@ -100,13 +100,44 @@ Route::post('/viewApplication', [
 ]);
 
 ////////////student_controller
-Route::get('/getApplication', [
-    'uses' => 'StudentController@getApplication',
-    'as' => 'getApplication',
+Route::get('/getApplicant', [
+    'uses' => 'StudentController@getApplicant',
+    'as' => 'getApplicant',
 
 ]);
-Route::post('/getApplicationPart1', [
-    'uses' => 'StudentController@getApplicationPart1',
-    'as' => 'getApplicationPart1',
+Route::post('/submitApplicant', [
+    'uses' => 'StudentController@postApplicant',
+    'as' => 'submitApplicant',
+
+]);
+
+Route::get('/getApplicantGuardian', [
+    'uses' => 'StudentController@getApplicantGuardian',
+    'as' => 'getApplicantGuardian',
+
+]);
+Route::post('/submitApplicantGuardian', [
+    'uses' => 'StudentController@postApplicantGuardian',
+    'as' => 'submitApplicantGuardian',
+
+]);
+Route::post('/getApplicantPriority', [
+    'uses' => 'StudentController@getApplicantPriority',
+    'as' => 'getApplicantPriority',
+
+]);
+Route::post('/submitApplicantPriority', [
+    'uses' => 'StudentController@postApplicantPriority',
+    'as' => 'submitApplicantPriority',
+
+]);
+Route::post('/getApplicantSibiling', [
+    'uses' => 'StudentController@getApplicantSibiling',
+    'as' => 'getApplicantSibiling',
+
+]);
+Route::post('/submitApplicatntSibiling', [
+    'uses' => 'StudentController@postApplicantSibiling',
+    'as' => 'submitApplicantSibiling',
 
 ]);

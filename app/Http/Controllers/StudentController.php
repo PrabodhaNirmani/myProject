@@ -15,56 +15,78 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Applicant;
+use App\Models\ApplicantGuardian;
+use App\Models\ApplicantPriority;
+use App\Models\ApplicantSibiling;
 
 class StudentController extends Controller
 {
-    public function getApplication(){
-        return view('application');
+    public function getApplicant(){
+        $error=null;
+        return view('applicationSection1',compact('error'));
     }
     
-    public function getApplicationPart1(Request $request){
+    public function postApplicant(Request $request){
         $applicant=new Applicant();
-        $error='Invalid Birthday Entry';
+        
         try{
             $result=$applicant->createApplicant($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application',compact('error'));
+            $error='Invalid Birthday Entry';
+            return view('applicationSection1',compact('error'));
         }
-        return view('application');
+        $error=null;
+        return view('applicationSection2',compact('error'));
 
     }
 
-    public function getApplicationPart2(Request $request){
+    public function getApplicantGuardian(){
+        $error=null;
+        return view('applicationSection2',compact('error'));
+    }
+
+    public function postApplicantGuardian(Request $request){
         $applicant_guardian=new ApplicantGuardian();
-        $error='Invalid Birthday Entry';
+        $error='Invalid Entry';
         try{
             $result=$applicant_guardian->createApplicantGuardian($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application2',compact('error'));
+            return view('applicationSection2',compact('error'));
         }
-        return view('application3');
+        $error=null;
+        return view('applicationSection3',compact('error'));
 
     }
-    public function getApplicationPart3(Request $request){
+
+    public function getApplicantPriority(){
+        $error=null;
+        return view('applicationSection3',compact('error'));
+    }
+    public function postApplicantPriority(Request $request){
         $applicant_guardian=new ApplicantPriority();
         $error='Invalid Entry';
         try{
             $result=$applicant_guardian->createApplicantPriority($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application3',compact('error'));
+            return view('applicationSection3',compact('error'));
         }
-        return view('application4');
+        return view('applicationSection4');
 
     }
-    public function getApplicationPart4(Request $request){
+
+    public function getApplicantSibiling(){
+        $error=null;
+        return view('applicationSection4',compact('error'));
+    }
+    public function postApplicantSibiling(Request $request){
         $applicant_guardian=new ApplicantGuardian();
         $error='Invalid Entry';
         try{
             $result=$applicant_guardian->createApplicantSibiling($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application4',compact('error'));
+            return view('applicationSection4',compact('error'));
         }
-        return view('application');
+        return view('applicationSection4');
 
     }
 }
