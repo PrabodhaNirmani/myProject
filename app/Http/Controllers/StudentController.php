@@ -15,15 +15,18 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use App\Models\Applicant;
+use App\Models\ApplicantGuardian;
+use App\Models\ApplicantPriority;
+use App\Models\ApplicantSibiling;
 
 class StudentController extends Controller
 {
-    public function getApplicationPart1(){
+    public function getApplicant(){
         $error=null;
         return view('applicationSection1',compact('error'));
     }
     
-    public function postApplicationPart1(Request $request){
+    public function postApplicant(Request $request){
         $applicant=new Applicant();
         
         try{
@@ -37,12 +40,12 @@ class StudentController extends Controller
 
     }
 
-    public function getApplicationPart2(){
+    public function getApplicantGuardian(){
         $error=null;
         return view('applicationSection2',compact('error'));
     }
 
-    public function postApplicationPart2(Request $request){
+    public function postApplicantGuardian(Request $request){
         $applicant_guardian=new ApplicantGuardian();
         $error='Invalid Entry';
         try{
@@ -55,11 +58,11 @@ class StudentController extends Controller
 
     }
 
-    public function getApplicationPart3(){
+    public function getApplicantPriority(){
         $error=null;
         return view('applicationSection3',compact('error'));
     }
-    public function postApplicationPart3(Request $request){
+    public function postApplicantPriority(Request $request){
         $applicant_guardian=new ApplicantPriority();
         $error='Invalid Entry';
         try{
@@ -71,11 +74,11 @@ class StudentController extends Controller
 
     }
 
-    public function getApplicationPart4(){
+    public function getApplicantSibiling(){
         $error=null;
         return view('applicationSection4',compact('error'));
     }
-    public function postApplicationPart4(Request $request){
+    public function postApplicantSibiling(Request $request){
         $applicant_guardian=new ApplicantGuardian();
         $error='Invalid Entry';
         try{

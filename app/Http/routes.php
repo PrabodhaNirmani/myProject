@@ -100,44 +100,44 @@ Route::post('/viewApplication', [
 ]);
 
 ////////////student_controller
-Route::get('/getApplicationPart1', [
-    'uses' => 'StudentController@getApplicationPart1',
-    'as' => 'getApplicationPart1',
+Route::get('/getApplicant', [
+    'uses' => 'StudentController@getApplicant',
+    'as' => 'getApplicant',
 
 ]);
-Route::post('/submitApplicationPart1', [
-    'uses' => 'StudentController@postApplicationPart1',
-    'as' => 'submitApplicationPart1',
+Route::post('/submitApplicant', [
+    'uses' => 'StudentController@postApplicant',
+    'as' => 'submitApplicant',
 
 ]);
 
-Route::post('/getApplicationPart2', [
-    'uses' => 'StudentController@getApplicationPart2',
-    'as' => 'getApplicationPart2',
+Route::get('/getApplicantGuardian', [
+    'uses' => 'StudentController@getApplicantGuardian',
+    'as' => 'getApplicantGuardian',
 
 ]);
-Route::post('/submitApplicationPart2', [
-    'uses' => 'StudentController@postApplicationPart2',
-    'as' => 'submitApplicationPart1',
+Route::post('/submitApplicantGuardian', [
+    'uses' => 'StudentController@postApplicantGuardian',
+    'as' => 'submitApplicantGuardian',
 
 ]);
-Route::post('/getApplicationPart3', [
-    'uses' => 'StudentController@getApplicationPart3',
-    'as' => 'getApplicationPart3',
+Route::post('/getApplicantPriority', [
+    'uses' => 'StudentController@getApplicantPriority',
+    'as' => 'getApplicantPriority',
 
 ]);
-Route::post('/submitApplicationPart3', [
-    'uses' => 'StudentController@postApplicationPart3',
-    'as' => 'submitApplicationPart3',
+Route::post('/submitApplicantPriority', [
+    'uses' => 'StudentController@postApplicantPriority',
+    'as' => 'submitApplicantPriority',
 
 ]);
-Route::post('/getApplicationPart4', [
-    'uses' => 'StudentController@getApplicationPart4',
-    'as' => 'getApplicationPart4',
+Route::post('/getApplicantSibiling', [
+    'uses' => 'StudentController@getApplicantSibiling',
+    'as' => 'getApplicantSibiling',
 
 ]);
-Route::post('/submitApplicationPart4', [
-    'uses' => 'StudentController@postApplicationPart4',
-    'as' => 'submitApplicationPart4',
+Route::post('/submitApplicatntSibiling', [
+    'uses' => 'StudentController@postApplicantSibiling',
+    'as' => 'submitApplicantSibiling',
 
 ]);
