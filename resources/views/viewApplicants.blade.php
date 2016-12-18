@@ -15,7 +15,7 @@
         <br><br><br>
     </div>
     <div class="container">
-        <form action="{{route('viewApplicants')}}" method="post">
+        <form action="{{route('submitViewApplicants')}}" method="post">
             <div class="row">
                 <div class="input-field col s6">
                     <input id="appno" name="applicant_id" type="search" class="validate" required>
@@ -24,6 +24,7 @@
                 <button class="btn-floating btn-large" type="submit" name="action">
                     <i class="material-icons">search</i>
                 </button>
+                <input type="hidden" name="_token" value="{{Session::token()}}">
             </div>
         </form>
         <br><br><br><br>

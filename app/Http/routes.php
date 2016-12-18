@@ -93,9 +93,9 @@ Route::get('/viewApplicants', [
 
 ]);
 
-Route::post('/viewApplicants', [
+Route::post('/submitViewApplicants', [
     'uses' => 'SchoolController@postApplicantList',
-    'as' => 'viewApplicants',
+    'as' => 'submitViewApplicants',
 ]);
 
 Route::post('/viewApplication', [
