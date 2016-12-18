@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <input name="password" id="password" type="password" class="validate" required>
                         <label for="password">Password</label>
                     </div>
@@ -32,7 +32,9 @@
                     <i class="material-icons right">send</i>
                 </button>
                 <input type="hidden" name="_token" value="{{Session::token()}}">
+                <a href ="{{route('signup')}}" class="waves-effect waves-light btn"><i class="material-icons right">verified_user</i>SINGUP</a>
             </form>
+
         </div>
         <br><br><br>
     </div>
