@@ -1,3 +1,4 @@
+
 @extends('mine.master2')
 @section('title')
     Applicant List
