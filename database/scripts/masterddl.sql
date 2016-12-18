@@ -41,6 +41,7 @@ CREATE TABLE applicant_guardian
 	last_name             VARCHAR(255),
 	national_id_no        VARCHAR(10) NOT NULL UNIQUE,
 	nationality_srilankan BOOLEAN NOT NULL,
+	district VARCHAR(20) NOT NULL,
 	religion              VARCHAR(11),
 	address_no            VARCHAR(8) NOT NULL,
 	address_street        VARCHAR(50) NOT NULL,
