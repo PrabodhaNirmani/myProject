@@ -110,3 +110,34 @@ Route::post('/submitApplicationPart1', [
     'as' => 'submitApplicationPart1',
 
 ]);
+
+Route::post('/getApplicationPart2', [
+    'uses' => 'StudentController@getApplicationPart2',
+    'as' => 'getApplicationPart2',
+
+]);
+Route::post('/submitApplicationPart2', [
+    'uses' => 'StudentController@postApplicationPart2',
+    'as' => 'submitApplicationPart1',
+
+]);
+Route::post('/getApplicationPart3', [
+    'uses' => 'StudentController@getApplicationPart3',
+    'as' => 'getApplicationPart3',
+
+]);
+Route::post('/submitApplicationPart3', [
+    'uses' => 'StudentController@postApplicationPart3',
+    'as' => 'submitApplicationPart3',
+
+]);
+Route::post('/getApplicationPart4', [
+    'uses' => 'StudentController@getApplicationPart4',
+    'as' => 'getApplicationPart4',
+
+]);
+Route::post('/submitApplicationPart4', [
+    'uses' => 'StudentController@postApplicationPart4',
+    'as' => 'submitApplicationPart4',
+
+]);

@@ -33,41 +33,57 @@ class StudentController extends Controller
             return view('applicationSection1',compact('error'));
         }
         $error=null;
-        return view('applicationSection1',compact('error'));
+        return view('applicationSection2',compact('error'));
 
     }
 
-    public function getApplicationPart2(Request $request){
+    public function getApplicationPart2(){
+        $error=null;
+        return view('applicationSection2',compact('error'));
+    }
+
+    public function postApplicationPart2(Request $request){
         $applicant_guardian=new ApplicantGuardian();
-        $error='Invalid Birthday Entry';
+        $error='Invalid Entry';
         try{
             $result=$applicant_guardian->createApplicantGuardian($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application2',compact('error'));
+            return view('applicationSection2',compact('error'));
         }
-        return view('application3');
+        $error=null;
+        return view('applicationSection3',compact('error'));
 
     }
-    public function getApplicationPart3(Request $request){
+
+    public function getApplicationPart3(){
+        $error=null;
+        return view('applicationSection3',compact('error'));
+    }
+    public function postApplicationPart3(Request $request){
         $applicant_guardian=new ApplicantPriority();
         $error='Invalid Entry';
         try{
             $result=$applicant_guardian->createApplicantPriority($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application3',compact('error'));
+            return view('applicationSection3',compact('error'));
         }
-        return view('application4');
+        return view('applicationSection4');
 
     }
-    public function getApplicationPart4(Request $request){
+
+    public function getApplicationPart4(){
+        $error=null;
+        return view('applicationSection4',compact('error'));
+    }
+    public function postApplicationPart4(Request $request){
         $applicant_guardian=new ApplicantGuardian();
         $error='Invalid Entry';
         try{
             $result=$applicant_guardian->createApplicantSibiling($request);
         }catch (\mysqli_sql_exception $e){
-            return view('application4',compact('error'));
+            return view('applicationSection4',compact('error'));
         }
-        return view('application');
+        return view('applicationSection4');
 
     }
 }
