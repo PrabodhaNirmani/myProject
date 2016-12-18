@@ -146,3 +146,9 @@ Route::post('/submitApplicatntSibiling', [
     'as' => 'submitApplicantSibiling',
 
 ]);
+
+Route::get('/manageSession', [
+    'uses' => 'AdminController@getManageSession',
+    'as' => 'manageSession',
+
+]);

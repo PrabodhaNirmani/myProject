@@ -18,7 +18,7 @@
             <form class="col s12" name="action" method="post" id="action" action="{{ route('login') }}">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="username" id="username" type="text" class="validate" required>
+                        <input name="user_name" id="user_name" type="text" class="validate" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
