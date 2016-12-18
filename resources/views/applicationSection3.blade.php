@@ -108,7 +108,7 @@
 
 
 
-            <button class="btn waves-effect waves-light" type="submit" name="action">Next
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>
             <input  type="hidden" name="_token" value="{{Session::token()}}">
