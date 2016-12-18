@@ -11,7 +11,7 @@
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
-        <form method="post" action="{{route('submitApplicationPart2')}}">
+        <form method="post" action="{{route('submitApplicantGuardian')}}">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
                     <div class="collapsible-header"><i class="material-icons">place</i>Details of the Guardian</div>

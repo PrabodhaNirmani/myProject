@@ -11,7 +11,7 @@
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
-        <form action="{{route('submitApplicationPart1')}}" method="post">
+        <form action="{{route('submitApplicant')}}" method="post">
             <div class="row">
                 <div class="input-field col s4">
                     <input name="applicant_id" id="applicant_id" type="text" class="validate" readonly>
