@@ -50,34 +50,58 @@
                         </div>
                     </div>
                     <div class="input-field col s12">
-                        <input id="address" type="text" class="validate" required>
-                        <label for="address">Permanent Address</label>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <input id="tele" type="text" class="validate" required>
-                            <label for="tele">Telephone Number</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="district" type="text" class="validate" required>
-                            <label for="district">Name of residential district</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s5">
-                            <input id="division" type="text" class="validate" required>
-                            <label for="division">Divisional Secretary Area</label>
-                        </div>
-                        <div class="input-field col s5">
-                            <input id="grama" type="text" class="validate" required>
-                            <label for="grama">Grama Niladari Division</label>
-                        </div>
-                        <div class="input-field col s2">
-                            <input id="no" type="text" class="validate" required>
-                            <label for="no">Division no.</label>
-                        </div>
-                    </div>
+                        {{--<input id="address" type="text" class="validate" required>--}}
+                        <div class="row">
+                            <div class="input-field col s2">
+                                <label for="address">Permanent Address :</label>
+                            </div>
+                            <div class="input-field col s1">
+                                <input id="street_no" name="street_no" type="text" class="validate" required>
+                                <label for="street_no">Street No.</label>
 
+                            </div>
+                            <div class="input-field col s3">
+                                <input id="street_name" name="street_name" type="text" class="validate" required>
+                                <label for="street_name">Street Name</label>
+
+                            </div>
+                            <div class="input-field col s3">
+                                <input id="city" name="city" type="text" class="validate" required>
+                                <label for="city">City</label>
+
+                            </div>
+                            <div class="input-field col s3">
+                                <div class="input-field col s4">
+                                    <label for="district">District</label>
+                                </div>
+                                <div class="input-field col s8">
+                                    <select name="district" id="district" class="browser-default">
+                                        {{--<option disabled selected>District</option>--}}
+
+                                        @foreach($districts as $district)
+                                            <option>{{$district[0]}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input name="tele_no" id="tele_no" type="number" class="validate" required>
+                            <label for="tele_no">Telephone Number</label>
+                        </div>
+                        <div class="input-field col s5">
+                            <input name="secretary_division" id="secretary_division" type="text" class="validate" required>
+                            <label for="secretary_division">Divisional Secretary Area</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input name="grama_division_no" id="grama_division_no" type="text" class="validate" required>
+                            <label for="grama_division_no">Grama Niladari division no.</label>
+                        </div>
+                    </div>
             <button class="btn waves-effect waves-light" type="submit" name="action">Next
                 <i class="material-icons right">send</i>
             </button>

@@ -44,7 +44,7 @@ class SchoolController extends Controller
             $applicants = null;
         }
 
-        return view('searchApplicant', compact('applicants', 'error'));
+        return view('viewApplicants', compact('applicants', 'error'));
     }
 
     public function postApplicantList(Request $request)
@@ -68,7 +68,7 @@ class SchoolController extends Controller
             $applicants = null;
         }
 
-        return view('searchApplicant', compact('applicants', 'error'));
+        return view('viewApplicants', compact('applicants', 'error'));
     }
 
     public function postGetApplication(Request $request){
