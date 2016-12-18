@@ -26,34 +26,48 @@
             </div>
         </form>
         <br><br><br><br>
-        <?php
-        if($applicants != null){
-        ?>
-        <table>
-            <thead>
-            <tr>
-                <th data-field="id">Application No</th>
-                <th data-field="name">Name of the Applicant</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Alvin</td>
-                <td>Eclair</td>
-            </tr>
-            <tr>
-                <td>Alan</td>
-                <td>Jellybean</td>
-            </tr>
-            <tr>
-                <td>Jonathan</td>
-                <td>Lollipop</td>
-            </tr>
-            </tbody>
-        </table>
-        <?php
-        }
-        ?>
+
+        @if($applicants != null)
+
+            <table>
+                <thead>
+                <tr>
+                    <th data-field="applicant_id">Applicant ID</th>
+                    <th data-field="first_name">First Name</th>
+                    <th data-field="last_name">Last Name</th>
+                    <th data-field="view_application">View Application</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach($applicants as $applicant)
+
+                    <tr>
+                        <td>{{$applicant[0]}}</td>
+                        <td>{{$applicant[1]}}</td>
+                        <td>{{$applicant[2]}}</td>
+                        <td>
+                            <button class="btn waves-effect waves-light" type="submit" name="view_appplication">View
+                                Application
+                                <i class="material-icons right">send</i>
+                            </button>
+                            <input type="hidden" name="_token" value="{{Session::token()}}">
+
+                        </td>
+                    </tr>
+                @endforeach
+
+                </tbody>
+
+            </table>
+
+        @else
+            <div class="container col s10 offset-l1">
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+            </div>
+            <br><br><br><br>
+        @endif
+
         <br><br>
         <br><br>
     </div>
