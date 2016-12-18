@@ -102,7 +102,7 @@ Route::post('/viewApplication', [
 ////////////student_controller
 Route::get('/getApplicationPart1', [
     'uses' => 'StudentController@getApplicationPart1',
-    'as' => 'getApplication',
+    'as' => 'getApplicationPart1',
 
 ]);
 Route::post('/submitApplicationPart1', [
