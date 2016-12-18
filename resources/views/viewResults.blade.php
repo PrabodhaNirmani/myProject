@@ -16,7 +16,7 @@
     </div>
     <div class="container">
         {{--route--}}
-        <form action="#" method="post">
+        <form action="{{route('submitApplicant')}}" method="post">
             <div class="row">
                 <div class="col s10">
                     <div class="input-field col s6">

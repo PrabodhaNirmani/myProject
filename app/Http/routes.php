@@ -93,6 +93,11 @@ Route::get('/viewApplicants', [
 
 ]);
 
+Route::post('/viewApplicants', [
+    'uses' => 'SchoolController@postApplicantList',
+    'as' => 'viewApplicants',
+]);
+
 Route::post('/viewApplication', [
     'uses' => 'SchoolController@postGetApplication',
     'as' => 'viewApplication',
