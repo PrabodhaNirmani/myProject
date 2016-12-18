@@ -25,15 +25,38 @@ class HomeController extends Controller
         }
     }
     
-    public function signup(){
-        
-        $myUser = new User();
-        $myUser->setUser_Name('Thirasara');
-        $myUser->setPassword('thiraaa');
-        $myUser->setUser_Type('admin');
-        $path = DatabaseController::insert($myUser);
-        return view('loginSuccess',compact('path'));
-    }
+    public function schoolSignUp(Request $request){
+
+        if ($request['confirm_password'] == $request['password']) {
+            try {
+                $user = User::schoolSignUp($request);
+            } catch (\mysqli_sql_exception $error) {
+
+                return view('login', compact('error'));
+            }
+
+            Auth::login($user);
+            $user_type = $user->getUser_Type();
+            if ($user_type == 'admin') {
+
+                return view('dashboard',compact('user_type'));
+
+            } elseif ($user_type == 'school') {
+
+                return view('dashboard',compact('user_type'));
+            }
+            else {
+
+                return view('dashboard',compact('user_type'));
+            }
+        }
+        else{
+            $error = "Password confirmation did not match";
+            return $error;
+        }
+
+}
+
     
     public function login(Request $request){
 
@@ -42,17 +65,25 @@ class HomeController extends Controller
         if ($user!=null){
 
             Auth::login($user);
-//            dd(Auth::user());
-            if ($user->getUser_Type() == 'admin'){
-                return redirect()->route('testing');
+            $user_type = $user->getUser_Type();
+            if ($user_type == 'admin') {
 
-            }else{
+                return view('dashboard',compact('user_type'));
 
-                return view('welcome');
+            } elseif ($user_type == 'school') {
+
+                return view('dashboard',compact('user_type'));
+            }
+            else {
+
+                return view('dashboard',compact('user_type'));
             }
 
-        }else{
-            return view('login');
+        }
+        else{
+            
+            $error = "Username and password did not match";
+            return view('test',compact('error'));
 
         }
 
@@ -104,8 +135,8 @@ class HomeController extends Controller
 
 
 
-    public function testing(Request $request){
-        $user = Auth::user()->user_type;
+    public function testing(){
+        $user = Auth::user()->user_name;
         return view('loginSuccess',compact('user'));
     }
 

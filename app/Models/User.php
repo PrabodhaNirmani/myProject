@@ -15,8 +15,8 @@ use Illuminate\Http\Request;
 
 class User implements  EntityInterface,Authenticatable
 {
-    private $tableName = 'user';
-    private $fieldNames = ['user_name','password','user_type'];
+    private static $tableName = 'user';
+    private static $fieldNames = ['user_name','password','user_type'];
 
     private $id = null;
     private $user_name = null;
@@ -157,24 +157,47 @@ class User implements  EntityInterface,Authenticatable
         $user_name = $request['user_name'];
         $password = $request['password'];
         $connection = DatabaseController::db_connect();
-        $sql1="SELECT id,user_name,password,user_type FROM user where (user_name ='".$user_name."'and password ='".$password."')";
-        $val=mysqli_query($connection,$sql1);
-        if (mysqli_num_rows($val)) {
-            $row=mysqli_fetch_row($val);
+        $sql="SELECT id,user_name,password,user_type FROM user where (user_name ='".$user_name."'and password ='".$password."')";
+        $row=mysqli_query($connection,$sql);
+        if (mysqli_num_rows($row)) {
+            $result=mysqli_fetch_row($row);
         }
         else{
-            $row = null;
+            $result = null;
         }
 
-        if (count($row) == 0){
-            return null;
+        if (count($result) == 0){
+            return $result;
         }
 
         $user = new User();
-        $user->setId($row[0]);
-        $user->setUser_Name($row[1]);
-        $user->setPassword($row[2]);
-        $user->setUser_Type($row[3]);
+        $user->setId($result[0]);
+        $user->setUser_Name($result[1]);
+        $user->setPassword($result[2]);
+        $user->setUser_Type($result[3]);
+        return $user;
+    }
+
+    public static function schoolSignUp(Request $request){
+
+        $values = [];
+        $user_name = $request['user_name'];
+        $password = $request['password'];
+        array_push($values,$user_name);
+        array_push($values,$password);
+        array_push($values,"school");
+
+        try{
+            $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
+        }catch (\mysqli_sql_exception $exception){
+            
+            return $exception;
+        }
+        
+        $user = new User();
+        $user->setUser_Name($user_name);
+        $user->setPassword($password);
+        $user->setUser_Type("school");
         return $user;
     }
 }
