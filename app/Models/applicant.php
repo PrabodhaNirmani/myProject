@@ -25,8 +25,9 @@ class applicant extends User
         $fields=$this->fieldNames;
         $values = [];
         //Auth::user()->id
-        array_push($values,4);
-        foreach ($fields as $field){
+        $fields2=array_slice($fields,1);
+        array_push($values,2);
+        foreach ($fields2 as $field){
             array_push($values,$request[$field]);
         }
         $row =DatabaseController::insert($name,$fields,$values);

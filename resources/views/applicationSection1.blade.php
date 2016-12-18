@@ -10,6 +10,12 @@
 @section('body')
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
+        @if($error!=null)<br>
+            <div class="container">
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+            </div>
+            <br>
+        @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form action="{{route('submitApplicant')}}" method="post">
             <div class="row">
@@ -26,12 +32,12 @@
 
                         <div class="row">
                             <div class="input-field col s7">
-                                <input name="full_name" id="full_name" type="text" class="validate" required>
-                                <label for="full_name">Name in full</label>
+                                <input name="first_name" id="first_name" type="text" class="validate" required>
+                                <label for="first_name">Name in full</label>
                             </div>
                             <div class="input-field col s5">
-                                <input name="initial" id="initials" type="text" class="validate" required>
-                                <label for="initials">Name with initials</label>
+                                <input name="last_name" id="last_name" type="text" class="validate" required>
+                                <label for="last_name">Name with initials</label>
                             </div>
                         </div>
                         <div class="row">
@@ -67,7 +73,7 @@
                                     <label for="gender">Gender</label>
                                 </div>
                                 <div class="input-field col s7">
-                                    <select name="gender" id="medium" class="browser-default">
+                                    <select name="sex" id="sex" class="browser-default">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
@@ -121,7 +127,6 @@
                 offset: 0
             });
         });
-
 
     </script>
 @endsection

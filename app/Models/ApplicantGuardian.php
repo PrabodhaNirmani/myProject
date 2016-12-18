@@ -16,7 +16,7 @@ use App\Http\Controllers\DatabaseController;
 class ApplicantGuardian 
 {
     private $tableName = 'applicant_guardian';
-    private $fieldNames = ['applicant_id','guardian_type','first_name','last_name','national_id_name','nationality_srilankan','religion','address_no','address_street','address_city','tele_no','div_sec_area','grama_nil_res_no'];
+    private $fieldNames = ['applicant_id','guardian_type','first_name','last_name','national_id_no','nationality_srilankan','religion','address_no','address_street','address_city','district','tele_no','div_sec_area','grama_nil_res_no'];
   
 
     public function createApplicantGuardian(Request $request){
@@ -24,7 +24,9 @@ class ApplicantGuardian
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
-        foreach ($fields as $field){
+        $fields2=array_slice($fields,1);
+        array_push($values,2);
+        foreach ($fields2 as $field){
             array_push($values,$request[$field]);
         }
         $row =DatabaseController::insert($name,$fields,$values);
