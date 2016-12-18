@@ -22,12 +22,23 @@ Route::get('/test', [
 
 ]);
 
-Route::get('/signup', [
-    'uses' => 'HomeController@signup',
-    'as' => 'signup',
+Route::post('/signUp', [
+    'uses' => 'HomeController@signUp',
+    'as' => 'signUp',
+]);
 
+Route::get('/signUp', [
+    'uses' => 'HomeController@signUpView',
+    'as' => 'signUpView',
 
 ]);
+
+Route::get('/dashboard', [
+    'uses' => 'HomeController@getDashboard',
+    'as' => 'getDashboard',
+
+]);
+
 Route::get('/testing', [
     'uses' => 'HomeController@testing',
     'as' => 'testing',
