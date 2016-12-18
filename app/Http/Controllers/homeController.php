@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\District;
 use App\Models\applicant;
+use App\Models\Error;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -28,12 +29,16 @@ class HomeController extends Controller
     public function schoolSignUp(Request $request){
 
         if ($request['confirm_password'] == $request['password']) {
-            try {
-                $user = User::schoolSignUp($request);
-            } catch (\mysqli_sql_exception $error) {
+
+            $user = User::schoolSignUp($request);
+            if (get_class($user) == App\Models\Error){
+
+            }
+
+
 
                 return view('login', compact('error'));
-            }
+
 
             Auth::login($user);
             $user_type = $user->getUser_Type();

@@ -186,18 +186,24 @@ class User implements  EntityInterface,Authenticatable
         array_push($values,$user_name);
         array_push($values,$password);
         array_push($values,"school");
-
-        try{
-            $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
-        }catch (\mysqli_sql_exception $exception){
+        
+        
+        $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
             
-            return $exception;
+            
+        if ($result){
+            $user = new User();
+            $user->setUser_Name($user_name);
+            $user->setPassword($password);
+            $user->setUser_Type("school");
+            return $user;
+        }
+        else {
+
+            $error = new Error(mysqli_error($result),mysqli_connect_errno($result));
+            return $error;
         }
         
-        $user = new User();
-        $user->setUser_Name($user_name);
-        $user->setPassword($password);
-        $user->setUser_Type("school");
-        return $user;
+
     }
 }

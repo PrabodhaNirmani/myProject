@@ -28,6 +28,11 @@ class DatabaseController extends Controller
         }
         return $conn;
     }
+    
+    public static function closeConnection($connection){
+        
+        mysqli_close($connection);
+    }
 
     public static function insert($table,$fields,$values){
 
@@ -35,8 +40,8 @@ class DatabaseController extends Controller
         $values = implode("','", $values);
         $fields = implode(',', $fields);
         $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
-        $result=mysqli_query($connection, $query);
-        return $result;
+        mysqli_query($connection, $query);
+        return $connection;
     }
     
     public static function update($table,$fields,$values){
