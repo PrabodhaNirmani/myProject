@@ -11,66 +11,110 @@
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
-        <form method="post" action="{{route('submitApplicationPart2')}}">
+        <form method="post" action="{{route('submitApplicantSibiling')}}">
             <ul class="collapsible" data-collapsible="accordion">
                 <li>
-                    <div class="collapsible-header"><i class="material-icons">place</i>Details of the Guardian</div>
+                    <div class="collapsible-header"><i class="material-icons">supervisor_account</i>Children of Past
+                        Pupils
+                    </div>
                     <div class="collapsible-body">
                         <div class="container">
                             <div class="row">
+                                <div class="input-field col s1">
+                                    <label for="no">No.</label>
+                                </div>
                                 <div class="input-field col s8">
-                                    <input id="full_name" type="text" class="validate" required>
-                                    <label for="full_name">Name in full</label>
-                                </div>
-                                <div class="input-field col s4">
-                                    <input id="initials" type="text" class="validate" required>
-                                    <label for="initiials">Name with initials</label>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="id" type="text" class="validate" required>
-                                    <label for="id">National Identity Card Number</label>
+                                    <label for="des">Description</label>
                                 </div>
                                 <div class="input-field col s3">
-                                    <input id="nationality" type="text" class="validate" required>
-                                    <label for="nationality">Nationality</label>
+                                    <label for="marks">Marks (For Office Use Only)</label>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="input-field col s1">
+                                    <label for="no1">1.</label>
+                                </div>
+                                <div class="input-field col s8">
+                                    <div class="row">
+                                        <label for="desc1">Period spent in the school as a pupil</label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s3">
+                                            <input id="fromD" type="text" class="validate">
+                                            <label for="fromD">From</label>
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <input id="toD" type="text" class="validate">
+                                            <label for="toD">To</label>
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <input id="fromG" type="text" class="validate">
+                                            <label for="fromG">From Grade</label>
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <input id="toG" type="text" class="validate">
+                                            <label for="toG">To Grade</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-field col s3">
+
+                                    <input id="mark1" type="text" class="validate">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s1">
+
+                                    <label for="no2">2.</label>
+                                </div>
+                                <div class="input-field col s8">
+                                    <textarea id="desc2" class="materialize-textarea"></textarea>
+                                    <label for="desc2">Educational Achievements during school Time</label>
                                 </div>
                                 <div class="input-field col s3">
-                                    <input id="religion" type="text" class="validate" required>
-                                    <label for="religion">Religion</label>
-                                </div>
-                            </div>
-                            <div class="input-field col s12">
-                                <input id="address" type="text" class="validate" required>
-                                <label for="address">Permanent Address</label>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s6">
-                                    <input id="tele" type="text" class="validate" required>
-                                    <label for="tele">Telephone Number</label>
-                                </div>
-                                <div class="input-field col s6">
-                                    <input id="district" type="text" class="validate" required>
-                                    <label for="district">Name of residential district</label>
+
+                                    <input id="mark2" type="text" class="validate">
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="input-field col s5">
-                                    <input id="division" type="text" class="validate" required>
-                                    <label for="division">Divisional Secretary Area</label>
+                                <div class="input-field col s1">
+
+                                    <label for="no3">3.</label>
                                 </div>
-                                <div class="input-field col s5">
-                                    <input id="grama" type="text" class="validate" required>
-                                    <label for="grama">Grama Niladari Division</label>
+                                <div class="input-field col s8">
+
+                                    <textarea id="desc3" class="materialize-textarea"></textarea>
+                                    <label for="desc3">Extra curriculum activities during school Time</label>
                                 </div>
-                                <div class="input-field col s2">
-                                    <input id="no" type="text" class="validate" required>
-                                    <label for="no">Division no.</label>
+
+                                <div class="input-field col s3">
+
+                                    <input id="mark3" type="text" class="validate" required>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="input-field col s1">
+
+                                    <label for="no4">4.</label>
+                                </div>
+                                <div class="input-field col s8">
+
+                                    <textarea id="desc4" class="materialize-textarea"></textarea>
+                                    <label for="desc4">Membership in past pupils association and other details</label>
+                                </div>
+
+                                <div class="input-field col s3">
+
+                                    <input id="mark4" type="text" class="validate" required>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
+
                 </li>
             </ul>
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
