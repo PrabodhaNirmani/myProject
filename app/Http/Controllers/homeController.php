@@ -31,36 +31,80 @@ class HomeController extends Controller
         if ($request['confirm_password'] == $request['password']) {
 
             $user = User::schoolSignUp($request);
-            if (get_class($user) == App\Models\Error){
+            if (get_class($user) == 'App\Models\Error'){
 
+                if ($user->error_no == 1062){
+
+                    $error = "Username already exists! Signup with a different username";
+                }
+
+                else{
+                    $error = $user->error_description;
+                }
+                return view('register', compact('error'));
             }
-
-
-
-                return view('login', compact('error'));
-
 
             Auth::login($user);
             $user_type = $user->getUser_Type();
             if ($user_type == 'admin') {
 
-                return view('dashboard',compact('user_type'));
+                return redirect()->route('getDashboard');
 
             } elseif ($user_type == 'school') {
 
-                return view('dashboard',compact('user_type'));
+                return redirect()->route('getDashboard');
             }
             else {
 
-                return view('dashboard',compact('user_type'));
+                return redirect()->route('getDashboard');
             }
         }
         else{
             $error = "Password confirmation did not match";
-            return $error;
+            return view('register', compact('error'));
         }
 
 }
+
+    public function signUp(Request $request){
+
+        if ($request['confirm_password'] == $request['password']) {
+
+            $user = User::signUp($request);
+            if (get_class($user) == 'App\Models\Error'){
+
+                if ($user->error_no == 1062){
+
+                    $error = "Username already exists! Signup with a different username";
+                }
+
+                else{
+                    $error = $user->error_description;
+                }
+                return view('register', compact('error'));
+            }
+
+            Auth::login($user);
+            $user_type = $user->getUser_Type();
+            if ($user_type == 'admin') {
+
+                return redirect()->route('getDashboard');
+
+            } elseif ($user_type == 'school') {
+
+                return redirect()->route('getDashboard');
+            }
+            else {
+
+                return redirect()->route('getDashboard');
+            }
+        }
+        else{
+            $error = "Password confirmation did not match";
+            return view('register', compact('error'));
+        }
+
+    }
 
     
     public function login(Request $request){
@@ -73,22 +117,22 @@ class HomeController extends Controller
             $user_type = $user->getUser_Type();
             if ($user_type == 'admin') {
 
-                return view('dashboard',compact('user_type'));
+                return redirect()->route('getDashboard');
 
             } elseif ($user_type == 'school') {
 
-                return view('dashboard',compact('user_type'));
+                return redirect()->route('getDashboard');
             }
             else {
 
-                return view('dashboard',compact('user_type'));
+                return redirect()->route('getDashboard');
             }
 
         }
         else{
             
             $error = "Username and password did not match";
-            return view('test',compact('error'));
+            return view('login',compact('error'));
 
         }
 
@@ -124,16 +168,22 @@ class HomeController extends Controller
         return view('searchSchool',compact('districts','schools','error','city'));
         
     }
-
-
-
-
-
-
-
-
+    
     public function loginView(){
-     return view('login');
+        $error = null;
+     return view('login',compact('error'));
+    }
+    
+    public function signUpView(){
+        return view('register');
+    }
+    
+    public function getDashboard(){
+        $user = [];
+        //array_push($user,Auth::user()->user_name);
+        //array_push($user,Auth::user()->user_type);
+       // array_push($user,Auth::user()->id);
+        return view('dashboard',compact($user));
     }
 
 

@@ -191,7 +191,7 @@ class User implements  EntityInterface,Authenticatable
         $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
             
             
-        if ($result){
+        if (mysqli_connect_errno($result)){
             $user = new User();
             $user->setUser_Name($user_name);
             $user->setPassword($password);
@@ -204,6 +204,35 @@ class User implements  EntityInterface,Authenticatable
             return $error;
         }
         
+
+    }
+
+    public static function signUp(Request $request){
+
+        $values = [];
+        $user_name = $request['user_name'];
+        $password = $request['password'];
+        array_push($values,$user_name);
+        array_push($values,$password);
+        array_push($values,"student");
+
+
+        $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
+
+
+        if (mysqli_connect_errno($result)){
+            $user = new User();
+            $user->setUser_Name($user_name);
+            $user->setPassword($password);
+            $user->setUser_Type("student");
+            return $user;
+        }
+        else {
+
+            $error = new Error(mysqli_error($result),mysqli_connect_errno($result));
+            return $error;
+        }
+
 
     }
 }

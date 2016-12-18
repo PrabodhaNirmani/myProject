@@ -13,12 +13,17 @@
 @section('body')
 
     <div class="container">
+        <br><br>
+        @if ($error!= null)
+            <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+        @endif
+        <br><br>
         <h1 class="header center teal-text text-darken-2">User Login</h1>
         <div class="row">
             <form class="col s12" name="action" method="post" id="action" action="{{ route('login') }}">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="username" id="username" type="text" class="validate" required>
+                        <input name="user_name" id="user_name" type="text" class="validate" required>
                         <label for="username">Username</label>
                     </div>
                 </div>
@@ -32,7 +37,7 @@
                     <i class="material-icons right">send</i>
                 </button>
                 <input type="hidden" name="_token" value="{{Session::token()}}">
-                <a href ="{{route('signup')}}" class="waves-effect waves-light btn"><i class="material-icons right">verified_user</i>SINGUP</a>
+                <a href ="{{route('signUpView')}}" class="waves-effect waves-light btn"><i class="material-icons right">verified_user</i>SINGUP</a>
             </form>
 
         </div>
