@@ -1,3 +1,4 @@
+
 @extends('mine.master2')
 @section('title')
     Applicant List
@@ -14,10 +15,10 @@
         <br><br><br>
     </div>
     <div class="container">
-        <form action="#" method="post">
+        <form action="{{route('viewApplicants')}}" method="post">
             <div class="row">
                 <div class="input-field col s6">
-                    <input id="appno" type="search" class="validate" required>
+                    <input id="appno" name="applicant_id" type="search" class="validate" required>
                     <label for="appno">Application number</label>
                 </div>
                 <button class="btn-floating btn-large" type="submit" name="action">
