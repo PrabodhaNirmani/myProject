@@ -36,13 +36,15 @@ class StudentController extends Controller
             return view('applicationSection1',compact('error'));
         }
         $error=null;
-        return view('applicationSection2',compact('error'));
+        $districts=District::getDistrict();
+        return view('applicationSection2',compact('error','districts'));
 
     }
 
     public function getApplicantGuardian(){
         $error=null;
-        return view('applicationSection2',compact('error'));
+        $districts=District::getDistrict();
+        return view('applicationSection2',compact('error','districts'));
     }
 
     public function postApplicantGuardian(Request $request){
