@@ -30,10 +30,8 @@
                         </div>
                     </div>
                     <br><br><br>
-                    <php
-                        $i=0;
-                     ?>
-            @for($i=0;$i<5;$i++)
+
+                    @for($i=0;$i<5;$i++)
 
                     <div class="row">
                         <div class="input-field col s1">
@@ -50,7 +48,7 @@
                             <input name="no_schools{{$i}}" id="no_schools{{$i}}" type="text" class="validate" required>
                         </div>
                     </div>
-                        @endfor
+                    @endfor
                     {{--<div class="row">--}}
                         {{--<div class="input-field col s1">--}}
                             {{--<label for="no2">2.</label>--}}
