@@ -20,7 +20,7 @@
         <form action="{{route('submitApplicant')}}" method="post">
             <div class="row">
                 <div class="input-field col s4">
-                    <input name="applicant_id" id="applicant_id" type="text" class="validate" readonly>
+                    <input name="applicant_id" id="applicant_id" type="text" class="validate" value="{{$applicant_id}}"  readonly>
                     <label for="applicant_id">Applicant ID</label>
                 </div>
                 <div class="input-field col s4">

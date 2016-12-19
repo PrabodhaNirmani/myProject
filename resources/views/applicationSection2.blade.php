@@ -18,7 +18,12 @@
         @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantGuardian')}}">
-                    <div class="header">Details of the Parent/Guardian</div>
+
+            <div class="row">
+                <input value="{{$applicant_id}}" name="applicant_id" id="applicant_id" type="number" class="validate" readonly>
+                <label for="applicant_id">Applicant ID</label>
+            </div>
+            <div class="header">Details of the Parent/Guardian</div>
                     <div class="row">
 
                         <div class="input-field col s2">

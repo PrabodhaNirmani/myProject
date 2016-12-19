@@ -186,7 +186,7 @@ class HomeController extends Controller
         array_push($user,Auth::user()->user_name);
         array_push($user,Auth::user()->user_type);
         array_push($user,Auth::user()->id);
-        return view('dashboard',compact($user));
+        return view('dashboard',compact('user'));
     }
 
 

@@ -12,7 +12,11 @@
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantPriority')}}">
-                    <div class="header">The order of the preference to Schools</div>
+            <div class="row">
+                <input value="{{$applicant_id}}" name="applicant_id" id="applicant_id" type="number" class="validate" readonly>
+                <label for="applicant_id">Applicant ID</label>
+            </div>
+            <div class="header">The order of the preference to Schools</div>
 
                     <div class="row">
                         <div class="input-field col s1">
