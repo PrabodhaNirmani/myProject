@@ -41,7 +41,7 @@ class District
             array_push($district_row,$row);
 
         }
-        echo $district_row[0][1];
+//        echo $district_row[0][1];
         return $district_row;
     }
 
