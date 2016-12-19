@@ -54,7 +54,7 @@
                     </div>
                     <br><br><br>
 
-                    @for($i=0;$i<5;$i++)
+                    @for($i=1;$i<=5;$i++)
 
                     <div class="row">
                         <div class="input-field col s1">
@@ -68,9 +68,9 @@
                                 <div class="input-field col s2">
                                     <select name="guardian_type" id="guardian_type" class="browser-default">
                                         @foreach($schools as $school)
-                                        <option>{{$school}}</option>
+                                            <option>{{$school[0]}}-{{$school[1]}}</option>
 
-                                            @endforeach
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
