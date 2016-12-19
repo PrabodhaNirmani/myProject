@@ -147,13 +147,13 @@ Route::post('/submitApplicantPriority', [
     'as' => 'submitApplicantPriority',
 
 ]);
-Route::post('/getApplicantSibiling', [
-    'uses' => 'StudentController@getApplicantSibiling',
-    'as' => 'getApplicantSibiling',
+Route::post('/getApplicantSibling', [
+    'uses' => 'StudentController@getApplicantSibling',
+    'as' => 'getApplicantSibling',
 
 ]);
-Route::post('/submitApplicatntSibiling', [
-    'uses' => 'StudentController@postApplicantSibiling',
-    'as' => 'submitApplicantSibiling',
+Route::post('/submitApplicantSibling', [
+    'uses' => 'StudentController@postApplicantSibling',
+    'as' => 'submitApplicantSibling',
 
 ]);
