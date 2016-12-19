@@ -78,7 +78,8 @@ class StudentController extends Controller
             }
         }
         $error=null;
-        return view('applicationSection3',compact('error','applicant_id'));
+        $schools=District::getSchool('Matara');
+        return view('applicationSection3',compact('error','applicant_id','schools'));
 
     }
 
@@ -92,15 +93,16 @@ class StudentController extends Controller
         $applicant_id=$request['applicant_id'];
         $result=$applicant_priority->createApplicantPriority($request);
         if(mysqli_errno($result)!=0) {
+            $schools=District::getSchool('Matara');
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             if ($err->error_no == 1062) {
                 $error = 'Data already exist';
-                return view('applicationSection3', compact('error','districts','applicant_id'));
+                return view('applicationSection3', compact('error','applicant_id','schools'));
             }
             else{
                 $error = $err->error_description;
 
-                return view('applicationSection3', compact('error','districts','applicant_id'));
+                return view('applicationSection3', compact('error','applicant_id','schools'));
             }
         }
 //        $schools=District::getSchool('Matara');
