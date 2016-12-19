@@ -18,7 +18,7 @@ use Illuminate\Routing\Controller;
 use App\Models\Applicant;
 use App\Models\ApplicantGuardian;
 use App\Models\ApplicantPriority;
-use App\Models\ApplicantSibiling;
+use App\Models\ApplicantSibling;
 
 class StudentController extends Controller
 {
@@ -95,18 +95,34 @@ class StudentController extends Controller
 
     }
 
-    public function getApplicantSibiling(){
+    public function getGuardianPastPupil(){
         $error=null;
         return view('applicationSection4',compact('error'));
     }
-    public function postApplicantSibiling(Request $request){
+    public function postGuardianPastPupil(Request $request){
         $applicant_guardian=new ApplicantGuardian();
         $error='Invalid Entry';
         try{
-            $result=$applicant_guardian->createApplicantSibiling($request);
+            $result=$applicant_guardian->createGuardianPastPupil($request);
         }catch (\mysqli_sql_exception $e){
             return view('applicationSection4',compact('error'));
         }
+        return view('applicationSection4');
+
+    }
+
+    public function getApplicantSibling(){
+        $error=null;
+        return view('applicationSection5',compact('error'));
+    }
+    public function postApplicantSibling(Request $request){
+//        $applicant_guardian=new ApplicantGuardian();
+//        $error='Invalid Entry';
+//        try{
+//            $result=$applicant_guardian->createGuardianPastPupil($request);
+//        }catch (\mysqli_sql_exception $e){
+//            return view('applicationSection4',compact('error'));
+//        }
         return view('applicationSection4');
 
     }
