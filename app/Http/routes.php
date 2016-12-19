@@ -56,6 +56,12 @@ Route::get('/loginView', [
 
 ]);
 
+Route::get('/logout', [
+    'uses' => 'HomeController@logout',
+    'as' => 'logout',
+
+]);
+
 
 
 

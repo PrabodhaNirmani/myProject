@@ -189,6 +189,11 @@ class HomeController extends Controller
         return view('dashboard',compact('user'));
     }
 
+    public function logout(){
+//        $user = Auth::user()->user_name;
+//        return view('loginSuccess',compact('user'));
+
+    }
 
 
 
