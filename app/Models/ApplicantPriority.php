@@ -23,7 +23,7 @@ class ApplicantPriority
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
-        array_push($values,Auth::user()->id);
+        array_push($values,4);
         foreach ($fields as $field){
             array_push($values,$request[$field]);
         }

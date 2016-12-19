@@ -25,7 +25,7 @@ class ApplicantGuardian
         $fields=$this->fieldNames;
         $values = [];
         $fields2=array_slice($fields,1);
-        array_push($values,2);
+        array_push($values,4);
         foreach ($fields2 as $field){
             array_push($values,$request[$field]);
         }

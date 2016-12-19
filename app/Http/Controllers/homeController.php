@@ -112,7 +112,7 @@ class HomeController extends Controller
     public function login(Request $request){
 
         $user = User::authenticate($request);
-        
+        echo $request;
         if ($user!=null){
 
             Auth::login($user);

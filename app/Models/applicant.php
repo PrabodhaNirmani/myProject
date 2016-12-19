@@ -26,7 +26,7 @@ class applicant extends User
         $values = [];
         //Auth::user()->id
         $fields2=array_slice($fields,1);
-        array_push($values,2);
+        array_push($values,Auth::user()->id);
         foreach ($fields2 as $field){
             array_push($values,$request[$field]);
         }

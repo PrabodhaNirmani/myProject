@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <input name="user_name" id="user_name" type="text" class="validate" required>
-                        <label for="username">Username</label>
+                        <label for="user_name">Username</label>
                     </div>
                 </div>
                 <div class="row">

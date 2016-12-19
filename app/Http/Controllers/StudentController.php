@@ -30,7 +30,7 @@ class StudentController extends Controller
     public function postApplicant(Request $request){
         $applicant=new Applicant();
         $result=$applicant->createApplicant($request);
-        if(mysqli_errno($result)!=1) {
+        if(mysqli_errno($result)!=0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             if ($err->error_no == 1062) {
                 $error = 'Applicant already exist';
@@ -61,7 +61,7 @@ class StudentController extends Controller
         $applicant_guardian=new ApplicantGuardian();
         $result=$applicant_guardian->createApplicantGuardian($request);
 
-        if(mysqli_errno($result)!=1) {
+        if(mysqli_errno($result)!=0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             $districts=District::getDistrict();
             if ($err->error_no == 1062) {
@@ -84,14 +84,23 @@ class StudentController extends Controller
         return view('applicationSection3',compact('error'));
     }
     public function postApplicantPriority(Request $request){
-        $applicant_guardian=new ApplicantPriority();
-        $error='Invalid Entry';
-        try{
-            $result=$applicant_guardian->createApplicantPriority($request);
-        }catch (\mysqli_sql_exception $e){
-            return view('applicationSection3',compact('error'));
+        $applicant_priority=new ApplicantPriority();
+        $result=$applicant_priority->createApplicantPriority($request);
+        if(mysqli_errno($result)!=0) {
+            $err = new Error(mysqli_error($result), mysqli_errno($result));
+            if ($err->error_no == 1062) {
+                $error = 'Data already exist';
+                return view('applicationSection3', compact('error','districts'));
+            }
+            else{
+                $error = $err->error_description;
+
+                return view('applicationSection3', compact('error','districts'));
+            }
         }
-        return view('applicationSection4');
+        $schools=District::getSchool('Matara');
+        $error=null;
+        return view('applicationSection4',compact('error','schools'));
 
     }
 
@@ -100,16 +109,22 @@ class StudentController extends Controller
         return view('applicationSection4',compact('error'));
     }
     public function postGuardianPastPupil(Request $request){
-        $applicant_guardian=new ApplicantGuardian();
-        $error='Invalid Entry';
-        try{
-            $result=$applicant_guardian->createGuardianPastPupil($request);
-        }catch (\mysqli_sql_exception $e){
-            return view('applicationSection4',compact('error'));
+        $connection=DatabaseController::db_connect();
+        $sql="SELECT past_student_id from past_student where ( membership_id = request['membership_id'])";
+        $data=mysqli_query($connection,$sql);
+        if (mysqli_num_rows($data)) {
+            $error=null;
+            $row=mysqli_fetch_row($data);
+            $guardian_past_pupil=new GuardianPastPupil();
+            $guardian_past_pupil->createGuardianPastPupil($request);
+            return view('applicationSection5',compact('error'));
         }
-        return view('applicationSection4');
+        $error='Invalid membership id';
+        return view('applicationSection4',compact('error'));
+        }
 
-    }
+
+
 
     public function getApplicantSibling(){
         $error=null;
