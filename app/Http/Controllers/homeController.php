@@ -112,7 +112,7 @@ class HomeController extends Controller
     public function login(Request $request){
 
         $user = User::authenticate($request);
-        
+        echo $request;
         if ($user!=null){
 
             Auth::login($user);
@@ -186,9 +186,14 @@ class HomeController extends Controller
         array_push($user,Auth::user()->user_name);
         array_push($user,Auth::user()->user_type);
         array_push($user,Auth::user()->id);
-        return view('dashboard',compact($user));
+        return view('dashboard',compact('user'));
     }
 
+    public function logout(){
+//        $user = Auth::user()->user_name;
+//        return view('loginSuccess',compact('user'));
+
+    }
 
 
 

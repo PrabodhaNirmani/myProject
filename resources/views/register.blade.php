@@ -5,7 +5,26 @@
 @endsection
 
 @section('header')
-    @include('includes.header')
+    <nav class="teal" role="navigation">
+        <div class="nav-wrapper ">
+            <a id="logo-container" href="#" class="brand-logo left">
+                <i class="material-icons">visibility</i>iSolve
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <div class="col"><a  href="#"
+                                         class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
+                            <i class="material-icons">present_to_all</i></a></div>
+                </li>
+
+                <li>
+                    <div class="col"><a  href="{{route('loginView')}}" >Sign in</a></div>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
 
 
 @endsection
@@ -24,7 +43,7 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <input name="user_name" id="user_name" type="text" class="validate" required>
-                        <label for="username">Username</label>
+                        <label for="user_name">Username</label>
                     </div>
                 </div>
                 <div class="row">

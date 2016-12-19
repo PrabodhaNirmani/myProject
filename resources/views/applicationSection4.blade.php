@@ -4,119 +4,43 @@
     Application Page
 @endsection
 @section('header')
-    @include('includes.header')
+    <nav class="teal" role="navigation">
+        <div class="nav-wrapper ">
+            <a id="logo-container" href="#" class="brand-logo left">
+                <i class="material-icons">visibility</i>iSolve
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
+                            <i class="material-icons">present_to_all</i></a></div>
+                </li>
+
+                <li>
+                    <div class="col"><a  href="{{route('logout')}}" >Sign in</a></div>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
 @endsection
 
 @section('body')
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
-        <form method="post" action="{{route('submitApplicantSibiling')}}">
-            <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                    <div class="collapsible-header"><i class="material-icons">supervisor_account</i>Children of Past
-                        Pupils
-                    </div>
-                    <div class="collapsible-body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no">No.</label>
-                                </div>
-                                <div class="input-field col s8">
-                                    <label for="des">Description</label>
-                                </div>
-                                <div class="input-field col s3">
-                                    <label for="marks">Marks (For Office Use Only)</label>
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="row">
-                                <div class="input-field col s1">
-                                    <label for="no1">1.</label>
-                                </div>
-                                <div class="input-field col s8">
-                                    <div class="row">
-                                        <label for="desc1">Period spent in the school as a pupil</label>
-                                    </div>
-                                    <div class="row">
-                                        <div class="input-field col s3">
-                                            <input id="fromD" type="text" class="validate">
-                                            <label for="fromD">From</label>
-                                        </div>
-                                        <div class="input-field col s3">
-                                            <input id="toD" type="text" class="validate">
-                                            <label for="toD">To</label>
-                                        </div>
-                                        <div class="input-field col s3">
-                                            <input id="fromG" type="text" class="validate">
-                                            <label for="fromG">From Grade</label>
-                                        </div>
-                                        <div class="input-field col s3">
-                                            <input id="toG" type="text" class="validate">
-                                            <label for="toG">To Grade</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="input-field col s3">
-
-                                    <input id="mark1" type="text" class="validate">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-
-                                    <label for="no2">2.</label>
-                                </div>
-                                <div class="input-field col s8">
-                                    <textarea id="desc2" class="materialize-textarea"></textarea>
-                                    <label for="desc2">Educational Achievements during school Time</label>
-                                </div>
-                                <div class="input-field col s3">
-
-                                    <input id="mark2" type="text" class="validate">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-
-                                    <label for="no3">3.</label>
-                                </div>
-                                <div class="input-field col s8">
-
-                                    <textarea id="desc3" class="materialize-textarea"></textarea>
-                                    <label for="desc3">Extra curriculum activities during school Time</label>
-                                </div>
-
-                                <div class="input-field col s3">
-
-                                    <input id="mark3" type="text" class="validate" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="input-field col s1">
-
-                                    <label for="no4">4.</label>
-                                </div>
-                                <div class="input-field col s8">
-
-                                    <textarea id="desc4" class="materialize-textarea"></textarea>
-                                    <label for="desc4">Membership in past pupils association and other details</label>
-                                </div>
-
-                                <div class="input-field col s3">
-
-                                    <input id="mark4" type="text" class="validate" required>
-                                </div>
-                            </div>
+        <form method="post" action="{{route('submitGuardianPastPupil')}}">
+            <div class="header">Children of Past Pupils</div>
+            <div class="row">
+                <input value="{{$applicant_id}}"  name="applicant_id" id="applicant_id" type="number" class="validate" readonly>
+                <label for="applicant_id">Applicant ID</label>
+            </div>
+            <div class="row">
+                <input name="membership_id" id="membership_id" type="number" class="validate" >
+                <label for="membership_id">Membership ID of past pupil association</label>
+            </div>
 
 
-                        </div>
-                    </div>
-
-                </li>
-            </ul>
             <button class="btn waves-effect waves-light" type="submit" name="action">Submit
                 <i class="material-icons right">send</i>
             </button>

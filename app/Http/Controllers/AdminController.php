@@ -17,5 +17,11 @@ class AdminController extends Controller
         return view('registerSchool',compact('district_row'));
     }
 
+    public function getManageSession(){
+       // $district_row=District::getDistrict();
+
+        return view('manageSession');
+    }
+
 
 }

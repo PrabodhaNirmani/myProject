@@ -24,9 +24,7 @@ class ApplicantGuardian
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
-        $fields2=array_slice($fields,1);
-        array_push($values,2);
-        foreach ($fields2 as $field){
+        foreach ($fields as $field){
             array_push($values,$request[$field]);
         }
         $row =DatabaseController::insert($name,$fields,$values);

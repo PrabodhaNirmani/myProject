@@ -4,7 +4,25 @@
     Application Page
 @endsection
 @section('header')
-    @include('includes.header')
+    <nav class="teal" role="navigation">
+        <div class="nav-wrapper ">
+            <a id="logo-container" href="#" class="brand-logo left">
+                <i class="material-icons">visibility</i>iSolve
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li>
+                    <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
+                            <i class="material-icons">present_to_all</i></a></div>
+                </li>
+
+                <li>
+                    <div class="col"><a  href="{{route('logout')}}" >Sign in</a></div>
+                </li>
+            </ul>
+
+        </div>
+
+    </nav>
 @endsection
 
 @section('body')
@@ -18,7 +36,12 @@
         @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantGuardian')}}">
-                    <div class="header">Details of the Parent/Guardian</div>
+
+            <div class="row">
+                <input value="{{$applicant_id}}" name="applicant_id" id="applicant_id" type="number" class="validate" readonly>
+                <label for="applicant_id">Applicant ID</label>
+            </div>
+            <div class="header">Details of the Parent/Guardian</div>
                     <div class="row">
 
                         <div class="input-field col s2">
