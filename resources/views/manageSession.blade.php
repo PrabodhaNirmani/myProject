@@ -12,32 +12,32 @@
             </a>
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
+                    <div class="col"><a href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom"
+                                        data-delay="10" data-tooltip="Back to home">
                             <i class="material-icons">present_to_all</i></a></div>
                 </li>
-
                 <li>
-                    <div class="col"><a  href="{{route('logout')}}" >Sign in</a></div>
+                    <div class="col"><a href="{{route('logout')}}">Sign in</a></div>
                 </li>
             </ul>
-
         </div>
-
     </nav>
-
-
 @endsection
 
 @section('body')
 
     <div class="container">
         <h1 class="header center teal-text text-darken-2">Grade One Registration</h1>
+        @if('year'==null){
         <h1 class="header center teal-text text-darken-2">Manage Session</h1>
+        @else
+            <h1 class="header center teal-text text-darken-2">{{'year'}}</h1>
+        @endif
         <div class="row">
             <form class="col s12" name="action" method="post" id="action" action="#">
                 <div class="row">
                     <div class="input-field col s6">
-                        <input type="date" class="datepicker">
+                        <input type="date" name="session_date" id="session_date" class="datepicker">
                         <label for="session_date">Session Date</label>
                     </div>
                 </div>

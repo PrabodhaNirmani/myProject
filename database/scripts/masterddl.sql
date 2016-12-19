@@ -41,7 +41,7 @@ CREATE TABLE applicant_guardian
 	last_name             VARCHAR(255),
 	national_id_no        VARCHAR(10) NOT NULL UNIQUE,
 	nationality_srilankan BOOLEAN NOT NULL,
-	district VARCHAR(20) NOT NULL,
+	district 							VARCHAR(20) NOT NULL,
 	religion              VARCHAR(11),
 	address_no            VARCHAR(8) NOT NULL,
 	address_street        VARCHAR(50) NOT NULL,
@@ -135,7 +135,8 @@ CREATE TABLE guardian_past_pupil
 
 CREATE TABLE session_date
 (
-   year_boundary DATE NOT NULL
+   year_boundary DATE NOT NULL,
+	 activate      BOOLEAN NOT NULL DEFAULT 0
 )
 	engine = innodb
 	DEFAULT charset = utf8;
