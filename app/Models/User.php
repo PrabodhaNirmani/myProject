@@ -192,12 +192,9 @@ class User implements  EntityInterface,Authenticatable
 
 
         if ($conn->errno == 0){
-            $user = new User();
-            $user->setUser_Name($user_name);
-            $user->setPassword($password);
-            $user->setUser_Type("school");
+            
             DatabaseController::closeConnection($conn);
-            return $user;
+            return true;
         }
         else {
 
@@ -221,18 +218,14 @@ class User implements  EntityInterface,Authenticatable
 
         $conn = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
         if ($conn->errno ==0){
-            $user = new User();
-            $user->setUser_Name($user_name);
-            $user->setPassword($password);
-            $user->setUser_Type("student");
             DatabaseController::closeConnection($conn);
-            return $user;
+            return true;
         }
         else {
 
             $error = new Error($conn->error,$conn->errno);
             DatabaseController::closeConnection($conn);
-            return null;
+            return $error;
         }
 
 

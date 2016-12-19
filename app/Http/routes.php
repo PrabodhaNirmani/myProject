@@ -12,13 +12,20 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome')->name('welcome');
 });
+
+Route::get('/', [
+    'uses' => 'HomeController@testDB',
+    'as' => 'welcome',
+
+
+]);
 
 Route::get('/test', [
     'uses' => 'HomeController@testDB',
     'as' => 'test',
-    
+
 
 ]);
 
@@ -177,6 +184,12 @@ Route::post('/submitApplicantSibling', [
 
 Route::get('/manageSession', [
     'uses' => 'AdminController@getManageSession',
+    'as' => 'manageSession',
+
+]);
+
+Route::post('/manageSession', [
+    'uses' => 'StudentController@postManageSession',
     'as' => 'manageSession',
 
 ]);
