@@ -36,6 +36,7 @@ class DatabaseController extends Controller
 
     public static function insert($table,$fields,$values){
 
+
         $connection = DatabaseController::db_connect();
         $values = implode("','", $values);
         $fields = implode(',', $fields);

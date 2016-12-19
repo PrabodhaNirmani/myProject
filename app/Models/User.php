@@ -188,19 +188,21 @@ class User implements  EntityInterface,Authenticatable
         array_push($values,"school");
         
         
-        $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
+        $conn = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
             
             
-        if (mysqli_connect_errno($result)){
+        if ($conn->errno == 0){
             $user = new User();
             $user->setUser_Name($user_name);
             $user->setPassword($password);
             $user->setUser_Type("school");
+            DatabaseController::closeConnection($conn);
             return $user;
         }
         else {
 
-            $error = new Error(mysqli_error($result),mysqli_connect_errno($result));
+            $error = new Error($conn->error,$conn->errno);
+            DatabaseController::closeConnection($conn);
             return $error;
         }
         
@@ -217,19 +219,20 @@ class User implements  EntityInterface,Authenticatable
         array_push($values,"student");
 
 
-        $result = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
-        
-        if (mysqli_connect_errno($result) ==0){
+        $conn = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
+        if ($conn->errno ==0){
             $user = new User();
             $user->setUser_Name($user_name);
             $user->setPassword($password);
             $user->setUser_Type("student");
+            DatabaseController::closeConnection($conn);
             return $user;
         }
         else {
 
-            $error = new Error(mysqli_error($result),mysqli_connect_errno($result));
-            return $error;
+            $error = new Error($conn->error,$conn->errno);
+            DatabaseController::closeConnection($conn);
+            return null;
         }
 
 
