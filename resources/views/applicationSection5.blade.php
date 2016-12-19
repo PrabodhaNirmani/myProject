@@ -44,7 +44,7 @@
 
             </div>
             <br><br>
-            @for($i=1,i<=3,i++)
+            @for($i=1;$i<=3;$i++)
             <div class="row">
                 <div class="input-field col s1">
 
