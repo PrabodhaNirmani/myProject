@@ -23,17 +23,15 @@
                         <label for="session_date">Session Date</label>
                     </div>
                 </div>
-                 <button class="btn waves-effect waves-light" type="Activate" name="action">Activate
+                <button class="btn waves-effect waves-light" type="Activate" name="action">Activate
                     <i class="material-icons right">send</i>
                 </button>
                 <input type="hidden" name="_token" value="{{Session::token()}}">
-                <a href ="#" class="waves-effect waves-light btn"><i class="material-icons right">verified_user</i>Deactivate</a>
+                <a href="#" class="waves-effect waves-light btn"><i class="material-icons right">verified_user</i>Deactivate</a>
             </form>
-
         </div>
         <br><br><br>
     </div>
-
 @endsection
 <script>
     $('.datepicker').pickadate({
