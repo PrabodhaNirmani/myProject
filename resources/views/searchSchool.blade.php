@@ -17,7 +17,8 @@
                 </li>
 
                 <li>
-                    <div class="col"><a  href="{{route('logout')}}" >Sign in</a></div>
+                    <div class="col"><a  href="{{route('logout')}}"  class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
+                            <i class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
 
