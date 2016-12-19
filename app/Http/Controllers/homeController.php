@@ -44,20 +44,9 @@ class HomeController extends Controller
                 return view('register', compact('error'));
             }
 
-            Auth::login($user);
-            $user_type = $user->getUser_Type();
-            if ($user_type == 'admin') {
-
+                $user = User::authenticate($request);
+                Auth::login($user);;
                 return redirect()->route('getDashboard');
-
-            } elseif ($user_type == 'school') {
-
-                return redirect()->route('getDashboard');
-            }
-            else {
-
-                return redirect()->route('getDashboard');
-            }
         }
         else{
             $error = "Password confirmation did not match";
@@ -71,8 +60,7 @@ class HomeController extends Controller
         if ($request['confirm_password'] == $request['password']) {
 
             $user = User::signUp($request);
-//            $type = get_class($user);
-//            return view('test',compact('user'));
+
             if (get_class($user) == 'App\Models\Error'){
 
                 if ($user->error_no == 1062){
@@ -85,19 +73,9 @@ class HomeController extends Controller
                 }
                 return view('register', compact('error'));
             }
-
-            Auth::login($user);
-            $user_type = $user->getUser_Type();
-            if ($user_type == 'admin') {
-
-                return redirect()->route('getDashboard');
-
-            } elseif ($user_type == 'school') {
-
-                return redirect()->route('getDashboard');
-            }
             else {
-
+                $user = User::authenticate($request);
+                Auth::login($user);
                 return redirect()->route('getDashboard');
             }
         }
@@ -112,24 +90,10 @@ class HomeController extends Controller
     public function login(Request $request){
 
         $user = User::authenticate($request);
-        echo $request;
-        if ($user!=null){
+        if ($user!=null) {
 
             Auth::login($user);
-            $user_type = $user->getUser_Type();
-            if ($user_type == 'admin') {
-
-                return redirect()->route('getDashboard');
-
-            } elseif ($user_type == 'school') {
-
-                return redirect()->route('getDashboard');
-            }
-            else {
-
-                return redirect()->route('getDashboard');
-            }
-
+            return redirect()->route('getDashboard');
         }
         else{
             
@@ -190,9 +154,9 @@ class HomeController extends Controller
     }
 
     public function logout(){
-//        $user = Auth::user()->user_name;
-//        return view('loginSuccess',compact('user'));
 
+        Auth::logout();
+        return redirect()->route('welcome');
     }
 
 
@@ -203,6 +167,7 @@ class HomeController extends Controller
         return view('loginSuccess',compact('user'));
         
     }
+
 
 
 
