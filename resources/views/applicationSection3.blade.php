@@ -62,6 +62,18 @@
                         </div>
                         <div class="input-field col s5">
                             <input name="school{{$i}}" id="school{{$i}}" type="text" class="validate" required>
+                            <div class="row">
+
+
+                                <div class="input-field col s2">
+                                    <select name="guardian_type" id="guardian_type" class="browser-default">
+                                        @foreach($schools as $school)
+                                        <option>{{$school}}</option>
+
+                                            @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="input-field col s2">
