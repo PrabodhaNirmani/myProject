@@ -33,7 +33,8 @@ class School
         $conn = DatabaseController::insert($this->tableName,$this->fieldNames,$values);
         if ($conn->errno ==0){
             DatabaseController::closeConnection($conn);
-            return true;
+            
+            return false;
         }
         else {
 

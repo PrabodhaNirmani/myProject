@@ -1,5 +1,10 @@
 @extends('mine.master2')
-
+@if ($error!= null)
+    <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+@endif
+@elseif ($done != null)
+    <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+@endif
 @section('title')
     School Registration Page
 @endsection
