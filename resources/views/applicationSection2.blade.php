@@ -72,9 +72,8 @@
                             <label for="national_id_no">National Identity Card Number</label>
                         </div>
                         <div class="input-field col s5">
-                            <input type="checkbox" class="filled-in" id="filled-in-box" name="nationality_srilankan" />
+                            <input type="checkbox" class="filled-in" id="nationality_srilankan" name="nationality_srilankan" required/>
                             <label for="nationality_srilankan">Whether Guardian is in SriLanka</label>
-
                         </div>
                         <div class="input-field col s3">
 
