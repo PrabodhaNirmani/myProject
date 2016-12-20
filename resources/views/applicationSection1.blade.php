@@ -67,9 +67,9 @@
                     <div class="input-field col s7">
                         <select name="religion" id="religion" class="browser-default">
                             <option>Buddhism</option>
-                            <option>Hindu</option>
+                            <option>Hinduisn</option>
                             <option>Islam</option>
-                            <option>Christian</option>
+                            <option>Christianity</option>
                         </select>
                     </div>
                 </div>
