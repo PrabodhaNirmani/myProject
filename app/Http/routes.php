@@ -206,3 +206,9 @@ Route::post('/submitManageSession', [
     'as' => 'submitManageSession',
 
 ]);
+
+Route::get('/deactivateSession', [
+    'uses' => 'AdminController@getDeactivateSession',
+    'as' => 'deactivateSession',
+
+]);
