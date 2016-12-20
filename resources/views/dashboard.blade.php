@@ -12,13 +12,27 @@
             </a>
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
-                            <i class="material-icons">present_to_all</i></a></div>
+                    <div class="col">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                </li>
+                <li>
+                    <div class="col">
+
+                        {{$user[0]}}
+                    </div>
+
+                </li>
+                <li>
+                    <div class="col"><a href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom"
+                                        data-delay="10" data-tooltip="Back to home">
+                            <i id="mystyle" class="material-icons">present_to_all</i></a></div>
                 </li>
 
                 <li>
-                    <div class="col"><a  href="{{route('logout')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
-                            <i class="material-icons">power_settings_new</i></a></div>
+                    <div class="col"><a href="{{route('logout')}}" class="tooltipped" data-position="bottom"
+                                        data-delay="10" data-tooltip="Logout">
+                            <i id="mystyle" class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
 
@@ -28,6 +42,10 @@
 @endsection
 
 <style>
+    #mystyle {
+        color: white;
+    }
+
     #snackbar {
         visibility: hidden;
         min-width: 250px;
@@ -40,7 +58,7 @@
         position: fixed;
         z-index: 1;
         left: 50%;
-        bottom: 30px;
+        top: 30px;
         font-size: 17px;
     }
 
@@ -51,23 +69,23 @@
     }
 
     @-webkit-keyframes fadein {
-        from {bottom: 0; opacity: 0;}
-        to {bottom: 30px; opacity: 1;}
+        from {top: 0; opacity: 0;}
+        to {to: 30px; opacity: 1;}
     }
 
     @keyframes fadein {
-        from {bottom: 0; opacity: 0;}
-        to {bottom: 30px; opacity: 1;}
+        from {top: 0; opacity: 0;}
+        to {top: 30px; opacity: 1;}
     }
 
     @-webkit-keyframes fadeout {
-        from {bottom: 30px; opacity: 1;}
-        to {bottom: 0; opacity: 0;}
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
     }
 
     @keyframes fadeout {
-        from {bottom: 30px; opacity: 1;}
-        to {bottom: 0; opacity: 0;}
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
     }
 </style>
 @section('body')
@@ -141,7 +159,7 @@
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{ route('registerSchoolView') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
-                                    <i class="material-icons">assignment</i></a></h2>
+                                    <i class="material-icons">note_add</i></a></h2>
                             <h5 class="center">
                                 <a href="{{ route('registerSchoolView') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                     Register</a></h5>
@@ -155,10 +173,10 @@
                     <div class="col s12 m6">
                         <div class="icon-block">
                             <h2 class="center brown-text">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
-                                    <i class="material-icons">system_update_alt</i></a></h2>
+                                <a href="{{route('manageSession')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
+                                    <i class="material-icons">update</i></a></h2>
                             <h5 class="center">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">Update</a></h5>
+                                <a href="{{route('manageSession')}}" data-activates="nav-mobile" class="waves-button-input teal-text">Update</a></h5>
 
                             <p class="light" align="center">
                                 Updating Sessions
@@ -201,8 +219,8 @@
                 </div>
 
         </div>
-            @endif
-        </div>
+        @endif
+    </div>
     </div>
 
 @endsection
@@ -214,7 +232,7 @@
             window.onload =function myFunction() {
                 var x = document.getElementById("snackbar")
                 x.className = "show";
-                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 15000);
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
             }
         </script>
     @endif
