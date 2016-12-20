@@ -28,19 +28,19 @@ class HomeController extends Controller
     
     public function schoolSignUp(Request $request){
 
-        if ($request['confirm_password'] == $request['password']) {
+        if ($request['confirm_password'] != $request['password']) {
 
+            $error = "Password confirmation did not match";
+            return view('register', compact('error'));
+        }
+        else{
             $user = User::schoolSignUp($request);
-            if (!$user){
-                $user = User::authenticate($request);
-                Auth::login($user);;
-                return redirect()->route('getDashboard');
-            }
-            elseif (get_class($user) == 'App\Models\Error'){
+
+            if (get_class($user) == 'App\Models\Error'){
 
                 if ($user->error_no == 1062){
 
-                    $error = "Username already exists! Signup with a different username";
+                    $error = "Username already exists! SignUp with a different username";
                 }
 
                 else{
@@ -48,12 +48,9 @@ class HomeController extends Controller
                 }
                 return view('register', compact('error'));
             }
-
-
-        }
-        else{
-            $error = "Password confirmation did not match";
-            return view('register', compact('error'));
+            
+            Auth::login($user);
+            return redirect()->route('getDashboard');
         }
 
 }
@@ -61,15 +58,14 @@ class HomeController extends Controller
     public function signUp(Request $request){
 
         if ($request['confirm_password'] == $request['password']) {
-
+            
+            $error = "Password confirmation did not match";
+            return view('register', compact('error'));
+        }
+        else{
             $user = User::signUp($request);
-            if (!$user){
-                $user = User::authenticate($request);
-                Auth::login($user);;
-                return redirect()->route('getDashboard');
-            }
 
-            elseif (get_class($user) == 'App\Models\Error'){
+            if (get_class($user) == 'App\Models\Error'){
 
                 if ($user->error_no == 1062){
 
@@ -81,10 +77,9 @@ class HomeController extends Controller
                 }
                 return view('register', compact('error'));
             }
-        }
-        else{
-            $error = "Password confirmation did not match";
-            return view('register', compact('error'));
+            Auth::login($user);
+            return redirect()->route('getDashboard');
+            
         }
 
     }

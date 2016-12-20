@@ -165,6 +165,7 @@ class User implements  EntityInterface,Authenticatable
         else{
             $result = null;
         }
+        DatabaseController::closeConnection($connection);
 
         if (count($result) == 0){
             return $result;
@@ -194,7 +195,8 @@ class User implements  EntityInterface,Authenticatable
         if ($conn->errno == 0){
             
             DatabaseController::closeConnection($conn);
-            return false;
+            $user = User::authenticate($request);
+            return $user;
         }
         else {
 
@@ -219,7 +221,8 @@ class User implements  EntityInterface,Authenticatable
         $conn = DatabaseController::insert(User::$tableName,User::$fieldNames,$values);
         if ($conn->errno ==0){
             DatabaseController::closeConnection($conn);
-            return false;
+            $user = User::authenticate($request);
+            return $user;
         }
         else {
 

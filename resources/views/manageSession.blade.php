@@ -29,39 +29,50 @@
     <div class="container">
         <h1 class="header center teal-text text-darken-2">Grade One Registration</h1>
         @if($year[0]==null or $flag[0]==0)
-
-        <h1 class="header center teal-text text-darken-2">Manage Session</h1>
+            <h1 class="header center teal-text text-darken-2">Manage Session</h1>
         @else
             <h1 class="header center teal-text text-darken-2">{{$year[0]}}</h1>
         @endif
         <div class="row">
-            <form class="col s12" name="action" method="post" id="action" action={{route('submitManageSession')}}>
+            <form method="post" action={{route('submitManageSession')}}>
                 <div class="row">
-                    <div class="input-field col s4">
-                        <div class="input-field col s12">
-                            <label for="birth_day">The Age of Apllicants is for :</label>
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <label for="session_date">The Age of an Applicant is until :</label>
                         </div>
-                        <div class="input-field col s6">
-                            <input id="birth_day" name="birth_day" type="date" class="datepicker" required>
-                            {{--<input type="date" class="">--}}
+                        <div class="input-field col s3">
+                            <label for="date">{{$date[0]}}</label>
                         </div>
-
+                    </div>
+                    <br><br><br>
+                    <div class="row">
+                        <div class="input-field col s3">
+                            <label for="change_row">Change Date :</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input id="session_date" name="session_date" type="date" class="datepicker">
+                        </div>
                     </div>
                 </div>
-                <button class="btn waves-effect waves-light" type="Activate" name="action">Activate
-                    <i class="material-icons right">send</i>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Activate
+                    <i class="material-icons right">done</i>
                 </button>
                 <input type="hidden" name="_token" value="{{Session::token()}}">
-                <a href="#" class="waves-effect waves-light btn"><i class="material-icons right">verified_user</i>Deactivate</a>
+                {{----}}
+                {{--<button class="btn waves-effect waves-light" type="submit" name="action">Activate--}}
+                {{--<i class="material-icons right">send</i>--}}
+                {{--</button>--}}
+                {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
+                <a href="#" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Deactivate</a>
             </form>
         </div>
         <br><br><br>
     </div>
     {{--<script>--}}
-        {{--$('.datepicker').pickadate({--}}
-            {{--selectMonths: true, // Creates a dropdown to control month--}}
-            {{--selectYears: 15 // Creates a dropdown of 15 years to control year--}}
-        {{--});--}}
+    {{--$('.datepicker').pickadate({--}}
+    {{--selectMonths: true, // Creates a dropdown to control month--}}
+    {{--selectYears: 15 // Creates a dropdown of 15 years to control year--}}
+    {{--});--}}
     {{--</script>--}}
 @endsection
 

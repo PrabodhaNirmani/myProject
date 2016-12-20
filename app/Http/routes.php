@@ -83,7 +83,13 @@ Route::get('/logout', [
 //Role Admin
 
 Route::get('/registerSchool', [
-    'uses' => 'AdminController@getRegisterSchool',
+    'uses' => 'AdminController@getRegisterSchoolView',
+    'as' => 'registerSchoolView',
+
+]);
+
+Route::get('/registerSchool', [
+    'uses' => 'AdminController@registerSchool',
     'as' => 'registerSchool',
 
 ]);

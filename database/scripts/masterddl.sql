@@ -12,6 +12,7 @@ CREATE TABLE user
 	user_name VARCHAR(255) NOT NULL,
 	password  VARCHAR(255) NOT NULL,
 	user_type VARCHAR(10) NOT NULL,
+	remember_token VARCHAR(100) NOT NULL,
 	UNIQUE (user_name)
 )
 	engine = innodb
@@ -135,6 +136,7 @@ CREATE TABLE guardian_past_pupil
 
 CREATE TABLE session_date
 (
+	 session_id    INT NOT NULL auto_increment PRIMARY KEY,
    year_boundary DATE NOT NULL,
 	 activate      BOOLEAN NOT NULL DEFAULT 0
 )
@@ -266,3 +268,6 @@ engine = innodb
 DEFAULT charset = utf8;
 
 insert into district (city) values('Matara'),('Galle'),('Hambantota'),('Colombo'),('Gampaha'),('Kaluthara'),('Monaragala'),('Badulla'),('Kandy'),('Matale'),('Nuwara Eliya'),('Ampara'),('Anuradhapura'),('Batticaloa'),('Jaffna'),('Kegalle'),('Kilinochchi'),('Kurunegala'),('Mannar'),('Mullaitivu'),('Polonnaruwa'),('Puttalam'),('Rathnapura'),('Trincomalee'),('Vavniya');
+
+/////////////updates//////////////////////////
+added a new field remember_token to user
