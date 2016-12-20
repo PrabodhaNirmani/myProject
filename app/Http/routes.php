@@ -64,7 +64,7 @@ Route::post('/login', [
     'as' => 'login',
 ]);
 
-Route::get('/loginView', [
+Route::get('/login', [
     'uses' => 'HomeController@loginView',
     'as' => 'loginView',
 
@@ -195,8 +195,8 @@ Route::get('/manageSession', [
 
 ]);
 
-Route::post('/manageSession', [
-    'uses' => 'StudentController@postManageSession',
-    'as' => 'manageSession',
+Route::post('/submitManageSession', [
+    'uses' => 'AdminController@postManageSession',
+    'as' => 'submitManageSession',
 
 ]);
