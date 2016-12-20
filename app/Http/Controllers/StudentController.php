@@ -22,139 +22,176 @@ use App\Models\ApplicantSibling;
 
 class StudentController extends Controller
 {
-    public function getApplicant(){
-        $applicant_id=Auth::user()->id;
-        $error=null;
-        return view('applicationSection1',compact('error','applicant_id'));
+    public function getApplicant()
+    {
+        $applicant_id = Auth::user()->id;
+        $error = null;
+        return view('applicationSection1', compact('error', 'applicant_id'));
     }
-    
-    public function postApplicant(Request $request){
-        $applicant=new Applicant();
-        $applicant_id=$request['applicant_id'];
-        $result=$applicant->createApplicant($request);
-        if(mysqli_errno($result)!=0) {
+
+    public function postApplicant(Request $request)
+    {
+        $applicant = new Applicant();
+        $applicant_id = $request['applicant_id'];
+        $result = $applicant->createApplicant($request);
+        if (mysqli_errno($result) != 0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             if ($err->error_no == 1062) {
                 $error = 'Applicant already exist';
-                return view('applicationSection1', compact('error','applicant_id'));
-            }
-            elseif ($err->error_no == 1644) {
+                return view('applicationSection1', compact('error', 'applicant_id'));
+            } elseif ($err->error_no == 1644) {
                 $error = 'Invalid Birthday Entry';
-                return view('applicationSection1', compact('error','applicant_id'));
-            }
-            else{
+                return view('applicationSection1', compact('error', 'applicant_id'));
+            } else {
                 $error = $err->error_description;
-                return view('applicationSection1', compact('error','applicant_id'));
+                return view('applicationSection1', compact('error', 'applicant_id'));
             }
         }
-        $error=null;
-        $districts=District::getDistrict();
-        return view('applicationSection2',compact('error','districts','applicant_id'));
+        $error = null;
+        $districts = District::getDistrict();
+        return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
 
     }
 
-    public function getApplicantGuardian(){
-        $error=null;
-        $applicant_id=2;
-        $districts=District::getDistrict();
-        return view('applicationSection2',compact('error','districts','applicant_id'));
+    public function getApplicantGuardian()
+    {
+        $error = null;
+        $applicant_id = 2;
+        $districts = District::getDistrict();
+        return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
     }
 
-    public function postApplicantGuardian(Request $request){
-        $applicant_guardian=new ApplicantGuardian();
-        $result=$applicant_guardian->createApplicantGuardian($request);
-        $applicant_id=$request['applicant_id'];
-        if(mysqli_errno($result)!=0) {
+    public function postApplicantGuardian(Request $request)
+    {
+        $applicant_guardian = new ApplicantGuardian();
+        $result = $applicant_guardian->createApplicantGuardian($request);
+        $applicant_id = $request['applicant_id'];
+        if (mysqli_errno($result) != 0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
-            $districts=District::getDistrict();
+            $districts = District::getDistrict();
             if ($err->error_no == 1062) {
                 $error = 'Applicant Guardian already exist';
-                return view('applicationSection2', compact('error','districts','applicant_id'));
-            }
-            else{
+                return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
+            } else {
                 $error = $err->error_description;
 
-                return view('applicationSection2', compact('error','districts','applicant_id'));
+                return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
             }
         }
-        $error=null;
-        $district=$request['district'];
-        $schools=District::getSchool($district);
-        return view('applicationSection3',compact('error','applicant_id','schools'));
+        $error = null;
+        $district = $request['district'];
+        $schools = District::getSchool($district);
+        return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
     }
 
-    public function getApplicantPriority(){
-        $error=null;
-        $applicant_id=2;
-        return view('applicationSection3',compact('error','applicant_id'));
+    public function getApplicantPriority()
+    {
+        $error = null;
+        $applicant_id = 2;
+        $schools=[[1,'convent']];
+        return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
     }
-    public function postApplicantPriority(Request $request){
-        $applicant_priority=new ApplicantPriority();
-        $applicant_id=$request['applicant_id'];
-        $result=$applicant_priority->createApplicantPriority($request);
-        if(mysqli_errno($result)!=0) {
-            $connection=DatabaseController::db_connect();
-            $applicant_id=$request['applicant_id'];
-            $sql="SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
-            $data=mysqli_query($connection,$sql);
-            $district=mysqli_fetch_row($data);
-            $schools=District::getSchool($district);
-            $err = new Error(mysqli_error($result), mysqli_errno($result));
-            if ($err->error_no == 1062) {
-                $error = 'Data already exist';
-                return view('applicationSection3', compact('error','applicant_id','schools'));
-            }
-            else{
-                $error = $err->error_description;
 
-                return view('applicationSection3', compact('error','applicant_id','schools'));
+    public function postApplicantPriority(Request $request)
+    {   $connection = DatabaseController::db_connect();
+        //$applicant_priority = new ApplicantPriority();
+        $applicant_id = $request['applicant_id'];
+        $val = [];
+        $temp = ['1','2','3','4','5'];
+        foreach ($temp as $i) {
+            if ($request['distance'.$i] != null) {
+                $rest=[];
+                $id=(explode("-",$request['school'.$i]));
+                $id=$id[0];
+                array_push($rest,$id);
+                array_push($rest, $request['no'.$i]);
+                array_push($rest, $request['distance'.$i]);
+                array_push($rest, $request['no_schools'.$i]);
+                array_push($val, $rest);
             }
         }
-        $error=null;
-        return view('applicationSection4',compact('error','applicant_id'));
+        foreach ($val as $i) {
+            $values = implode("','", $i);
+            $sql = "INSERT  INTO applicant_priority (applicant_id,school_id,priority,distance,num_between_school) VALUES "."('".$applicant_id." ','".$values."')";
+            echo $sql;
+            mysqli_query($connection, $sql);
+        }
+        $error = null;
+        return view('applicationSection4', compact('error', 'applicant_id'));
 
     }
 
-    public function getGuardianPastPupil(){
-        $applicant_id=2;
-        $error=null;
-        return view('applicationSection4',compact('error','applicant_id'));
+    public function getGuardianPastPupil()
+    {
+        $applicant_id = 2;
+        $error = null;
+        return view('applicationSection4', compact('error', 'applicant_id'));
     }
-    public function postGuardianPastPupil(Request $request){
-        $connection=DatabaseController::db_connect();
-        $applicant_id=$request['applicant_id'];
-        $sql="SELECT past_student_id from past_student where ( membership_id = request['membership_id'])";
-        $data=mysqli_query($connection,$sql);
+
+    public function postGuardianPastPupil(Request $request)
+    {
+        $connection = DatabaseController::db_connect();
+        $applicant_id = $request['applicant_id'];
+        $mem=$request['membership_id'];
+        $sql = "SELECT past_stu_id from past_student where ( membership_id ="." $mem".")";
+        echo $sql;
+        $data = mysqli_query($connection, $sql);
         if (mysqli_num_rows($data)) {
-            $error=null;
-            $row=mysqli_fetch_row($data);
-            $guardian_past_pupil=new GuardianPastPupil();
-            $guardian_past_pupil->createGuardianPastPupil($request);
-            return view('applicationSection5',compact('error','applicant_id'));
+            $past_student_id = mysqli_fetch_row($data);
+            $past_student_id =$past_student_id [0];
+            $sql = "SELECT guardian_id from applicant_guardian where ( applicant_id ="." $applicant_id".")";
+            $data = mysqli_query($connection, $sql);
+            $guardian_id = mysqli_fetch_row($data);
+            $error = null;
+            $guardian_id= $guardian_id[0];
+            $sql = "INSERT  INTO guardian_past_pupil(guardian_id,past_stu_id) VALUES"."('".$guardian_id." ','".$past_student_id."')";
+            mysqli_query($connection, $sql);
+            return view('applicationSection5', compact('error', 'applicant_id'));
         }
-        $error='Invalid membership id';
-        return view('applicationSection4',compact('error','applicant_id'));
+        $error = 'Invalid membership id';
+        return view('applicationSection4', compact('error', 'applicant_id'));
+    }
+
+
+    public function getApplicantSibling()
+    {
+        $error = null;
+        $applicant_id = 2;
+        return view('applicationSection5', compact('error', 'applicant_id'));
+    }
+
+    public function postApplicantSibling(Request $request)
+    {
+        $connection = DatabaseController::db_connect();
+        $applicant_id = $request['applicant_id'];
+        $val = [];
+        $temp = ['1', '2', '3'];
+        foreach ($temp as $i) {
+            $sibling_id=$request['admission_no' . $i];
+            echo $sibling_id;
+            if ($sibling_id != null) {
+                $sql = "SELECT present_stu_id from present_student where (present_stu_id = " . "$sibling_id".")";
+                echo $sql;
+                $data = mysqli_query($connection, $sql);
+                if (mysqli_num_rows($data)==null) {
+                    $error = 'Invalid present student id';
+                    return view('applicationSection4', compact('error', 'applicant_id'));
+                }
+                array_push($val,$sibling_id);
+            }
         }
+            foreach ($val as $i) {
+                $temp=$request['admission_no'.$i];
+                $sql = "INSERT  INTO applicant_sibling (applicant_id,present_stu_id) VALUES ("."$applicant_id".","."$temp".")";
+                echo $sql;
+                mysqli_query($connection, $sql);
+            }
+        $user = [];
+        array_push($user,Auth::user()->user_name);
+        array_push($user,Auth::user()->user_type);
+        array_push($user,Auth::user()->id);
+        $done='done';
+        return view('dashboard', compact('error', 'applicant_id','done','user'));
 
-
-
-
-    public function getApplicantSibling(){
-        $error=null;
-        $applicant_id=2;
-        return view('applicationSection5',compact('error','applicant_id'));
+        }
     }
-    public function postApplicantSibling(Request $request){
-        $applicant_id=$request['applicant_id'];
-//        $applicant_guardian=new ApplicantGuardian();
-//        $error='Invalid Entry';
-//        try{
-//            $result=$applicant_guardian->createGuardianPastPupil($request);
-//        }catch (\mysqli_sql_exception $e){
-//            return view('applicationSection4',compact('error'));
-//        }
-        $error=null;
-        return view('applicationSection4',compact('error','applicant_id'));
-
-    }
-}

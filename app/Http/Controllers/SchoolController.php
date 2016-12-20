@@ -28,8 +28,8 @@ class SchoolController extends Controller
     {
         // $applicants=null;
         $connection = DatabaseController::db_connect();
-        //$user = Auth::user()->user_id;
-        $query = "SELECT applicant.applicant_id, applicant.first_name, applicant.last_name FROM applicant, applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=(applicant.applicant_id,1)";
+        $school_id = Auth::user()->id;
+        $query = "SELECT applicant.applicant_id, applicant.first_name, applicant.last_name FROM applicant, applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=(applicant.applicant_id,'".$school_id."')";
         $result = mysqli_query($connection, $query);
 
         $applicants = array();
@@ -50,10 +50,11 @@ class SchoolController extends Controller
     public function postApplicantList(Request $request)
     {
         // $applicants=null;
+        
         $connection = DatabaseController::db_connect();
-        //$user = Auth::user()->user_id;
+        $school_id = Auth::user()->id;
         $applicant_id =$request['applicant_id'];
-        $query = "SELECT applicant.applicant_id, applicant.first_name, applicant.last_name FROM applicant, applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=($applicant_id,1)";
+        $query = "SELECT applicant.applicant_id, applicant.first_name, applicant.last_name FROM applicant,applicant_priority where (applicant.applicant_id,applicant.applicant_id,applicant_priority.school_id)=(".$applicant_id.",applicant_priority.applicant_id,'".$school_id."')";
         $result = mysqli_query($connection, $query);
 
         $applicants = array();

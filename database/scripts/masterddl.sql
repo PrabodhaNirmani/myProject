@@ -136,6 +136,7 @@ CREATE TABLE guardian_past_pupil
 
 CREATE TABLE session_date
 (
+	 session_id    INT NOT NULL auto_increment PRIMARY KEY,
    year_boundary DATE NOT NULL,
 	 activate      BOOLEAN NOT NULL DEFAULT 0
 )

@@ -29,6 +29,12 @@
 @section('body')
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
+            @if($error!=null)<br>
+            <div class="container">
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+            </div>
+            <br>
+            @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitGuardianPastPupil')}}">
             <div class="header">Children of Past Pupils</div>
