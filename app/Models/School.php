@@ -45,6 +45,11 @@ class School
 
 
     }
+    
+    public function search(Request $request){
+        
+        
+    }
 
     
 
