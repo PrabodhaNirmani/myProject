@@ -29,6 +29,7 @@
     <div class="container">
         <h1 class="header center teal-text text-darken-2">Grade One Registration</h1>
         @if($year[0]==null or $flag[0]==0)
+
         <h1 class="header center teal-text text-darken-2">Manage Session</h1>
         @else
             <h1 class="header center teal-text text-darken-2">{{$year[0]}}</h1>
