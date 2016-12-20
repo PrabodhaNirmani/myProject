@@ -28,13 +28,13 @@
 
     <div class="container">
         <h1 class="header center teal-text text-darken-2">Grade One Registration</h1>
-        @if('year'==null){
+        @if($year==null){
         <h1 class="header center teal-text text-darken-2">Manage Session</h1>
         @else
-            <h1 class="header center teal-text text-darken-2">{{'year'}}</h1>
+            <h1 class="header center teal-text text-darken-2">{{$year[0]}}</h1>
         @endif
         <div class="row">
-            <form class="col s12" name="action" method="post" id="action" action="#">
+            <form class="col s12" name="action" method="post" id="action" action={{route('submitManageSession')}}>
                 <div class="row">
                     <div class="input-field col s6">
                         <input type="date" name="session_date" id="session_date" class="datepicker">

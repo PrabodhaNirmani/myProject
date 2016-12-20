@@ -188,8 +188,8 @@ Route::get('/manageSession', [
 
 ]);
 
-Route::post('/manageSession', [
-    'uses' => 'StudentController@postManageSession',
-    'as' => 'manageSession',
+Route::post('/submitManageSession', [
+    'uses' => 'AdminController@postManageSession',
+    'as' => 'submitManageSession',
 
 ]);
