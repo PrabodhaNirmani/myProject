@@ -54,14 +54,41 @@
                     </div>
                     <br><br><br>
 
-                    @for($i=1;$i<=5;$i++)
+            <div class="row">
+                <div class="input-field col s1">
+                    <input name="no1" id="no1" type="text" class="validate" value="1" readonly>
+                </div>
+                <div class="input-field col s5">
+                    {{--<input name="school{{$i}}" id="school{{$i}}" type="text" class="validate" required>--}}
+                    <div class="row">
+
+
+                        <div class="input-field col s2">
+                            <select name="school1" id="school1" class="browser-default">
+                                @foreach($schools as $school)
+                                    <option>{{$school[0]}}-{{$school[1]}}</option>
+
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-field col s2">
+                    <input name="distance1" id="distance1" type="text" class="validate" required>
+                </div>
+                <div class="input-field col s4">
+                    <input name="no_schools1" id="no_schools1" type="text" class="validate" required>
+                </div>
+            </div>
+                    @for($i=2;$i<=5;$i++)
 
                     <div class="row">
                         <div class="input-field col s1">
-                            <input name="no{{$i}}" id="no{{$i}}" type="text" class="validate" value="{{$i+1}}" readonly>
+                            <input name="no{{$i}}" id="no{{$i}}" type="text" class="validate" value="{{$i}}" readonly>
                         </div>
                         <div class="input-field col s5">
-                            <input name="school{{$i}}" id="school{{$i}}" type="text" class="validate" required>
+                            {{--<input name="school{{$i}}" id="school{{$i}}" type="text" class="validate" required>--}}
                             <div class="row">
 
 
@@ -77,10 +104,10 @@
                         </div>
 
                         <div class="input-field col s2">
-                            <input name="distance{{$i}}" id="distance{{$i}}" type="text" class="validate" required>
+                            <input name="distance{{$i}}" id="distance{{$i}}" type="text" class="validate">
                         </div>
                         <div class="input-field col s4">
-                            <input name="no_schools{{$i}}" id="no_schools{{$i}}" type="text" class="validate" required>
+                            <input name="no_schools{{$i}}" id="no_schools{{$i}}" type="text" class="validate">
                         </div>
                     </div>
                     @endfor
