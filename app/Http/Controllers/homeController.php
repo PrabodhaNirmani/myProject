@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function testDB(){
-        $cus=new CustomConnection();
-        $con=$cus->db_connect();
+       // $cus=new CustomConnection();
+        $con=DatabaseController::db_connect();
         $sql="INSERT  INTO user(user_name,password,user_type) VALUES ('amal','amal','admin')";
         mysqli_query($con,$sql);
         $sql1="SELECT * FROM user";

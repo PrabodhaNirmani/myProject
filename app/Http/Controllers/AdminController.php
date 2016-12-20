@@ -32,7 +32,7 @@ class AdminController extends Controller
             $year=null;
         }
 
-        return view('manageSession',compact('year'));
+        return view('manageSession',compact('year','flag'));
     }
 
     public function postManageSession(Request $request)
@@ -48,7 +48,7 @@ class AdminController extends Controller
         $row = mysqli_query($connection, "select YEAR (year_boundary) from session_date;");
         $year = mysqli_fetch_row($row);
 
-        return view('manageSession', compact('year'));
+        return view('manageSession', compact('year','flag'));
     }
 
 }
