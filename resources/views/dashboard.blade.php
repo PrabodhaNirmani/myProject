@@ -40,7 +40,7 @@
         position: fixed;
         z-index: 1;
         left: 50%;
-        bottom: 30px;
+        top: 30px;
         font-size: 17px;
     }
 
@@ -51,23 +51,23 @@
     }
 
     @-webkit-keyframes fadein {
-        from {bottom: 0; opacity: 0;}
-        to {bottom: 30px; opacity: 1;}
+        from {top: 0; opacity: 0;}
+        to {to: 30px; opacity: 1;}
     }
 
     @keyframes fadein {
-        from {bottom: 0; opacity: 0;}
-        to {bottom: 30px; opacity: 1;}
+        from {top: 0; opacity: 0;}
+        to {top: 30px; opacity: 1;}
     }
 
     @-webkit-keyframes fadeout {
-        from {bottom: 30px; opacity: 1;}
-        to {bottom: 0; opacity: 0;}
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
     }
 
     @keyframes fadeout {
-        from {bottom: 30px; opacity: 1;}
-        to {bottom: 0; opacity: 0;}
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
     }
 </style>
 @section('body')
@@ -201,8 +201,8 @@
                 </div>
 
         </div>
-            @endif
-        </div>
+        @endif
+    </div>
     </div>
 
 @endsection
@@ -214,7 +214,7 @@
             window.onload =function myFunction() {
                 var x = document.getElementById("snackbar")
                 x.className = "show";
-                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 15000);
+                setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
             }
         </script>
     @endif

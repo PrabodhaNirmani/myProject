@@ -77,6 +77,7 @@ CREATE TABLE applicant_priority
 	marks              INT,
 	distance           DOUBLE NOT NULL,
 	num_between_school INT NOT NULL,
+	confirmed          BOOLEAN,
 	FOREIGN KEY(applicant_id) REFERENCES applicant(applicant_id) ON DELETE
 	CASCADE,
 	FOREIGN KEY(school_id) REFERENCES school(school_id) ON DELETE CASCADE,
@@ -87,7 +88,7 @@ CREATE TABLE applicant_priority
 
 CREATE TABLE student
 (
-	school_id       INT NOT NULL, 
+	school_id       INT NOT NULL,
 	admission_no    INT NOT NULL auto_increment PRIMARY KEY,
 	first_name      VARCHAR(255) NOT NULL,
 	last_name       VARCHAR(255),
@@ -119,7 +120,8 @@ CREATE TABLE applicant_sibling
 	applicant_id   INT NOT NULL,
 	present_stu_id INT NOT NULL REFERENCES present_student (present_stu_id),
 	FOREIGN KEY (applicant_id) REFERENCES applicant (applicant_id) ON DELETE
-	CASCADE
+	CASCADE,
+	primary key(applicant_id,present_stu_id)
 )
 	engine = innodb
 	DEFAULT charset = utf8;
@@ -129,16 +131,17 @@ CREATE TABLE guardian_past_pupil
 	guardian_id INT NOT NULL,
 	past_stu_id INT NOT NULL,
 	FOREIGN KEY(guardian_id) REFERENCES applicant_guardian(guardian_id),
-	FOREIGN KEY(past_stu_id) REFERENCES past_student(past_stu_id)
+	FOREIGN KEY(past_stu_id) REFERENCES past_student(past_stu_id),
+	primary key(guardian_id,past_stu_id)
 )
 	engine = innodb
 	DEFAULT charset = utf8;
 
 CREATE TABLE session_date
 (
-	 session_id    INT NOT NULL auto_increment PRIMARY KEY,
-   year_boundary DATE NOT NULL,
-	 activate      BOOLEAN NOT NULL DEFAULT 0
+	session_id    INT NOT NULL auto_increment PRIMARY KEY,
+	year_boundary DATE NOT NULL,
+	activate      BOOLEAN NOT NULL DEFAULT 0
 )
 	engine = innodb
 	DEFAULT charset = utf8;
@@ -174,14 +177,14 @@ for each row
 		declare msg varchar(128);
 		declare gender VARCHAR(7);
 		declare s_type VARCHAR(7);
-		
+
 		set gender =(select sex from applicant where applicant_id=new.applicant_id);
 		set s_type=(select school_type from school where school_id= new.school_id);
-		set msg = "Invalid_school";		
-		
+		set msg = "Invalid_school";
+
 		if gender="Male" and s_type="girls" then
 			signal sqlstate '45000' set message_text = msg;
-		else 
+		else
 			if gender="female" and s_type="boys" then
 				signal sqlstate '45000' set message_text = msg;
 			end if;
@@ -221,14 +224,14 @@ for each row
 		declare msg varchar(128);
 		declare gender VARCHAR(7);
 		declare s_type VARCHAR(7);
-		
+
 		set gender =(select sex from applicant where applicant_id=new.applicant_id);
 		set s_type=(select school_type from school where school_id= new.school_id);
-		set msg = "Invalid_school";		
-		
+		set msg = "Invalid_school";
+
 		if gender="Male" and s_type="girls" then
 			signal sqlstate '45000' set message_text = msg;
-		else 
+		else
 			if gender="female" and s_type="boys" then
 				signal sqlstate '45000' set message_text = msg;
 			end if;
@@ -250,11 +253,11 @@ drop function if exists generate_age;
 delimiter @
 
 create function generate_age(birthday date) returns real
-begin
-	declare age real;
-	set age =(select datediff((select year_boundary from session_date),birthday)/365);
-	return age;
-end@
+	begin
+		declare age real;
+		set age =(select datediff((select year_boundary from session_date),birthday)/365);
+		return age;
+	end@
 
 delimiter ;
 
@@ -264,10 +267,15 @@ CREATE TABLE district (
 )
 
 
-engine = innodb
-DEFAULT charset = utf8;
+	engine = innodb
+	DEFAULT charset = utf8;
 
 insert into district (city) values('Matara'),('Galle'),('Hambantota'),('Colombo'),('Gampaha'),('Kaluthara'),('Monaragala'),('Badulla'),('Kandy'),('Matale'),('Nuwara Eliya'),('Ampara'),('Anuradhapura'),('Batticaloa'),('Jaffna'),('Kegalle'),('Kilinochchi'),('Kurunegala'),('Mannar'),('Mullaitivu'),('Polonnaruwa'),('Puttalam'),('Rathnapura'),('Trincomalee'),('Vavniya');
 
 /////////////updates//////////////////////////
 added a new field remember_token to user
+
+#district is added to applicant_guardian table
+#confirmed is added to applicant priority
+#user_id changed to id in user table
+#applicant_sibling and guardian_past_pupil changed
