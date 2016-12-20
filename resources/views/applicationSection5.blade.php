@@ -31,7 +31,11 @@
     <div class="container" xmlns="http://www.w3.org/1999/html">
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantSibling')}}">
-            <div class="header">Children of Past Pupils</div>
+            <div class="row">
+                <input value="{{$applicant_id}}" name="applicant_id" id="applicant_id" type="number" class="validate" readonly>
+                <label for="applicant_id">Applicant ID</label>
+            </div>
+            <div class="header">Applicant has siblings in same school</div>
             <div class="row">
                 <div class="input-field col s1">
 
@@ -39,152 +43,25 @@
                 </div>
                 <div class="input-field col s8">
 
-                    <label for="des">Description</label>
+                    <label for="des">Admission no.</label>
                 </div>
 
-                <div class="input-field col s3">
-
-                    <label for="marks">Marks (For Office Use Only)</label>
-                </div>
             </div>
             <br><br>
+            @for($i=1;$i<=3;$i++)
             <div class="row">
                 <div class="input-field col s1">
 
-                    <label for="no1">1.</label>
+                    <label for="no{{$i}}">{{$i}}</label>
                 </div>
-                <div class="input-field col s9">
-                    <label for="no1">Details of siblings</label>
-                    <br><br>
-                    <div class="row">
-                        <div class="input-field col s1">
+                <div class="input-field col s5">
+                    <input name="admission_no{{$i}}" id="admission_no{{$i}}" type="text" class="validate">
 
-                            <label for="no">No.</label>
-                        </div>
-                        <div class="input-field col s5">
-
-                            <label for="name">Name of the child</label>
-                        </div>
-                        <div class="input-field col s3">
-
-                            <label for="grade">Grade and Admission No.</label>
-                        </div>
-                        <div class="input-field col s3">
-
-                            <label for="toG">Admission grade and grades spent</label>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
-                        <div class="input-field col s1">
-
-                            <label for="no1">1.</label>
-                        </div>
-                        <div class="input-field col s5">
-                            <input id="name1" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="grade1" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="admission1" type="text" class="validate">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s1">
-
-                            <label for="no2">2.</label>
-                        </div>
-                        <div class="input-field col s5">
-                            <input id="name2" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="grade2" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="admission2" type="text" class="validate">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s1">
-
-                            <label for="no3">3.</label>
-                        </div>
-                        <div class="input-field col s5">
-                            <input id="name3" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="grade3" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="admission3" type="text" class="validate">
-
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s1">
-
-                            <label for="no4">4.</label>
-                        </div>
-                        <div class="input-field col s5">
-                            <input id="name4" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="grade4" type="text" class="validate">
-
-                        </div>
-                        <div class="input-field col s3">
-                            <input id="admission4" type="text" class="validate">
-
-                        </div>
-                    </div>
                 </div>
 
-                <div class="input-field col s2">
-
-                    <input id="mark1" type="text" class="validate">
-                </div>
             </div>
-            <div class="row">
-                <div class="input-field col s1">
+            @endfor
 
-                    <label for="no2">2.</label>
-                </div>
-                <div class="input-field col s9">
-                    <textarea id="desc2" class="materialize-textarea"></textarea>
-                    <label for="desc2">Achievements gained for school by brothers and sisters</label>
-                </div>
-                <div class="input-field col s2">
-
-                    <input id="mark2" type="text" class="validate" >
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s1">
-
-                    <label for="no3">3.</label>
-                </div>
-                <div class="input-field col s9">
-
-                    <textarea id="desc3" class="materialize-textarea"></textarea>
-                    <label for="desc3">Other details</label>
-                </div>
-
-                <div class="input-field col s2">
-
-                    <input id="mark3" type="text" class="validate" required>
-                </div>
-            </div>
             <div class="row">
                 <p >
                     I here by declare that my child is not attending any government school; government approved private school or any other school at present for his/her studies.

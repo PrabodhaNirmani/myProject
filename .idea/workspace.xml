@@ -2,33 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef4b6b02-a768-466f-9eac-63ae2876830a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/applicationSection5.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/manageSession.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/ApplicantSibiling.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StudentController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/homeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/homeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/ApplicantGuardian.php" afterPath="$PROJECT_DIR$/app/Models/ApplicantGuardian.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/ApplicantPriority.php" afterPath="$PROJECT_DIR$/app/Models/ApplicantPriority.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/User.php" afterPath="$PROJECT_DIR$/app/Models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/applicant.php" afterPath="$PROJECT_DIR$/app/Models/applicant.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/district.php" afterPath="$PROJECT_DIR$/app/Models/district.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/applicationSection1.blade.php" afterPath="$PROJECT_DIR$/resources/views/applicationSection1.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/applicationSection2.blade.php" afterPath="$PROJECT_DIR$/resources/views/applicationSection2.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/applicationSection3.blade.php" afterPath="$PROJECT_DIR$/resources/views/applicationSection3.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/applicationSection4.blade.php" afterPath="$PROJECT_DIR$/resources/views/applicationSection4.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/includes/headerUser.blade.php" afterPath="$PROJECT_DIR$/resources/views/includes/headerUser.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/register.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/registerSchool.blade.php" afterPath="$PROJECT_DIR$/resources/views/registerSchool.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/searchSchool.blade.php" afterPath="$PROJECT_DIR$/resources/views/searchSchool.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/updateVacancies.blade.php" afterPath="$PROJECT_DIR$/resources/views/updateVacancies.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/viewApplicants.blade.php" afterPath="$PROJECT_DIR$/resources/views/viewApplicants.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/viewResults.blade.php" afterPath="$PROJECT_DIR$/resources/views/viewResults.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
     </list>
     <ignored path="myProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,7 +37,7 @@
       <file leaf-file-name="register.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/register.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
+            <state relative-caret-position="323">
               <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
               <folding />
             </state>
@@ -73,7 +47,7 @@
       <file leaf-file-name="viewApplicants.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/viewApplicants.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1474">
+            <state relative-caret-position="1139">
               <caret line="67" column="50" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="50" />
               <folding />
             </state>
@@ -83,13 +57,9 @@
       <file leaf-file-name="homeController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/homeController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1575">
+            <state relative-caret-position="1411">
               <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-              <folding>
-                <marker date="1482165034709" expanded="true" signature="330:408" placeholder="INSERT INTO user" />
-                <marker date="1482165034709" expanded="true" signature="459:477" placeholder="SELECT * FRO... user" />
-                <marker date="1482165034709" expanded="true" signature="4141:4180" placeholder="SELECT * FRO... school" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,7 +77,7 @@
       <file leaf-file-name="loginSuccess.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/loginSuccess.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
+            <state relative-caret-position="17">
               <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
               <folding />
             </state>
@@ -117,11 +87,11 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Models/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-427">
+            <state relative-caret-position="17">
               <caret line="186" column="8" selection-start-line="186" selection-start-column="8" selection-end-line="186" selection-end-column="8" />
               <folding>
                 <element signature="e#6#103#0#PHP" expanded="true" />
-                <marker date="1482165369683" expanded="true" signature="3072:3185" placeholder="SELECT id,us... user" />
+                <marker date="1482166749723" expanded="true" signature="3073:3186" placeholder="SELECT id,us... user" />
               </folding>
             </state>
           </provider>
@@ -130,11 +100,9 @@
       <file leaf-file-name="DataBaseController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataBaseController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="836">
+            <state relative-caret-position="646">
               <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-              <folding>
-                <marker date="1482154560490" expanded="true" signature="921:995" placeholder="INSERT INTO ${$table}... " />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,7 +110,7 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
+            <state relative-caret-position="374">
               <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
               <folding />
             </state>
@@ -152,7 +120,7 @@
       <file leaf-file-name="login.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/login.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
+            <state relative-caret-position="323">
               <caret line="19" column="16" selection-start-line="15" selection-start-column="8" selection-end-line="19" selection-end-column="16" />
               <folding />
             </state>
@@ -209,10 +177,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1048" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -239,7 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -404,6 +371,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -486,6 +454,7 @@
       <workItem from="1482058222153" duration="15604000" />
       <workItem from="1482151244073" duration="4293000" />
       <workItem from="1482165118044" duration="382000" />
+      <workItem from="1482171259007" duration="6000" />
     </task>
     <task id="LOCAL-00004" summary="auth">
       <created>1481956942489</created>
@@ -547,13 +516,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58030000" />
+    <option name="totallyTimeSpent" value="58036000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28218883" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28668684" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33496732" sideWeight="0.5181543" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -652,7 +621,7 @@
           <caret line="78" column="25" selection-start-line="78" selection-start-column="25" selection-end-line="78" selection-end-column="25" />
           <folding>
             <element signature="e#6#103#0#PHP" expanded="true" />
-            <marker date="1482165369683" expanded="true" signature="3072:3185" placeholder="SELECT id,us... user" />
+            <marker date="1482166749723" expanded="true" signature="3073:3186" placeholder="SELECT id,us... user" />
           </folding>
         </state>
       </provider>
@@ -682,9 +651,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1364">
           <caret line="67" column="12" selection-start-line="67" selection-start-column="12" selection-end-line="67" selection-end-column="12" />
-          <folding>
-            <marker date="1482154560490" expanded="true" signature="921:995" placeholder="INSERT INTO ${$table}... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -692,11 +659,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
           <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-          <folding>
-            <marker date="1482165034709" expanded="true" signature="330:408" placeholder="INSERT INTO user" />
-            <marker date="1482165034709" expanded="true" signature="459:477" placeholder="SELECT * FRO... user" />
-            <marker date="1482165034709" expanded="true" signature="4141:4180" placeholder="SELECT * FRO... school" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -918,13 +881,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="572">
           <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/login.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="323">
           <caret line="19" column="16" selection-start-line="15" selection-start-column="8" selection-end-line="19" selection-end-column="16" />
           <folding />
         </state>
@@ -932,7 +894,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/register.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
+        <state relative-caret-position="323">
           <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
           <folding />
         </state>
@@ -940,7 +902,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
+        <state relative-caret-position="374">
           <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
           <folding />
         </state>
@@ -956,7 +918,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/loginSuccess.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
+        <state relative-caret-position="17">
           <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
           <folding />
         </state>
@@ -972,7 +934,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/viewApplicants.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1474">
+        <state relative-caret-position="1139">
           <caret line="67" column="50" selection-start-line="67" selection-start-column="15" selection-end-line="67" selection-end-column="50" />
           <folding />
         </state>
@@ -980,33 +942,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/DataBaseController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
+        <state relative-caret-position="646">
           <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-          <folding>
-            <marker date="1482154560490" expanded="true" signature="921:995" placeholder="INSERT INTO ${$table}... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/homeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1575">
+        <state relative-caret-position="1411">
           <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-          <folding>
-            <marker date="1482165034709" expanded="true" signature="330:408" placeholder="INSERT INTO user" />
-            <marker date="1482165034709" expanded="true" signature="459:477" placeholder="SELECT * FRO... user" />
-            <marker date="1482165034709" expanded="true" signature="4141:4180" placeholder="SELECT * FRO... school" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/User.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-427">
+        <state relative-caret-position="17">
           <caret line="186" column="8" selection-start-line="186" selection-start-column="8" selection-end-line="186" selection-end-column="8" />
           <folding>
             <element signature="e#6#103#0#PHP" expanded="true" />
-            <marker date="1482165369683" expanded="true" signature="3072:3185" placeholder="SELECT id,us... user" />
+            <marker date="1482166749723" expanded="true" signature="3073:3186" placeholder="SELECT id,us... user" />
           </folding>
         </state>
       </provider>
