@@ -31,12 +31,16 @@
 @section('body')
 
     <div class="container">
-        <div class="container">
-            <div class="container">
         <br><br>
-        @if ($error!= null)
-            <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
-        @endif
+
+
+        <div class="container">
+            @if ($error!= null)
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+            @endif
+            <div class="container">
+
+
         <br><br>
         <h1 class="header center teal-text text-darken-2">User Login</h1>
         <div class="row">

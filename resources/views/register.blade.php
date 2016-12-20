@@ -11,6 +11,7 @@
                 <i class="material-icons">visibility</i>iSolve
             </a>
             <ul class="right hide-on-med-and-down">
+
                 <li>
                     <div class="col"><a  href="#"
                                          class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
@@ -33,13 +34,14 @@
 
     <div class="container">
         <div class="container">
+            @if ($error!= null)
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+            @endif
             <div class="container">
         <br><br>
-        @if ($error!= null)
-            <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
-        @endif
+
         <br><br>
-        <h1 class="header center teal-text text-darken-2">User Sign Up</h1>
+        <h1 class="header center teal-text text-darken-2">Student Sign Up</h1>
         <div class="row">
             <form class="col s12" name="action" method="post" id="action" action="{{ route('signUp') }}">
                 <div class="row">
