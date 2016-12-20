@@ -97,10 +97,10 @@
                     <div class="col s12 m6">
                         <div class="icon-block">
                             <h2 class="center brown-text">
-                                <a href="{{ route('registerSchool') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
+                                <a href="{{ route('registerSchoolView') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                     <i class="material-icons">assignment</i></a></h2>
                             <h5 class="center">
-                                <a href="{{ route('registerSchool') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
+                                <a href="{{ route('registerSchoolView') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                     Register</a></h5>
 
                             <p class="light" align="center">
