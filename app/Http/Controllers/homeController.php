@@ -78,6 +78,7 @@ class HomeController extends Controller
                 return view('register', compact('error'));
             }
             Auth::login($user);
+            $this->middleware('auth');
             return redirect()->route('getDashboard');
             
         }
@@ -91,6 +92,7 @@ class HomeController extends Controller
         if ($user!=null) {
 
             Auth::login($user);
+            $this->middleware('auth');
             return redirect()->route('getDashboard');
         }
         else{
