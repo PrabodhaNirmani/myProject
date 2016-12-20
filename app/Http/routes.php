@@ -47,16 +47,17 @@ Route::get('/signUp', [
 
 ]);
 
-Route::get('/dashboard', [
-    'uses' => 'HomeController@getDashboard',
-    'as' => 'getDashboard',
 
-]);
 
 Route::get('/testing', [
     'uses' => 'HomeController@testing',
     'as' => 'testing',
 
+]);
+Route::get('/dashboard', [
+    'uses' => 'HomeController@getDashboard',
+    'as' => 'getDashboard',
+    'middleware' => 'auth'
 ]);
 
 Route::post('/login', [
@@ -82,17 +83,9 @@ Route::get('/logout', [
 
 //Role Admin
 
-Route::get('/registerSchool', [
-    'uses' => 'AdminController@getRegisterSchoolView',
-    'as' => 'registerSchoolView',
 
-]);
 
-Route::post('/registerSchool', [
-    'uses' => 'AdminController@registerSchool',
-    'as' => 'registerSchool',
 
-]);
 
 
 
@@ -108,107 +101,150 @@ Route::post('/searchSchoolResults', [
     'as' => 'searchSchoolResults',
 
 ]);
+Route::group(['middleware' => ['web']], function () {
+////////admin
+    Route::get('/registerSchool', [
+        'uses' => 'AdminController@getRegisterSchoolView',
+        'as' => 'registerSchoolView',
+        'middleware' => 'auth'
 
-//role school
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
 
-Route::get('/updateVacancies', [
-    'uses' => 'SchoolController@getUpdateVacancies',
-    'as' => 'updateVacancies',
+    Route::post('/registerSchool', [
+        'uses' => 'AdminController@registerSchool',
+        'as' => 'registerSchool',
+        'middleware' => 'auth'
 
-]);
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
 
-Route::post('/submitUpdateVacancies', [
-    'uses' => 'SchoolController@postUpdateVacancies',
-    'as' => 'submitUpdateVacancies',
+    Route::get('/manageSession', [
+        'uses' => 'AdminController@getManageSession',
+        'as' => 'manageSession',
+        'middleware' => 'auth'
 
-]);
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
+
+    Route::post('/submitManageSession', [
+        'uses' => 'AdminController@postManageSession',
+        'as' => 'submitManageSession',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
+
+    Route::get('/deactivateSession', [
+        'uses' => 'AdminController@getDeactivateSession',
+        'as' => 'deactivateSession',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
+    ////////////student_controller
+    Route::get('/getApplicant', [
+        'uses' => 'StudentController@getApplicant',
+        'as' => 'getApplicant',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::post('/submitApplicant', [
+        'uses' => 'StudentController@postApplicant',
+        'as' => 'submitApplicant',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::get('/getApplicantGuardian', [
+        'uses' => 'StudentController@getApplicantGuardian',
+        'as' => 'getApplicantGuardian',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::post('/submitApplicantGuardian', [
+        'uses' => 'StudentController@postApplicantGuardian',
+        'as' => 'submitApplicantGuardian',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::get('/getApplicantPriority', [
+        'uses' => 'StudentController@getApplicantPriority',
+        'as' => 'getApplicantPriority',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::post('/submitApplicantPriority', [
+        'uses' => 'StudentController@postApplicantPriority',
+        'as' => 'submitApplicantPriority',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::get('/getGuardianPastPupil', [
+        'uses' => 'StudentController@getGuardianPastPupil',
+        'as' => 'getGuardianPastPupil',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::post('/submitGuardianPastPupil', [
+        'uses' => 'StudentController@postGuardianPastPupil',
+        'as' => 'submitGuardianPastPupil',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::get('/getApplicantSibling', [
+        'uses' => 'StudentController@getApplicantSibling',
+        'as' => 'getApplicantSibling',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::post('/submitApplicantSibling', [
+        'uses' => 'StudentController@postApplicantSibling',
+        'as' => 'submitApplicantSibling',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    //role school
+
+    Route::get('/updateVacancies', [
+        'uses' => 'SchoolController@getUpdateVacancies',
+        'as' => 'updateVacancies',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
+
+    Route::post('/submitUpdateVacancies', [
+        'uses' => 'SchoolController@postUpdateVacancies',
+        'as' => 'submitUpdateVacancies',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
 
-Route::get('/viewApplicants', [
-    'uses' => 'SchoolController@getApplicantList',
-    'as' => 'viewApplicants',
+    Route::get('/viewApplicants', [
+        'uses' => 'SchoolController@getApplicantList',
+        'as' => 'viewApplicants',
+        'middleware' => 'auth'
 
-]);
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
-Route::post('/submitViewApplicants', [
-    'uses' => 'SchoolController@postApplicantList',
-    'as' => 'submitViewApplicants',
-]);
+    Route::post('/submitViewApplicants', [
+        'uses' => 'SchoolController@postApplicantList',
+        'as' => 'submitViewApplicants',
+        'middleware' => 'auth'
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
-Route::post('/viewApplication', [
-    'uses' => 'SchoolController@postGetApplication',
-    'as' => 'viewApplication',
+    Route::post('/viewApplication', [
+        'uses' => 'SchoolController@postGetApplication',
+        'as' => 'viewApplication',
+        'middleware' => 'auth'
 
-]);
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
-////////////student_controller
-Route::get('/getApplicant', [
-    'uses' => 'StudentController@getApplicant',
-    'as' => 'getApplicant',
 
-]);
-Route::post('/submitApplicant', [
-    'uses' => 'StudentController@postApplicant',
-    'as' => 'submitApplicant',
 
-]);
+});
 
-Route::get('/getApplicantGuardian', [
-    'uses' => 'StudentController@getApplicantGuardian',
-    'as' => 'getApplicantGuardian',
 
-]);
-Route::post('/submitApplicantGuardian', [
-    'uses' => 'StudentController@postApplicantGuardian',
-    'as' => 'submitApplicantGuardian',
 
-]);
-Route::get('/getApplicantPriority', [
-    'uses' => 'StudentController@getApplicantPriority',
-    'as' => 'getApplicantPriority',
 
-]);
-Route::post('/submitApplicantPriority', [
-    'uses' => 'StudentController@postApplicantPriority',
-    'as' => 'submitApplicantPriority',
 
-]);
-Route::get('/getGuardianPastPupil', [
-    'uses' => 'StudentController@getGuardianPastPupil',
-    'as' => 'getGuardianPastPupil',
 
-]);
-Route::post('/submitGuardianPastPupil', [
-    'uses' => 'StudentController@postGuardianPastPupil',
-    'as' => 'submitGuardianPastPupil',
 
-]);
-
-Route::get('/getApplicantSibling', [
-    'uses' => 'StudentController@getApplicantSibling',
-    'as' => 'getApplicantSibling',
-
-]);
-Route::post('/submitApplicantSibling', [
-    'uses' => 'StudentController@postApplicantSibling',
-    'as' => 'submitApplicantSibling',
-
-]);
-
-Route::get('/manageSession', [
-    'uses' => 'AdminController@getManageSession',
-    'as' => 'manageSession',
-
-]);
-
-Route::post('/submitManageSession', [
-    'uses' => 'AdminController@postManageSession',
-    'as' => 'submitManageSession',
-
-]);
-
-Route::get('/deactivateSession', [
-    'uses' => 'AdminController@getDeactivateSession',
-    'as' => 'deactivateSession',
-
-]);
