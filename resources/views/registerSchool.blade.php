@@ -33,7 +33,7 @@
         <h1 class="header center teal-text text-darken-2">School Registration Form</h1>
         <div class="row">
             {{--routes--}}
-            <form class="col s12" action="#" method="post">
+            <form class="col s12" action="{{route('registerSchool')}}" method="post">
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="school_name" name="school_name" type="text" class="validate" required>

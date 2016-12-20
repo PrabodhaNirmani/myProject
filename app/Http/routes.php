@@ -64,7 +64,7 @@ Route::post('/login', [
     'as' => 'login',
 ]);
 
-Route::get('/loginView', [
+Route::get('/login', [
     'uses' => 'HomeController@loginView',
     'as' => 'loginView',
 
