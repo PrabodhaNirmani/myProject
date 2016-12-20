@@ -29,6 +29,12 @@
 @section('body')
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
+        @if($error!=null)<br>
+        <div class="container">
+            <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+        </div>
+        <br>
+        @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantPriority')}}">
             <div class="row">
@@ -93,7 +99,7 @@
 
 
                                 <div class="input-field col s2">
-                                    <select name="guardian_type" id="guardian_type" class="browser-default">
+                                    <select name="school{{$i}}" id="guardian_type" class="browser-default">
                                         @foreach($schools as $school)
                                             <option>{{$school[0]}}-{{$school[1]}}</option>
 

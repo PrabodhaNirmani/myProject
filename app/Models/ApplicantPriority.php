@@ -16,15 +16,18 @@ use App\Http\Controllers\DatabaseController;
 class ApplicantPriority 
 {
     private $tableName = 'applicant_priority';
-    private $fieldNames = ['applicant_id','school_id','last_name','priority','distance','num_between_school'];
+    private $fieldNames = ['school_id','applicant_id','priority','distance','num_between_school'];
 
     public function createApplicantPriority(Request $request){
-
+        echo $request;
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
-        array_push($values,4);
-        foreach ($fields as $field){
+        $fields1=array_slice($this->fieldNames,1);
+        $id=(explode("-",$request['school_id']));
+        $id=$id[0];
+        array_push($values,1);
+        foreach ($fields1 as $field){
             array_push($values,$request[$field]);
         }
         $row =DatabaseController::insert($name,$fields,$values);
