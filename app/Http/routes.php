@@ -88,7 +88,7 @@ Route::get('/registerSchool', [
 
 ]);
 
-Route::get('/registerSchool', [
+Route::post('/registerSchool', [
     'uses' => 'AdminController@registerSchool',
     'as' => 'registerSchool',
 

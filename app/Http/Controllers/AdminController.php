@@ -28,11 +28,8 @@ class AdminController extends Controller
         $year = mysqli_fetch_row($year_raw);
         $flag = mysqli_fetch_row($flag_raw);
 
-        if ($flag == 0) {
-            $year = null;
-        }
-
-        return view('manageSession', compact('year', 'flag'));
+        $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
+        return view('manageSession', compact('year', 'flag', 'date'));
     }
 
     public function postManageSession(Request $request)
@@ -40,24 +37,28 @@ class AdminController extends Controller
         // $district_row=District::getDistrict();
 
         $date = $request['session_date'];
+
         $connection = DatabaseController::db_connect();
 
-        $result = mysqli_query($connection, "select YEAR (year_boundary) from session_date;");
+        $result = mysqli_query($connection, "select year_boundary from session_date");
 
 
-        if (mysqli_num_rows($result) == 0) {
-            $query = "INSERT INTO SESSION_DATE(year_boundary,activate) values ($date,1);";
-            mysqli_query($connection, $query);
-        } else {
-            mysqli_query($connection, "update session_date set year_boundary=$date , activate = 1 where session_id=1;");
-        }
+//        if (mysqli_num_rows($result)) {
+        $date = "update session_date set year_boundary='" . $date . "' , activate = '1' where session_id=1";
+        mysqli_query($connection, $date);
 
-        $result = mysqli_query($connection, "select YEAR (year_boundary) from session_date;");
+//        } else {
+//            $query = "INSERT INTO SESSION_DATE(year_boundary,activate) values ($date,1)";
+//            mysqli_query($connection, $query);
+//}
+
+        $result = mysqli_query($connection, "select YEAR (year_boundary) from session_date");
 
         $year = mysqli_fetch_row($result);
 
-        $flag = 1;
-        return view('manageSession', compact('year', 'flag'));
+        $flag = mysqli_fetch_row(mysqli_query($connection, "select activate from session_date where session_id=1"));
+        $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
+        return view('manageSession', compact('year', 'flag', 'date'));
     }
 
 }

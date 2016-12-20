@@ -69,7 +69,7 @@ class HomeController extends Controller
 
                 if ($user->error_no == 1062){
 
-                    $error = "Username already exists! Signup with a different username";
+                    $error = "Username already exists! SignUp with a different username";
                 }
 
                 else{

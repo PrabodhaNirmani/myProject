@@ -1,10 +1,5 @@
 @extends('mine.master2')
-@if ($error!= null)
-    <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
-@endif
-@elseif ($done != null)
-    <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
-@endif
+
 @section('title')
     School Registration Page
 @endsection
@@ -33,23 +28,63 @@
 @endsection
 
 @section('body')
-
+<br>
     <div class="container">
+        @if ($error!= null)
+            <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
+        @endif
+        @if ($done != null)
+            <div class="card-panel #1de9b6 teal accent-3" align="center"><h5>{{$done}}</h5></div>
+        @endif
         <h1 class="header center teal-text text-darken-2">School Registration Form</h1>
+
         <div class="row">
             {{--routes--}}
             <form class="col s12" action="{{route('registerSchool')}}" method="post">
                 <div class="row">
-                    <div class="input-field col s12">
+                    <div class="input-field col s6">
                         <input id="school_name" name="school_name" type="text" class="validate" required>
                         <label for="school_name">School Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s4">
+                        <label for="school_type">School Type</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s2">
+                        <input onclick= "document.getElementById('girls_school').checked = false;
+                        document.getElementById('mixed_school').checked = false;" checked = "checked"
+                         name="boys_school" type="radio" id="boys_school" />
+                        <label for="boys_school">Boys School</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input onclick= "document.getElementById('boys_school').checked = false;
+                        document.getElementById('mixed_school').checked = false;"
+                               name="girls_school" type="radio" id="girls_school" />
+                        <label for="girls_school">Girls School</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input onclick= "document.getElementById('boys_school').checked = false;
+                        document.getElementById('girls_school').checked = false;"
+                               name="mixed_school" type="radio" id="mixed_school" />
+                        <label for="mixed_school">Mixed School</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="address">School Address</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s2">
                         <label for="district">District</label>
                     </div>
-                    <div class="input-field col s4">
+                    <div class="input-field col s3">
                         <select name="district" id="district" class="browser-default">
                             {{--<option disabled selected>District</option>--}}
                             @foreach($district_row as $row)
@@ -60,11 +95,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <input name="address" id="address" type="text" class="validate" required>
-                        <label for="address">Address</label>
+                    <div class="input-field col s6">
+                        <input name="street" id="street" type="text" class="validate" required>
+                        <label for="street">Street</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input name="city" id="city" type="text" class="validate" required>
+                        <label for="city">City</label>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <label for="user_details">User Details</label>
+                    </div>
+                </div>
+                <br>
                 <div class="row">
                     <div class="input-field col s6">
                         <input name="user_name" id="user_name" type="text" class="validate" required>
