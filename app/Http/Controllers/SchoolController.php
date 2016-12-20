@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\District;
+use App\Models\School;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -26,17 +27,14 @@ class SchoolController extends Controller
 
    public function getApplicantList()
     {
-        // $applicants=null;
-        $connection = DatabaseController::db_connect();
+        
         $school_id = Auth::user()->id;
-        $query = "SELECT applicant.applicant_id, applicant.first_name, applicant.last_name FROM applicant, applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=(applicant.applicant_id,'".$school_id."')";
-        $result = mysqli_query($connection, $query);
-
+        $result = School::getApplicants($school_id);
         $applicants = array();
         $error = null;
 
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_row($result)) {
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 array_push($applicants, $row);
             }
         } else {
@@ -49,19 +47,17 @@ class SchoolController extends Controller
 
     public function postApplicantList(Request $request)
     {
-        // $applicants=null;
-        
-        $connection = DatabaseController::db_connect();
+
         $school_id = Auth::user()->id;
         $applicant_id =$request['applicant_id'];
-        $query = "SELECT applicant.applicant_id, applicant.first_name, applicant.last_name FROM applicant,applicant_priority where (applicant.applicant_id,applicant.applicant_id,applicant_priority.school_id)=(".$applicant_id.",applicant_priority.applicant_id,'".$school_id."')";
-        $result = mysqli_query($connection, $query);
+
+        $result = School::searchApplicants($school_id, $applicant_id);
 
         $applicants = array();
         $error = null;
 
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_row($result)) {
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
                 array_push($applicants, $row);
             }
         } else {
@@ -70,6 +66,10 @@ class SchoolController extends Controller
         }
 
         return view('viewApplicants', compact('applicants', 'error'));
+    }
+    
+    public function reviewApplication1(){
+        
     }
 
     public function postGetApplication(Request $request){
