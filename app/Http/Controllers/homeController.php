@@ -155,7 +155,7 @@ class HomeController extends Controller
     public function logout(){
 
         Auth::logout();
-        return redirect()->route('welcome');
+        return redirect()->route('loginView');
     }
 
 
