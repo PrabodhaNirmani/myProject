@@ -20,17 +20,38 @@ class School
 
     public function addSchool(Request $request){
 
-        $user = new User();
-        
+        $user = User::schoolSignUp($request);
+        if (get_class($user) == 'App\Models\Error'){
+            
+            return $user;
+        }
         $values = [];
         foreach ($this->fieldNames as $field){
             array_push($values,$request[$field]);
         }
+
+        $conn = DatabaseController::insert($this->tableName,$this->fieldNames,$values);
+        if ($conn->errno ==0){
+            DatabaseController::closeConnection($conn);
+            return true;
+        }
+        else {
+
+            $error = new Error($conn->error,$conn->errno);
+            DatabaseController::closeConnection($conn);
+            return $error;
+        }
         
-        DatabaseController::insert($this->tableName,$this->fieldNames,$values);
 
 
     }
+    
+    public function search(Request $request){
+        
+        
+    }
+
+    
 
 
 

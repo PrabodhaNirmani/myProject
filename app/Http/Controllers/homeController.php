@@ -167,6 +167,10 @@ class HomeController extends Controller
         return view('loginSuccess',compact('user'));
         
     }
+    
+    public function getWelcome(){
+        return view('welcome');
+    }
 
 
 
