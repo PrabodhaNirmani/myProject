@@ -11,23 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome')->name('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/', [
-    'uses' => 'HomeController@testDB',
+    'uses' => 'HomeController@getWelcome',
     'as' => 'welcome',
 
 
 ]);
 
-Route::get('/test', [
-    'uses' => 'HomeController@testDB',
-    'as' => 'test',
+//Route::get('/', [
+//    'uses' => 'HomeController@testDB',
+//    'as' => 'welcome',
+//
+//
+//]);
 
-
-]);
+//Route::get('/test', [
+//    'uses' => 'HomeController@testDB',
+//    'as' => 'test',
+//
+//
+//]);
 
 Route::post('/signUp', [
     'uses' => 'HomeController@signUp',
