@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\District;
+use App\Models\School;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -11,13 +12,36 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
 
-    public function getRegisterSchool()
+    public function getRegisterSchoolView()
     {
         $district_row = District::getDistrict();
-
-        return view('registerSchool', compact('district_row'));
+        $error = null;
+        $done = null;
+        return view('registerSchool', compact('district_row','error','done'));
     }
 
+    public function registerSchool(Request $request){
+
+        $district_row = District::getDistrict();
+        $user = School::addSchool($request);
+        if (get_class($user) == 'App\Models\Error'){
+
+            if ($user->error_no == 1062){
+
+                $error = "Username of school already exists! SignUp with a different username";
+            }
+
+            else{
+                $error = $user->error_description;
+            }
+            $done = null;
+            return view('registerSchool', compact('district_row','error','done'));
+        }
+
+        $done = "School was successfully added";
+        $error = null;
+        return view('registerSchool', compact('district_row','error','done'));
+    }
     public function getManageSession()
     {
 

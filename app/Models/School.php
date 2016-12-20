@@ -20,12 +20,13 @@ class School
 
     public static function addSchool(Request $request){
 
+        echo $request;
         $user = User::schoolSignUp($request);
         if (get_class($user) == 'App\Models\Error'){
             
             return $user;
         }
-        if ($request['boys_school' == 'on']){
+        if ($request['boys_school']  == 'on'){
             $school_type = 'boys';
         }
         elseif ($request['girls_school'] == 'on'){
@@ -58,7 +59,7 @@ class School
 
     }
     
-    public function search(Request $request){
+    public function searchSchool(Request $request){
         
         
     }
