@@ -41,10 +41,10 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text">
-                            <a href="#" data-activates="nav-mobile" class="wave-button-input teal-text">
+                            <a href="{{route('searchSchool')}}" data-activates="nav-mobile" class="wave-button-input teal-text">
                                 <i class="material-icons">search</i></a></h2>
                         <h5 class="center">
-                            <a href="#" data-activates="nav-mobile" class="wave-button-input teal-text">Search</a></h5>
+                            <a href="{{route('searchSchool')}}" data-activates="nav-mobile" class="wave-button-input teal-text">Search</a></h5>
                         <p class="light" align="center">
                             Searching schools which are located in a particular district
                         </p>
@@ -53,10 +53,10 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text">
-                            <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                            <a href="{{route('signUpView')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                 <i class="material-icons">assignment</i></a></h2>
                         <h5 class="center">
-                            <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                            <a href="{{'signUpView'}}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                 Register</a></h5>
                         <p class="light" align="center">
                             Register students
@@ -66,10 +66,10 @@
                 <div class="col s12 m4">
                     <div class="icon-block">
                         <h2 class="center brown-text">
-                            <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                            <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                 <i class="material-icons">grade</i></a></h2>
                         <h5 class="center">
-                            <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a>
+                            <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a>
                         </h5>
                         <p class="light" align="center">
                             Checking results of grade one entries

@@ -166,8 +166,44 @@ class School
 
     }
 
+    public static function reviewApplication4($applicant_id){
 
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT present_stu_id from applicant_sibling where applicant_id = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$applicant_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $sibling = $result->fetch_assoc();
+            $stmt->close();
+            $query1 = "SELECT * from student where admission_no = ? and school_id = ?";
+            $stmt1 = $connection->prepare($query1);
+            $school_id = Auth::user()->id;
+            $stmt1->bind_param("ii",$sibling['present_stu_id'],$school_id);
+            $stmt1->execute();
+            $result1 = $stmt1->get_result();
+            return $result1;
 
+        } 
+        else {
+            return null;
+
+        }
+    }
+
+    public static function reviewApplication5($applicant_id){
+
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT * from applicant_priority where applicant_id = ? and school_id = ?";
+        $stmt = $connection->prepare($query);
+        $school_id = Auth::user()->id;
+        $stmt->bind_param("ii",$applicant_id,$school_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+
+    }
 
     public static function getSchools(){
         $connection = DatabaseController::db_connect();

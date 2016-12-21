@@ -43,6 +43,7 @@
                 <li class="waves-effect"><a href="#!">3</a></li>
                 <li class="waves-effect"><a href="#!">4</a></li>
                 <li class="waves-effect"><a href="#!">5</a></li>
+                <li class="waves-effect"><a href="#!">6</a></li>
                 <li class="waves-effect"><a href="4/{{$applicant_id}}"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         </div>

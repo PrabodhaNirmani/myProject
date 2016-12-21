@@ -130,12 +130,35 @@ class SchoolController extends Controller
 
     public function reviewApplication4($applicant_id){
 
-        return view('schoolApplicationReview4',compact('applicant','error'));
+        $result =School::reviewApplication4($applicant_id);
+        if ($result != null){
+            if ($result->num_rows > 0) {
+                $sibling = $result->fetch_assoc();
+                $error = null;
+                return view('schoolApplicationReview4',compact('applicant_id','sibling','error'));
+            }
+            
+        }
+        $error = "No siblings in this school";
+        $sibling = null;
+        return view('schoolApplicationReview4',compact('applicant_id','sibling','error'));
+        
 
     }
     public function reviewApplication5($applicant_id){
 
-        return view('schoolApplicationReview5',compact('applicant','error'));
+        $result =School::reviewApplication5($applicant_id);
+
+        if ($result->num_rows > 0) {
+            $distance = $result->fetch_assoc();
+
+        } else {
+            $error = "Cannot Load the results";
+            $distance = null;
+
+        }
+        $error = null;
+        return view('schoolApplicationReview5',compact('distance','error'));
 
     }
 
