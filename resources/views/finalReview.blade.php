@@ -57,26 +57,21 @@
             <br><br>
             <div class="row">
                 <div class="input-field col s3 offset-s3">
-                    <label for="distance">Distance to School</label>
+                    <label for="marks">Final Marks</label>
                 </div>
                 <div class="col s2">
-                    <input name="distance" id="distance" type="text" class="validate" value="{{$distance['distance']}}"  readonly>
+                    <input name="marks" id="marks" type="text" class="validate" value=""  readonly>
                 </div>
 
             </div>
-            <div class="row">
-                <div class="input-field col s3 offset-s3">
-                    <label for="num_between_school">Number of Schools in between</label>
-                </div>
-                <div class="col s2">
-                    <input name="num_between_school" id="num_between_school" type="text" class="validate" value="{{$distance['num_between_school']}}"  readonly>
-                </div>
 
-            </div>
 
             <br><br>
             <div align="center">
-                <a href ="5/{{$distance['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Next</a>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                <input type="hidden" name="_token" value="{{Session::token()}}">
             </div>
         </form>
     </div>
