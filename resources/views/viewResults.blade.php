@@ -1,4 +1,5 @@
-@extends('mine.master2')
+@extends ('mine.master2')
+
 
 @section('title')
     Results Page
@@ -22,6 +23,7 @@
 
 
                         $user_name=Auth::user()->user_name;
+                        $user_type=Auth::user()->id;
 
                         ?>
 
@@ -53,29 +55,140 @@
 @section('body')
 
     <div class="container">
-        <h1 class="header center teal-text text-darken-2 ">View Results</h1>
+
         <br><br><br>
     </div>
-    <div class="container">
-        {{--route--}}
-        <form action="{{route('submitApplicant')}}" method="post">
-            <div class="row">
+    @if($user[0]=='admin')
+        <h1 class="header center teal-text text-darken-2 ">Evaluation Results</h1>
+        <div class="container">
+            {{--route--}}
+            <form action="{{route('submitApplicant')}}" method="post">
                 <div class="col s10">
-                    <div class="input-field col s6">
-                        <input id="district" type="search" class="validate" required>
-                        <label for="district">District</label>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <label for="school">School</label>
+                        </div>
+                        <div class="input-field col s4">
+                            <select name="school" id="school" class="browser-default">
+                                {{--<option disabled selected>District</option>--}}
+
+                                @foreach($school_name as $school)
+                                    <option>{{$school[0]}}-{{$school[1]}}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
                     </div>
                 </div>
-                <div class="col s1">#}
-                    <button class="btn-floating btn-large" type="submit" name="action">
-                        <i class="material-icons">search</i>
-                    </button>
-                    <input type="hidden" name="_token" value="{{Session::token()}}">
-                </div>
-            </div>
-        </form>
-        <br><br>
-        <br><br>
-    </div>
+            </form>
+            <br><br>
+            <br><br>
+        </div>
 
+
+    @elseif($user[0]=='student')
+
+        @if($error!=null)
+
+            <div class="container">
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+            </div>
+            <br>
+        @else
+            <h1 class="header center teal-text text-darken-2 ">Selected School- {{$school_name[0]}}</h1>
+
+<div class="container">
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th data-field="applicant_id">Applicant ID</th>
+                        <th data-field="first_name">First Name</th>
+                        <th data-field="last_name">Last Name</th>
+                        <th data-field="marks">Marks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    @foreach($applicants as $applicant)
+
+                        <tr>
+                            <td>{{$applicant[0]}}</td>
+                            <td>{{$applicant[1]}}</td>
+                            <td>{{$applicant[2]}}</td>
+                            <td>{{$applicant[3][0]}}</td>
+                            {{--<td>--}}
+                                {{--<button class="btn waves-effect waves-light" type="submit" name="view_appplication">View--}}
+                                    {{--Application--}}
+                                    {{--<i class="material-icons right">send</i>--}}
+                                {{--</button>--}}
+                                {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
+
+                            {{--</td>--}}
+                        </tr>
+                    @endforeach
+
+                    </tbody>
+
+                </table>
+</div>
+
+
+            @endif
+
+    @else
+
+        @if($error!=null)
+
+            <div class="container">
+                <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+            </div>
+            <br>
+        @else
+            <h1 class="header center teal-text text-darken-2 ">Selected Students- {{$school_name[0]}}</h1>
+
+
+            <div class="container">
+            <table>
+                <thead>
+                <tr>
+                    <th data-field="applicant_id">Applicant ID</th>
+                    <th data-field="first_name">First Name</th>
+                    <th data-field="last_name">Last Name</th>
+                    <th data-field="marks">Marks</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach($applicants as $applicant)
+
+                    <tr>
+                        <td>{{$applicant[0]}}</td>
+                        <td>{{$applicant[1]}}</td>
+                        <td>{{$applicant[2]}}</td>
+                        <td>{{$applicant[3]}}</td>
+                        {{--<td>--}}
+                        {{--<button class="btn waves-effect waves-light" type="submit" name="view_appplication">View--}}
+                        {{--Application--}}
+                        {{--<i class="material-icons right">send</i>--}}
+                        {{--</button>--}}
+                        {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
+
+                        {{--</td>--}}
+                    </tr>
+                @endforeach
+
+                </tbody>
+
+            </table>
+
+
+</div>
+        @endif
+
+
+
+    @endif
+
+<br><br><br>
 @endsection

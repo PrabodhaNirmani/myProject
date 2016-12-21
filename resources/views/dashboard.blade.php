@@ -127,10 +127,10 @@
                     <div class="col s12 m3">
                         <div class="icon-block">
                             <h2 class="center brown-text">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
+                                <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                     <i class="material-icons">grade</i></a></h2>
                             <h5 class="center">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a></h5>
+                                <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a></h5>
 
                             <p class="light" align="center">
                                 Checking results of grade one entries
@@ -206,10 +206,10 @@
                     <div class="col s12 m6">
                         <div class="icon-block">
                             <h2 class="center brown-text">
-                                <a href="# " data-activates="nav-mobile" class="waves-button-input teal-text">
+                                <a href="{{route('updateVacancies')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
                                     <i class="material-icons">system_update_alt</i></a></h2>
                             <h5 class="center">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">Update</a></h5>
+                                <a href="{{route('updateVacancies')}}" data-activates="nav-mobile" class="waves-button-input teal-text">Update</a></h5>
 
                             <p class="light" align="center">
                                 Updating the number of vacancies left for the school in this year
