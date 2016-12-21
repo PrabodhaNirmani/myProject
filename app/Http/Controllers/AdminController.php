@@ -176,22 +176,16 @@ class AdminController extends Controller
             $res = mysqli_query($con, $sql);
             while ($row = mysqli_fetch_row($res)) {
                 $applicantSchool[$row[0]] = 0;
-                $a = array_keys($applicantSchool);
+
             }
-//        echo $a[1];
-//        echo $applicantSchool[$a[1]];
-//        echo $a[2];
-//        echo $applicantSchool[$a[2]];
-//        echo $a[3];
-//        echo $applicantSchool[$a[3]];
-//        echo $a[4];
-//        echo $applicantSchool[$a[4]];
+            $a = array_keys($applicantSchool);
+
             // echo array_keys($applicantSchool)[3];
 
 
             $applicantMark = array();
             for ($i = 0; $i < sizeof($schoolMax); $i++) {
-                $query1 = "select applicant_id,priority,marks from applicant_priority where school_id=" . $schoolMax[$i][0] . " order by(marks)";
+                $query1 = "select applicant_id,priority,marks from applicant_priority where school_id=" . $schoolMax[$i][0] . " order by(marks) desc";
                 $res = mysqli_query($con, $query1);
                 if ($res->num_rows > 0) {
                     $applicants_in_school = array();
@@ -201,7 +195,7 @@ class AdminController extends Controller
                     array_push($applicantMark, $applicants_in_school);
                 }
             }
-            //echo $applicantMark[0][0][0];
+            echo $applicantMark[0][0][2];
             $change = true;
             while ($change) {
                 $change = false;
@@ -226,12 +220,34 @@ class AdminController extends Controller
                         } elseif ($applicantMark[$k][$count][1] == $applicantSchool[$applicantMark[$k][$count][0]]) {
                             $j++;
                         }
-                        echo $applicantSchool[$applicantMark[$k][$count][0]];
+                        //echo $applicantSchool[$applicantMark[$k][$count][0]];
                         $count = $count + 1;
 
                     }
                 }
             }
+            //echo $a[0];
+            echo $applicantSchool[$a[0]];
+            //echo $a[1];
+            echo $applicantSchool[$a[1]];
+            //echo $a[2];
+            echo $applicantSchool[$a[2]];
+            //echo $a[3];
+            echo $applicantSchool[$a[3]];
+           // echo $a[4];
+            echo $applicantSchool[$a[4]];
+            //echo $a[5];
+            echo $applicantSchool[$a[5]];
+            //echo $a[6];
+            echo $applicantSchool[$a[6]];
+           // echo $a[7];
+            echo $applicantSchool[$a[7]];
+           // echo $a[8];
+            echo $applicantSchool[$a[8]];
+           // echo $a[9];
+            echo $applicantSchool[$a[9]];
+
+
 
         }
         $applicant_id = Auth::user()->id;
