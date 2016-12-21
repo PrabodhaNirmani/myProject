@@ -106,6 +106,66 @@ class School
 
     }
 
+    public static function reviewApplication3($applicant_id){
+
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT guardian_id from applicant_guardian where applicant_id = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$applicant_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            $guardian = $result->fetch_assoc();
+            $stmt->close();
+            $query1 = "SELECT past_stu_id from guardian_past_pupil where guardian_id = ?";
+            $stmt1 = $connection->prepare($query1);
+            $stmt1->bind_param("i",$guardian['guardian_id']);
+            $stmt1->execute();
+            $result1 = $stmt1->get_result();
+            if ($result1->num_rows > 0) {
+                $past_student = $result1->fetch_assoc();
+                $stmt1->close();
+                $query2 = "SELECT registered_date from student where admission_no = ? and school_id = ?";
+                $stmt2 = $connection->prepare($query2);
+                $school_id = Auth::user()->id;
+                $stmt2->bind_param("ii",$past_student['past_stu_id'],$school_id);
+                $stmt2->execute();
+                $result2 = $stmt2->get_result();
+                if ($result2->num_rows > 0) {
+                    $reg_date = $result2->fetch_assoc();
+                    $stmt2->close();
+                    $query3 = "SELECT * from past_student where past_stu_id = ?";
+                    $stmt3 = $connection->prepare($query3);
+                    $stmt3->bind_param("i",$past_student['past_stu_id']);
+                    $stmt3->execute();
+                    $result4 = $stmt3->get_result();
+                    $res = array();
+                    array_push($res,$reg_date['registered_date']);
+                    array_push($res,$result4);
+                    return $res;
+
+                } 
+                else {
+                    return null;
+
+                }
+                
+            } 
+            else {
+               return null;
+
+            }
+            
+
+        } 
+        else {
+            return null;
+
+        }
+
+
+    }
+
 
 
 
@@ -115,7 +175,7 @@ class School
 
         $result = mysqli_query($connection,$query);
         $schools=array();
-        while($row=mysqli_num_rows($result)){
+        while($row=mysqli_fetch_row($result)){
             array_push($schools,$row);
 
         }
