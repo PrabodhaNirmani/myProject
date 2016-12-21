@@ -186,7 +186,7 @@ class HomeController extends Controller
         }
         elseif($user[0]=='student'){
             $connection = DatabaseController::db_connect();
-//            echo $user[1];
+
 
             $query1 = "SELECT selected_school FROM applicant WHERE applicant_id=?";
             $stmt1 = $connection->prepare($query1);
