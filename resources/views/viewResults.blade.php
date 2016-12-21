@@ -93,7 +93,7 @@
                     <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
                 </div>
                 <br>
-            @elseif($applicant!=null)
+            @elseif($applicants!=null)
                 <h1 class="header center teal-text text-darken-2 ">Selected Students- {{$school_name}}</h1>
 
 
