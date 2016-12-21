@@ -73,7 +73,7 @@
                         </div>
                         <div class="input-field col s5">
                             <input type="checkbox" class="filled-in" id="nationality_srilankan" name="nationality_srilankan" />
-                            <label for="nationality_srilankan">Whether Guardian is in SriLanka</label>
+                            <label for="nationality_srilankan">Whether the Guardian is a SriLankan</label>
                         </div>
                         <div class="input-field col s3">
 

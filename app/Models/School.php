@@ -62,7 +62,8 @@ class School
     public static function getApplicants($school_id){
 
         $connection = DatabaseController::db_connect();
-        $query = "SELECT a.applicant_id, a.first_name, a.last_name FROM applicant as a, applicant_priority as ap where (ap.applicant_id,ap.school_id)=(a.applicant_id,?)";
+        $query = "SELECT a.applicant_id, a.first_name, a.last_name FROM applicant as a, applicant_priority as ap 
+                                    where (ap.applicant_id,ap.school_id)=(a.applicant_id,?)";
         $stmt = $connection->prepare($query);
         $stmt->bind_param("i",$school_id);
         $stmt->execute();
@@ -73,7 +74,8 @@ class School
     public static function searchApplicants($school_id,$applicant_id){
 
         $connection = DatabaseController::db_connect();
-        $query = "SELECT a.applicant_id, a.first_name, a.last_name FROM applicant as a, applicant_priority as ap where (a.applicant_id,a.applicant_id,ap.school_id)=(?,ap.applicant_id,?)";
+        $query = "SELECT a.applicant_id, a.first_name, a.last_name FROM applicant as a, applicant_priority as ap 
+                                    where (a.applicant_id,a.applicant_id,ap.school_id)=(?,ap.applicant_id,?)";
         $stmt = $connection->prepare($query);
         $stmt->bind_param("ii",$applicant_id,$school_id);
         $stmt->execute();

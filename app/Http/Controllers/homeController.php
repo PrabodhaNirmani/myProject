@@ -115,7 +115,7 @@ class HomeController extends Controller
     public function postSearchSchool(Request $request){
         $city=$request['district'];
         $connection=DatabaseController::db_connect();
-        $sql="SELECT * FROM school WHERE city='$city'";
+        $sql="SELECT * FROM school WHERE district='$city'";
         $result=mysqli_query($connection,$sql);
         $schools=array();
 

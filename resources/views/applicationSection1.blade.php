@@ -52,11 +52,11 @@
             <div class="row">
                 <div class="input-field col s7">
                     <input name="first_name" id="first_name" type="text" class="validate" required>
-                    <label for="first_name">Name in full</label>
+                    <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s5">
                     <input name="last_name" id="last_name" type="text" class="validate" required>
-                    <label for="last_name">Name with initials</label>
+                    <label for="last_name">Last Name</label>
                 </div>
             </div>
             <div class="row">
