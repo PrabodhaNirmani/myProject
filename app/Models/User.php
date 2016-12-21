@@ -155,7 +155,7 @@ class User implements  EntityInterface,Authenticatable
     public static function authenticate(Request $request){
 
         $user_name = $request['user_name'];
-        $password = $request['password'];
+        $password = bcrypt($request['password']);
         $connection = DatabaseController::db_connect();
         $sql="SELECT id,user_name,password,user_type FROM user where (user_name ='".$user_name."'and password ='".$password."')";
         $row=mysqli_query($connection,$sql);
@@ -212,7 +212,7 @@ class User implements  EntityInterface,Authenticatable
 
         $values = [];
         $user_name = $request['user_name'];
-        $password = $request['password'];
+        $password = bcrypt($request['password']);
         array_push($values,$user_name);
         array_push($values,$password);
         array_push($values,"student");

@@ -37,6 +37,16 @@ CREATE TABLE school
 
 # -------------------------------------------------------------------------------------------------------------------------------
 
+CREATE TABLE admin
+(
+	admin_id      INT NOT NULL PRIMARY KEY,
+
+	FOREIGN KEY(admin_id) REFERENCES user(id) ON DELETE CASCADE
+)
+	engine = innodb
+	DEFAULT charset = utf8;
+
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE applicant
 (
@@ -166,7 +176,7 @@ CREATE TABLE guardian_past_pupil
 
 # -------------------------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE session
+CREATE TABLE session_date
 (
 	session_id    INT NOT NULL auto_increment PRIMARY KEY,
 	year_boundary DATE NOT NULL,
