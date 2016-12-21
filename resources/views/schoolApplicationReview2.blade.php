@@ -1,7 +1,6 @@
 @extends('mine.master2')
-
 @section('title')
-    Application Page
+    Application Review
 @endsection
 @section('header')
     <nav class="teal" role="navigation">
@@ -35,123 +34,107 @@
         </div>
         <br>
         @endif
-        <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
-        <form method="post" action="{{route('submitApplicantGuardian')}}">
+        <h3 class="header center teal-text text-darken-2">Application Review</h3>
+        <div class="container" align="center">
+            <ul class="pagination">
+                <li class="disabled"><a href="reviewApplication/{{$applicant['applicant_id']}}"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="reviewApplication/{{$applicant['applicant_id']}}">1</a></li>
+                <li class="waves-effect"><a href="2/{{$applicant['applicant_id']}}">2</a></li>
+                <li class="waves-effect"><a href="3/{{$applicant['applicant_id']}}">3</a></li>
+                <li class="waves-effect"><a href="4/{{$applicant['applicant_id']}}">4</a></li>
+                <li class="waves-effect"><a href="5/{{$applicant['applicant_id']}}">5</a></li>
+                <li class="waves-effect"><a href="3/{{$applicant['applicant_id']}}"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        </div>
+        <br>
+        <form action="#" method="post" >
+            <div class="row">
+                <div class="input-field col s3 offset-s2">
+                    <label for="applicant_id">Applicant ID</label>
+                </div>
+                <div class="col s3">
+                    <input name="applicant_id" id="applicant_id" type="text" class="validate" value="{{$applicant['applicant_id']}}"  readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3 offset-s2">
+                    <label for="category">Category applied for</label>
+                </div>
+                <div class="col s3">
+                    <input name="category" id="category" type="text">
+                </div>
+            </div>
+
+
+            <div class="divider container" ></div>
+            <br>
+            <div class="container col s3 offset-s3">
+                <div class="header">Details of the Child</div>
+            </div>
 
             <div class="row">
-                <input value="{{$applicant_id}}" name="applicant_id" id="applicant_id" type="number" class="validate" readonly>
-                <label for="applicant_id">Applicant ID</label>
-            </div>
-            <div class="header">Details of the Parent/Guardian</div>
-            <div class="row">
-
-                <div class="input-field col s2">
-                    <label for="guardian_type">Guardian Type</label>
-                </div>
-                <div class="input-field col s2">
-                    <select name="guardian_type" id="guardian_type" class="browser-default">
-                        <option>Father</option>
-                        <option>Mother</option>
-                        <option>Guardian</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s8">
-                    <input name="first_name" id="first_name" type="text" class="validate" required>
+                <div class="input-field col s3 offset-s2">
                     <label for="first_name">First Name</label>
                 </div>
-                <div class="input-field col s4">
-                    <input name="last_name" id="last_name" type="text" class="validate">
+                <div class="col s3">
+                    <input name="first_name" id="first_name" type="text" class="validate" required value="{{$applicant['first_name']}}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3 offset-s2">
                     <label for="last_name">Last Name</label>
                 </div>
+                <div class="col s3">
+                    <input name="last_name" id="last_name" type="text" class="validate" required value="{{$applicant['last_name']}}" readonly>
+                </div>
             </div>
             <div class="row">
-                <div class="input-field col s4">
-                    <input id="national_id_no" type="text" name="national_id_no" class="validate" required maxlength="10" minlength="10">
-                    <label for="national_id_no">National Identity Card Number</label>
+                <div class="input-field col s3 offset-s2">
+                    <label for="religion">Religion</label>
                 </div>
-                <div class="input-field col s5">
-                    <input type="checkbox" class="filled-in" id="nationality_srilankan" name="nationality_srilankan" required/>
-                    <label for="nationality_srilankan">Whether Guardian is in SriLanka</label>
+                <div class="col s3">
+                    <input name="religion" id="religion" type="text" class="validate" required value="{{$applicant['religion']}}" readonly>
                 </div>
-                <div class="input-field col s3">
-
-                    <div class="input-field col s5">
-                        <label for="religion">Religion</label>
-                    </div>
-                    <div class="input-field col s7">
-                        <select name="religion" id="religion" class="browser-default">
-                            <option>Buddhism</option>
-                            <option>Hindu</option>
-                            <option>Islam</option>
-                            <option>Christian</option>
-                        </select>
-                    </div>
-
-                </div>
-            </div>
-            <div class="input-field col s12">
-                {{--<input id="address" type="text" class="validate" required>--}}
-                <div class="row">
-                    <div class="input-field col s2">
-                        <label for="address">Permanent Address :</label>
-                    </div>
-                    <div class="input-field col s1">
-                        <input id="address_no" name="address_no" type="text" class="validate" required>
-                        <label for="address_no">Street No.</label>
-
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="address_street" name="address_street" type="text" class="validate" required>
-                        <label for="address_street">Street Name</label>
-
-                    </div>
-                    <div class="input-field col s3">
-                        <input id="address_city" name="address_city" type="text" class="validate" required>
-                        <label for="address_city">City</label>
-
-                    </div>
-                    <div class="input-field col s3">
-                        <div class="input-field col s4">
-                            <label for="district">District</label>
-                        </div>
-                        <div class="input-field col s8">
-                            <select name="district" id="district" class="browser-default">
-                                {{--<option disabled selected>District</option>--}}
-
-                                @foreach($districts as $district)
-                                    <option>{{$district[0]}}</option>
-                                @endforeach
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="row">
-                <div class="input-field col s4">
-                    <input name="tele_no" id="tele_no" type="number" class="validate" required>
-                    <label for="tele_no">Telephone Number</label>
+                <div class="input-field col s3 offset-s2">
+                    <label for="medium">Medium of learning</label>
                 </div>
-                <div class="input-field col s5">
-                    <input name="div_sec_area" id="div_sec_area" type="text" class="validate" required>
-                    <label for="div_sec_area">Divisional Secretary Area</label>
-                </div>
-                <div class="input-field col s3">
-                    <input name="grama_nil_res_no" id="grama_nil_res_no" type="text" class="validate" required>
-                    <label for="grama_nil_res_no">Grama Niladari division no.</label>
+                <div class="col s3">
+                    <input name="medium" id="medium" type="text" class="validate" required value="{{$applicant['medium']}}" readonly>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Next
-                <i class="material-icons right">send</i>
-            </button>
-            <input  type="hidden" name="_token" value="{{Session::token()}}">
+
+
+            <div class="row">
+                <div class="input-field col s3 offset-s2">
+                    <label for="gender">Gender</label>
+                </div>
+                <div class="col s3">
+                    <input name="sex" id="sex" type="text" class="validate" required value="{{$applicant['sex']}}" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s3 offset-s2">
+                    <label for="birth_day">Date of Birth :</label>
+                </div>
+                <div class="col s3">
+                    <input id="birth_day" name="birth_day" type="date" class="validate" required value="{{$applicant['birth_day']}}" readonly>
+                </div>
+            </div>
+
+            {{--<button class="btn waves-effect waves-light" type="submit" name="action">Next--}}
+            {{--<i class="material-icons right">send</i>--}}
+            {{--</button>--}}
+            {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
+            <div align="center">
+                <a href ="3/{{$applicant['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Next</a>
+            </div>
         </form>
-
-
     </div>
+
+
+
 
     <br><br><br>
 
@@ -161,6 +144,12 @@
 @section('javascript')
 
     <script>
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+        });
+
         $('.pushpin-demo-nav').each(function () {
             var $this = $(this);
             var $target = $('#' + $(this).attr('data-target'));
@@ -177,7 +166,6 @@
                 offset: 0
             });
         });
-
 
     </script>
 @endsection

@@ -70,12 +70,7 @@
                         <td>{{$applicant['first_name']}}</td>
                         <td>{{$applicant['last_name']}}</td>
                         <td>
-                            <button class="btn waves-effect waves-light" type="submit" name="view_appplication">View
-                                Application
-                                <i class="material-icons right">send</i>
-                            </button>
-                            <input type="hidden" name="_token" value="{{Session::token()}}">
-
+                            <a href ="reviewApplication/{{$applicant['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>View Application</a>
                         </td>
                     </tr>
                 @endforeach

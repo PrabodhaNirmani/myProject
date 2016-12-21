@@ -85,7 +85,7 @@ class School
     public static function reviewApplication1($applicant_id){
 
         $connection = DatabaseController::db_connect();
-        $query = "SELECT * from applicant where application_id = ?";
+        $query = "SELECT * from applicant where applicant_id = ?";
         $stmt = $connection->prepare($query);
         $stmt->bind_param("i",$applicant_id);
         $stmt->execute();
