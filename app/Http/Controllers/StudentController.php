@@ -83,7 +83,6 @@ class StudentController extends Controller
         }
         $error = null;
         $district = $request['district'];
-        echo $district;
         $schools = District::getSchool($district);
         return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
     }
@@ -127,7 +126,6 @@ class StudentController extends Controller
         foreach ($val as $i) {
             $values = implode("','", $i);
             $sql = "INSERT  INTO applicant_priority (applicant_id,school_id,priority,distance,num_between_school) VALUES "."('".$applicant_id." ','".$values."')";
-            echo $sql;
             mysqli_query($connection, $sql);
             if (mysqli_errno($connection) != 0) {
                 $applicant_id = $request['applicant_id'];
@@ -166,6 +164,12 @@ class StudentController extends Controller
 
     public function postGuardianPastPupil(Request $request)
     {
+
+        if($request['membership_id']==null){
+            $error = null;
+            $applicant_id = Auth::user()->id;
+            return view('applicationSection5', compact('error', 'applicant_id'));
+        }
         $connection = DatabaseController::db_connect();
         $applicant_id = $request['applicant_id'];
         $mem=$request['membership_id'];
@@ -221,7 +225,7 @@ class StudentController extends Controller
         $temp = ['1', '2', '3'];
         foreach ($temp as $i) {
             $sibling_id=$request['admission_no' . $i];
-//            echo $sibling_id;
+
             if ($sibling_id != null) {
 
                 $sql = "SELECT present_stu_id from present_student where (present_stu_id = (?))";

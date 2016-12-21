@@ -20,7 +20,7 @@ class School
 
     public static function addSchool(Request $request){
 
-        echo $request;
+      
         $user = User::schoolSignUp($request);
         if (get_class($user) == 'App\Models\Error'){
             
