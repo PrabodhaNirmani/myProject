@@ -39,16 +39,16 @@
             <ul class="pagination">
                 <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                 <li class="waves-effect"><a href="#!">1</a></li>
-                <li class="active"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="5/{{$distance['applicant_id']}}">3</a></li>
+                <li class="waves-effect"><a href="#!">2</a></li>
+                <li class="waves-effect"><a href="!#">3</a></li>
                 <li class="waves-effect"><a href="#!">4</a></li>
                 <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect"><a href="#!">6</a></li>
-                <li class="waves-effect"><a href="5/{{$distance['applicant_id']}}"><i class="material-icons">chevron_right</i></a></li>
+                <li class="active"><a href="#!">6</a></li>
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         </div>
         <br>
-        <form action="#" method="post" >
+        <form action="/myProject/public/reviewApplication/2/3/4/5/final/confirm/{{$distance['applicant_id']}}" method="post" >
             <div class="divider container" ></div>
             <br>
             <div class="container col s3 offset-s3">
@@ -60,9 +60,13 @@
                     <label for="marks">Final Marks</label>
                 </div>
                 <div class="col s2">
-                    <input name="marks" id="marks" type="text" class="validate" value="" >
+                    <input name="marks" id="marks" type="text" class="validate" value="{{$distance['marks']}}" >
                 </div>
 
+            </div>
+            <div class="input-field col s3 offset-s3">
+                <input name="confirm" type="radio" id="confirm" />
+                <label for="confirm">Confirm Marks</label>
             </div>
 
 

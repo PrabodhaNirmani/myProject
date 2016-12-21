@@ -343,21 +343,21 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
-    Route::get('/reviewApplication/2/3/{applicant_id}', [
+    Route::post('/reviewApplication/2/3/{applicant_id}', [
 
         'uses' => 'SchoolController@reviewApplication3',
         'as' => 'reviewApplication3',
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
-    Route::get('/reviewApplication/2/3/4/{applicant_id}', [
+    Route::post('/reviewApplication/2/3/4/{applicant_id}', [
 
         'uses' => 'SchoolController@reviewApplication4',
         'as' => 'reviewApplication4',
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
-    Route::get('/reviewApplication/2/3/4/5/{applicant_id}', [
+    Route::post('/reviewApplication/2/3/4/5/{applicant_id}', [
 
         'uses' => 'SchoolController@reviewApplication5',
         'as' => 'reviewApplication5',
@@ -367,6 +367,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/reviewApplication/2/3/4/5/final/{applicant_id}', [
         'uses' => 'SchoolController@reviewFinal',
         'as' => 'reviewFinal',
+        'middleware' => 'auth'
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
+
+    Route::post('/reviewApplication/2/3/4/5/final/confirm/{applicant_id}', [
+        'uses' => 'SchoolController@confirm',
+        'as' => 'confirm',
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 

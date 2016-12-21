@@ -205,6 +205,29 @@ class School
 
     }
 
+    public static function confirm($applicant_id,Request $request){
+
+        echo $request;
+        if ($request['confirm'] == "on"){;
+            $school_id = Auth::user()->id;
+            $connection = DatabaseController::db_connect();
+            $query = "UPDATE applicant_priority SET marks = ?, confirmed = 1 WHERE (applicant_id,school_id) =(?,?)";
+            //$result = $connection->query($query);
+            $stmt = $connection->prepare($query);
+            $school_id = Auth::user()->id;
+            $marks = $request['marks'];
+            $stmt->bind_param("iii",$marks,$applicant_id,$school_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return true;
+        }
+        else{
+            return null;
+        }
+        
+
+    }
+
     public static function getSchools(){
         $connection = DatabaseController::db_connect();
         $query = "SELECT school_id,school_name FROM school";

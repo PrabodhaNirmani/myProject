@@ -86,7 +86,7 @@ class SchoolController extends Controller
         
     }
 
-    public function reviewApplication2($applicant_id){
+    public function reviewApplication2($applicant_id,Request $request){
 
         $result =School::reviewApplication2($applicant_id);
 
@@ -103,7 +103,7 @@ class SchoolController extends Controller
         
 
     }
-    public function reviewApplication3($applicant_id){
+    public function reviewApplication3($applicant_id,Request $request){
         
         $result =School::reviewApplication3($applicant_id);
         if ($result != null){
@@ -128,7 +128,7 @@ class SchoolController extends Controller
 
     }
 
-    public function reviewApplication4($applicant_id){
+    public function reviewApplication4($applicant_id,Request $request){
 
         $result =School::reviewApplication4($applicant_id);
         if ($result != null){
@@ -145,7 +145,7 @@ class SchoolController extends Controller
         
 
     }
-    public function reviewApplication5($applicant_id){
+    public function reviewApplication5($applicant_id,Request $request){
 
         $result =School::reviewApplication5($applicant_id);
 
@@ -162,10 +162,37 @@ class SchoolController extends Controller
 
     }
     public function reviewFinal($applicant_id,Request $request){
-        echo $applicant_id;
-        echo $request;
         
-        return view('finalReview');
+        $result =School::reviewApplication5($applicant_id);
+
+        if ($result->num_rows > 0) {
+            $distance = $result->fetch_assoc();
+
+        } else {
+            $error = "Cannot Load the results";
+            $distance = null;
+
+        }
+        $error = null;
+        return view('finalReview',compact('distance','error'));
+
+    }
+
+    public function confirm($applicant_id,Request $request){
+
+        $result =School::confirm($applicant_id,$request);
+
+        if ($result != null) {
+            return redirect()->route('viewApplicants');
+        }
+        else {
+            $error = "Confirm marks before submitting the form";
+            $distance['applicant_id'] = $applicant_id;
+            $distance['marks'] = $request['marks'];
+            return view('finalReview',compact('distance','error'));
+
+        }
+
 
     }
 

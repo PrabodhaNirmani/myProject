@@ -37,9 +37,9 @@
         <h3 class="header center teal-text text-darken-2">Application Review</h3>
         <div class="container" align="center">
             <ul class="pagination">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
                 <li class="waves-effect"><a href="#!">1</a></li>
-                <li class="active""><a href="#!">2</a></li>
+                <li class="active"><a href="#!">2</a></li>
                 <li class="waves-effect"><a href="3/{{$guardian['applicant_id']}}">3</a></li>
                 <li class="waves-effect"><a href="#!">4</a></li>
                 <li class="waves-effect"><a href="#!">5</a></li>
@@ -48,7 +48,7 @@
             </ul>
         </div>
         <br>
-        <form action="#" method="post" >
+        <form action="3/{{$guardian['applicant_id']}}" method="post" >
             <div class="row">
                 <div class="input-field col s3 offset-s1">
                     <label for="guardian_type">Gaurdian</label>
@@ -125,7 +125,37 @@
                         <label for="religion">{{$guardian['address_city']}}</label>
                     </div>
                 </div>
-                <div class="input-field col s2">
+                <div class="row">
+
+                    <div class="input-field col s2">
+                        <input onclick= "document.getElementById('deduct').checked = false;
+                        document.getElementById('add_mark').disabled = false;
+                        document.getElementById('deduct_mark').disabled = true;"
+                               name="add" type="radio" id="add" />
+                        <label for="add">Add Marks for Location</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input name="add_mark" id="add_mark" type="number" disabled = "disabled">
+                    </div>
+                </div>
+                <div class="row">
+
+
+                    <div class="input-field col s2 offset-s5">
+                        <input onclick= "document.getElementById('add').checked = false;
+                        document.getElementById('add_mark').disabled = true;
+                        document.getElementById('deduct_mark').disabled = false;"
+                               name="deduct" type="radio" id="deduct" />
+                        <label for="deduct">Deduct Marks for Location</label>
+                    </div>
+
+                    <div class="input-field col s2">
+                        <input name="deduct_mark" id="deduct_mark" type="number" disabled ="disabled">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s2 offset-s1">
                     <label for="tele_no">Telephone Number</label>
                 </div>
                 <div class="input-field col s2">
@@ -149,7 +179,10 @@
             </div>
 <br><br>
             <div align="center">
-                <a href ="3/{{$guardian['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Next</a>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Next
+                    <i class="material-icons right">send</i>
+                </button>
+                <input type="hidden" name="_token" value="{{Session::token()}}">
             </div>
         </form>
     </div>

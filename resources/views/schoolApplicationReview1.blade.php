@@ -57,16 +57,6 @@
                     <input name="applicant_id" id="applicant_id" type="text" class="validate" value="{{$applicant['applicant_id']}}"  readonly>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s3 offset-s2">
-                    <label for="category">Category applied for</label>
-                </div>
-                <div class="col s3">
-                    <input name="category" id="category" type="text">
-                </div>
-            </div>
-
-
                 <div class="divider container" ></div>
             <br>
             <div class="container col s3 offset-s3">
