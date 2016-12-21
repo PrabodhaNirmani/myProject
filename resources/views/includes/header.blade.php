@@ -7,7 +7,7 @@
             </a>
             <ul class="right hide-on-med-and-down">
                 <li>
-                    <div class="col"><a  href="#"
+                    <div class="col"><a  href="{{route('welcome')}}"
                                          class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
                             <i class="material-icons">present_to_all</i></a></div>
                 </li>

@@ -127,26 +127,15 @@
                         <input id="birth_day" name="birth_day" type="date" class="datepicker" max="{{date("Y/m/d")}}" required>
                         {{--<input type="date" class="">--}}
                     </div>
-
                 </div>
-
-
             </div>
-
-
             <button class="btn waves-effect waves-light" type="submit" name="action">Next
                 <i class="material-icons right">send</i>
             </button>
             <input type="hidden" name="_token" value="{{Session::token()}}">
         </form>
-
-
     </div>
-
     <br><br><br>
-
-
-
 @endsection
 @section('javascript')
 
