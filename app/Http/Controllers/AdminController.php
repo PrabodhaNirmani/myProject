@@ -76,6 +76,8 @@ class AdminController extends Controller
 
         $flag = mysqli_fetch_row(mysqli_query($connection, "select activate from session_date where session_id=1"));
         $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
+
+
         return view('manageSession', compact('year', 'flag', 'date'));
     }
 
@@ -93,25 +95,26 @@ class AdminController extends Controller
         $flag = mysqli_fetch_row(mysqli_query($connection, "select activate from session_date where session_id=1"));
         $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
 
+//Update marks--------------
 
         $app_scl = "select applicant_id, school_id from applicant_priority;";
 
         $result = mysqli_query($connection, $app_scl);
 
-        $row = mysqli_fetch_row($result);
 
-        while ($row) {
+        while ($row = mysqli_fetch_row($result)) {
 
             $applicant_id = $row[0];
             $school_id = $row[1];
-            $func_cal_marks = "CALL calculate_marks(" . $applicant_id . "," . $school_id . ")";
+            $func_cal_marks = "select calculate_marks(" . $applicant_id . "," . $school_id . ")";
             $result = mysqli_query($connection, $func_cal_marks);
-            $mark = mysqli_fetch_row($result);
 
-            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . ", school_id =" . $school_id;
+            $mark = mysqli_fetch_row($result);
+            $update = "update applicant_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . " and school_id =" . $school_id . ";";
             mysqli_query($connection, $update);
         }
 
+//----------------------------
 
         return view('manageSession', compact('year', 'flag', 'date'));
 
@@ -124,17 +127,15 @@ class AdminController extends Controller
 
         $result = mysqli_query($connection, $app_scl);
 
-        $row = mysqli_fetch_row($result);
-
-        while ($row) {
+        while ($row = mysqli_fetch_row($result)) {
 
             $applicant_id = $row[0];
             $school_id = $row[1];
-            $func_cal_marks = "CALL calculate_marks(" . $applicant_id . "," . $school_id . ")";
+            $func_cal_marks = "select calculate_marks(" . $applicant_id . "," . $school_id . ")";
             $result = mysqli_query($connection, $func_cal_marks);
             $mark = mysqli_fetch_row($result);
 
-            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . ", school_id =" . $school_id;
+            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . " and school_id =" . $school_id;
             mysqli_query($connection, $update);
         }
 
@@ -176,22 +177,16 @@ class AdminController extends Controller
             $res = mysqli_query($con, $sql);
             while ($row = mysqli_fetch_row($res)) {
                 $applicantSchool[$row[0]] = 0;
-                $a = array_keys($applicantSchool);
+
             }
-//        echo $a[1];
-//        echo $applicantSchool[$a[1]];
-//        echo $a[2];
-//        echo $applicantSchool[$a[2]];
-//        echo $a[3];
-//        echo $applicantSchool[$a[3]];
-//        echo $a[4];
-//        echo $applicantSchool[$a[4]];
+            $a = array_keys($applicantSchool);
+
             // echo array_keys($applicantSchool)[3];
 
 
             $applicantMark = array();
             for ($i = 0; $i < sizeof($schoolMax); $i++) {
-                $query1 = "select applicant_id,priority,marks from applicant_priority where school_id=" . $schoolMax[$i][0] . " order by(marks)";
+                $query1 = "select applicant_id,priority,marks from applicant_priority where school_id=" . $schoolMax[$i][0] . " order by(marks) desc";
                 $res = mysqli_query($con, $query1);
                 if ($res->num_rows > 0) {
                     $applicants_in_school = array();
@@ -201,7 +196,7 @@ class AdminController extends Controller
                     array_push($applicantMark, $applicants_in_school);
                 }
             }
-            //echo $applicantMark[0][0][0];
+            echo $applicantMark[0][0][2];
             $change = true;
             while ($change) {
                 $change = false;
@@ -226,12 +221,34 @@ class AdminController extends Controller
                         } elseif ($applicantMark[$k][$count][1] == $applicantSchool[$applicantMark[$k][$count][0]]) {
                             $j++;
                         }
-                        echo $applicantSchool[$applicantMark[$k][$count][0]];
+                        //echo $applicantSchool[$applicantMark[$k][$count][0]];
                         $count = $count + 1;
 
                     }
                 }
             }
+            //echo $a[0];
+            echo $applicantSchool[$a[0]];
+            //echo $a[1];
+            echo $applicantSchool[$a[1]];
+            //echo $a[2];
+            echo $applicantSchool[$a[2]];
+            //echo $a[3];
+            echo $applicantSchool[$a[3]];
+           // echo $a[4];
+            echo $applicantSchool[$a[4]];
+            //echo $a[5];
+            echo $applicantSchool[$a[5]];
+            //echo $a[6];
+            echo $applicantSchool[$a[6]];
+           // echo $a[7];
+            echo $applicantSchool[$a[7]];
+           // echo $a[8];
+            echo $applicantSchool[$a[8]];
+           // echo $a[9];
+            echo $applicantSchool[$a[9]];
+
+
 
         }
         $applicant_id = Auth::user()->id;
