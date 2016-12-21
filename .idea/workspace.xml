@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ef4b6b02-a768-466f-9eac-63ae2876830a" name="Default" comment="">
+    <list default="true" id="ef4b6b02-a768-466f-9eac-63ae2876830a" name="Default" comment="checking function calculate_marks done">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/scripts/functions.sql" afterPath="$PROJECT_DIR$/database/scripts/functions.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/School.php" afterPath="$PROJECT_DIR$/app/Models/School.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/dashboard.blade.php" afterPath="$PROJECT_DIR$/resources/views/dashboard.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/viewResults.blade.php" afterPath="$PROJECT_DIR$/resources/views/viewResults.blade.php" />
     </list>
     <ignored path="myProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,36 +30,58 @@
       <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="108" column="46" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
+            <state relative-caret-position="1802">
+              <caret line="202" column="13" selection-start-line="202" selection-start-column="13" selection-end-line="202" selection-end-column="13" />
               <folding>
                 <element signature="e#41#65#0#PHP" expanded="true" />
-                <marker date="1482328581146" expanded="true" signature="1379:1424" placeholder="select YEAR " />
-                <marker date="1482328581146" expanded="true" signature="1476:1509" placeholder="select activ... session_date" />
-                <marker date="1482328581146" expanded="true" signature="1666:1704" placeholder="select year_... session_date" />
-                <marker date="1482328581146" expanded="true" signature="2018:2071" placeholder="update sessi... " />
-                <marker date="1482328581146" expanded="true" signature="2018:2090" placeholder="update sessi... " />
-                <marker date="1482328581146" expanded="true" signature="2163:2216" placeholder="update sessi... " />
-                <marker date="1482328581146" expanded="true" signature="2317:2362" placeholder="select YEAR " />
-                <marker date="1482328581146" expanded="true" signature="2471:2523" placeholder="select activ... session_date" />
-                <marker date="1482328581146" expanded="true" signature="2588:2626" placeholder="select year_... session_date" />
-                <marker date="1482328581146" expanded="true" signature="2852:2905" placeholder="update sessi... " />
-                <marker date="1482328581146" expanded="true" signature="2955:3000" placeholder="select YEAR " />
-                <marker date="1482328581146" expanded="true" signature="3109:3161" placeholder="select activ... session_date" />
-                <marker date="1482328581146" expanded="true" signature="3226:3264" placeholder="select year_... session_date" />
-                <marker date="1482328581146" expanded="true" signature="3292:3346" placeholder="select appli... applicant_priority" />
-                <marker date="1482328581146" expanded="true" signature="3778:3883" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4122:4176" placeholder="select appli... applicant_priority" />
-                <marker date="1482328581146" expanded="true" signature="4123:4162" placeholder="Select appli... appl" />
-                <marker date="1482328581146" expanded="true" signature="4123:4169" placeholder="Select appli... applicant_p" />
-                <marker date="1482328581146" expanded="true" signature="4123:4176" placeholder="Select appli... applicant_priority" />
-                <marker date="1482328581146" expanded="true" signature="4608:4643" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4608:4670" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4608:4679" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4608:4680" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4608:4704" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4608:4713" placeholder="update stude... " />
-                <marker date="1482328581146" expanded="true" signature="4608:4714" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="1379:1424" placeholder="select YEAR " />
+                <marker date="1482334479688" expanded="true" signature="1476:1509" placeholder="select activ... session_date" />
+                <marker date="1482334479688" expanded="true" signature="1666:1704" placeholder="select year_... session_date" />
+                <marker date="1482334479688" expanded="true" signature="2018:2071" placeholder="update sessi... " />
+                <marker date="1482334479688" expanded="true" signature="2018:2090" placeholder="update sessi... " />
+                <marker date="1482334479688" expanded="true" signature="2163:2216" placeholder="update sessi... " />
+                <marker date="1482334479688" expanded="true" signature="2317:2362" placeholder="select YEAR " />
+                <marker date="1482334479688" expanded="true" signature="2471:2523" placeholder="select activ... session_date" />
+                <marker date="1482334479688" expanded="true" signature="2588:2626" placeholder="select year_... session_date" />
+                <marker date="1482334479688" expanded="true" signature="2852:2905" placeholder="update sessi... " />
+                <marker date="1482334479688" expanded="true" signature="2955:3000" placeholder="select YEAR " />
+                <marker date="1482334479688" expanded="true" signature="3109:3161" placeholder="select activ... session_date" />
+                <marker date="1482334479688" expanded="true" signature="3226:3264" placeholder="select year_... session_date" />
+                <marker date="1482334479688" expanded="true" signature="3292:3346" placeholder="select appli... applicant_priority" />
+                <marker date="1482334479688" expanded="true" signature="3778:3883" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4122:4176" placeholder="select appli... applicant_priority" />
+                <marker date="1482334479688" expanded="true" signature="4123:4162" placeholder="Select appli... appl" />
+                <marker date="1482334479688" expanded="true" signature="4123:4169" placeholder="Select appli... applicant_p" />
+                <marker date="1482334479688" expanded="true" signature="4123:4176" placeholder="Select appli... applicant_priority" />
+                <marker date="1482334479688" expanded="true" signature="4608:4643" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4608:4670" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4608:4679" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4608:4680" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4608:4704" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4608:4713" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="4608:4714" placeholder="update stude... " />
+                <marker date="1482334479688" expanded="true" signature="5468:5488" placeholder="select * fro... school" />
+                <marker date="1482334479688" expanded="true" signature="5915:5967" placeholder="select disti... applicant_priority" />
+                <marker date="1482334479688" expanded="true" signature="6605:6721" placeholder="select appli... applicant_priority" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="School.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Models/School.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="302">
+              <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+              <folding>
+                <marker date="1482335403168" expanded="true" signature="1614:1801" placeholder="SELECT a.app... applicant" />
+                <marker date="1482335403168" expanded="true" signature="2139:2343" placeholder="SELECT a.app... applicant" />
+                <marker date="1482335403168" expanded="true" signature="2692:2729" placeholder="SELECT * fro... applicant" />
+                <marker date="1482335403168" expanded="true" signature="2692:2738" placeholder="SELECT * fro... applicant" />
+                <marker date="1482335403168" expanded="true" signature="3111:3164" placeholder="SELECT * fro... applicant_guardian" />
+                <marker date="1482335403168" expanded="true" signature="3522:3562" placeholder="SELECT schoo... school" />
+                <marker date="1482335403168" expanded="true" signature="3879:3952" placeholder="SELECT schoo... school" />
+                <marker date="1482335403168" expanded="true" signature="4502:4555" placeholder="UPDATE schoo... " />
               </folding>
             </state>
           </provider>
@@ -66,17 +90,17 @@
       <file leaf-file-name="searchSchool.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/searchSchool.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="927">
+            <state relative-caret-position="1853">
               <caret line="109" column="39" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.sql" pinned="false" current-in-tab="true">
+      <file leaf-file-name="functions.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/scripts/functions.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1785">
+            <state relative-caret-position="1388">
               <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
               <folding />
             </state>
@@ -86,7 +110,7 @@
       <file leaf-file-name="manageSession.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manageSession.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
+            <state relative-caret-position="1530">
               <caret line="90" column="16" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
               <folding />
             </state>
@@ -108,7 +132,6 @@
         <option value="$PROJECT_DIR$/resources/views/loginSucces.blade.php" />
         <option value="$PROJECT_DIR$/app/Orm/EntityInterface.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/CustomConnection.php" />
-        <option value="$PROJECT_DIR$/app/Models/School.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
         <option value="$PROJECT_DIR$/config/auth.php" />
         <option value="$PROJECT_DIR$/resources/views/loginSuccess.blade.php" />
@@ -136,6 +159,7 @@
         <option value="$PROJECT_DIR$/resources/views/searchSchool.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/database/scripts/functions.sql" />
+        <option value="$PROJECT_DIR$/app/Models/School.php" />
       </list>
     </option>
   </component>
@@ -291,36 +315,14 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myProject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="myProject" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="Models" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -406,7 +408,8 @@
       <workItem from="1482244754736" duration="2278000" />
       <workItem from="1482291930997" duration="14303000" />
       <workItem from="1482314291002" duration="6010000" />
-      <workItem from="1482324544138" duration="8864000" />
+      <workItem from="1482324544138" duration="9181000" />
+      <workItem from="1482334744900" duration="684000" />
     </task>
     <task id="LOCAL-00004" summary="auth">
       <created>1481956942489</created>
@@ -527,23 +530,37 @@
       <option name="project" value="LOCAL" />
       <updated>1482332529442</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="checking function calculate_marks done">
+      <created>1482334413037</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1482334413037</updated>
+    </task>
+    <task id="LOCAL-00022" summary="checking function calculate_marks done">
+      <created>1482335034763</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1482335034763</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89961000" />
+    <option name="totallyTimeSpent" value="90962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28517398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28971255" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295711" sideWeight="0.49783784" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22258593" sideWeight="0.53025717" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.494705" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.505295" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22258593" sideWeight="0.4697428" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22258593" sideWeight="0.4667171" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.034369886" sideWeight="0.494705" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -609,7 +626,9 @@
     <MESSAGE value="Changing DDL" />
     <MESSAGE value="Calculating marks when the session is deactivated" />
     <MESSAGE value="checking function calculate_marks" />
-    <option name="LAST_COMMIT_MESSAGE" value="checking function calculate_marks" />
+    <MESSAGE value="checking function calculate_marks done" />
+    <MESSAGE value="resolving conflicts" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolving conflicts" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -812,8 +831,8 @@
         <state relative-caret-position="204">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <marker date="1482311222951" expanded="true" signature="338:376" placeholder="SELECT * fro... district" />
-            <marker date="1482311222951" expanded="true" signature="733:793" placeholder="SELECT schoo... school" />
+            <marker date="1482334479947" expanded="true" signature="338:376" placeholder="SELECT * fro... district" />
+            <marker date="1482334479947" expanded="true" signature="733:793" placeholder="SELECT schoo... school" />
           </folding>
         </state>
       </provider>
@@ -941,21 +960,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/School.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2">
-          <caret line="46" column="55" selection-start-line="46" selection-start-column="55" selection-end-line="46" selection-end-column="55" />
-          <folding>
-            <marker date="1482318133950" expanded="true" signature="1614:1801" placeholder="SELECT a.app... applicant" />
-            <marker date="1482318133950" expanded="true" signature="2139:2343" placeholder="SELECT a.app... applicant" />
-            <marker date="1482318133950" expanded="true" signature="2692:2740" placeholder="SELECT * fro... applicant" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manageSession.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="1530">
           <caret line="90" column="16" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
           <folding />
         </state>
@@ -963,53 +970,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/searchSchool.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="927">
+        <state relative-caret-position="1853">
           <caret line="109" column="39" selection-start-line="109" selection-start-column="39" selection-end-line="109" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/scripts/functions.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1388">
+          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="108" column="46" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
+        <state relative-caret-position="1802">
+          <caret line="202" column="13" selection-start-line="202" selection-start-column="13" selection-end-line="202" selection-end-column="13" />
           <folding>
             <element signature="e#41#65#0#PHP" expanded="true" />
-            <marker date="1482328581146" expanded="true" signature="1379:1424" placeholder="select YEAR " />
-            <marker date="1482328581146" expanded="true" signature="1476:1509" placeholder="select activ... session_date" />
-            <marker date="1482328581146" expanded="true" signature="1666:1704" placeholder="select year_... session_date" />
-            <marker date="1482328581146" expanded="true" signature="2018:2071" placeholder="update sessi... " />
-            <marker date="1482328581146" expanded="true" signature="2018:2090" placeholder="update sessi... " />
-            <marker date="1482328581146" expanded="true" signature="2163:2216" placeholder="update sessi... " />
-            <marker date="1482328581146" expanded="true" signature="2317:2362" placeholder="select YEAR " />
-            <marker date="1482328581146" expanded="true" signature="2471:2523" placeholder="select activ... session_date" />
-            <marker date="1482328581146" expanded="true" signature="2588:2626" placeholder="select year_... session_date" />
-            <marker date="1482328581146" expanded="true" signature="2852:2905" placeholder="update sessi... " />
-            <marker date="1482328581146" expanded="true" signature="2955:3000" placeholder="select YEAR " />
-            <marker date="1482328581146" expanded="true" signature="3109:3161" placeholder="select activ... session_date" />
-            <marker date="1482328581146" expanded="true" signature="3226:3264" placeholder="select year_... session_date" />
-            <marker date="1482328581146" expanded="true" signature="3292:3346" placeholder="select appli... applicant_priority" />
-            <marker date="1482328581146" expanded="true" signature="3778:3883" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4122:4176" placeholder="select appli... applicant_priority" />
-            <marker date="1482328581146" expanded="true" signature="4123:4162" placeholder="Select appli... appl" />
-            <marker date="1482328581146" expanded="true" signature="4123:4169" placeholder="Select appli... applicant_p" />
-            <marker date="1482328581146" expanded="true" signature="4123:4176" placeholder="Select appli... applicant_priority" />
-            <marker date="1482328581146" expanded="true" signature="4608:4643" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4608:4670" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4608:4679" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4608:4680" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4608:4704" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4608:4713" placeholder="update stude... " />
-            <marker date="1482328581146" expanded="true" signature="4608:4714" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="1379:1424" placeholder="select YEAR " />
+            <marker date="1482334479688" expanded="true" signature="1476:1509" placeholder="select activ... session_date" />
+            <marker date="1482334479688" expanded="true" signature="1666:1704" placeholder="select year_... session_date" />
+            <marker date="1482334479688" expanded="true" signature="2018:2071" placeholder="update sessi... " />
+            <marker date="1482334479688" expanded="true" signature="2018:2090" placeholder="update sessi... " />
+            <marker date="1482334479688" expanded="true" signature="2163:2216" placeholder="update sessi... " />
+            <marker date="1482334479688" expanded="true" signature="2317:2362" placeholder="select YEAR " />
+            <marker date="1482334479688" expanded="true" signature="2471:2523" placeholder="select activ... session_date" />
+            <marker date="1482334479688" expanded="true" signature="2588:2626" placeholder="select year_... session_date" />
+            <marker date="1482334479688" expanded="true" signature="2852:2905" placeholder="update sessi... " />
+            <marker date="1482334479688" expanded="true" signature="2955:3000" placeholder="select YEAR " />
+            <marker date="1482334479688" expanded="true" signature="3109:3161" placeholder="select activ... session_date" />
+            <marker date="1482334479688" expanded="true" signature="3226:3264" placeholder="select year_... session_date" />
+            <marker date="1482334479688" expanded="true" signature="3292:3346" placeholder="select appli... applicant_priority" />
+            <marker date="1482334479688" expanded="true" signature="3778:3883" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4122:4176" placeholder="select appli... applicant_priority" />
+            <marker date="1482334479688" expanded="true" signature="4123:4162" placeholder="Select appli... appl" />
+            <marker date="1482334479688" expanded="true" signature="4123:4169" placeholder="Select appli... applicant_p" />
+            <marker date="1482334479688" expanded="true" signature="4123:4176" placeholder="Select appli... applicant_priority" />
+            <marker date="1482334479688" expanded="true" signature="4608:4643" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4608:4670" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4608:4679" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4608:4680" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4608:4704" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4608:4713" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="4608:4714" placeholder="update stude... " />
+            <marker date="1482334479688" expanded="true" signature="5468:5488" placeholder="select * fro... school" />
+            <marker date="1482334479688" expanded="true" signature="5915:5967" placeholder="select disti... applicant_priority" />
+            <marker date="1482334479688" expanded="true" signature="6605:6721" placeholder="select appli... applicant_priority" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/scripts/functions.sql">
+    <entry file="file://$PROJECT_DIR$/app/Models/School.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="302">
+          <caret line="162" column="0" selection-start-line="162" selection-start-column="0" selection-end-line="162" selection-end-column="0" />
+          <folding>
+            <marker date="1482335403168" expanded="true" signature="1614:1801" placeholder="SELECT a.app... applicant" />
+            <marker date="1482335403168" expanded="true" signature="2139:2343" placeholder="SELECT a.app... applicant" />
+            <marker date="1482335403168" expanded="true" signature="2692:2729" placeholder="SELECT * fro... applicant" />
+            <marker date="1482335403168" expanded="true" signature="2692:2738" placeholder="SELECT * fro... applicant" />
+            <marker date="1482335403168" expanded="true" signature="3111:3164" placeholder="SELECT * fro... applicant_guardian" />
+            <marker date="1482335403168" expanded="true" signature="3522:3562" placeholder="SELECT schoo... school" />
+            <marker date="1482335403168" expanded="true" signature="3879:3952" placeholder="SELECT schoo... school" />
+            <marker date="1482335403168" expanded="true" signature="4502:4555" placeholder="UPDATE schoo... " />
+          </folding>
         </state>
       </provider>
     </entry>

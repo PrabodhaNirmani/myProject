@@ -161,4 +161,58 @@ class School
 
     }
 
+
+
+    public static function getSchools(){
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT school_id,school_name FROM school";
+
+        $result = mysqli_query($connection,$query);
+        $schools=array();
+        while($row=mysqli_fetch_row($result)){
+            array_push($schools,$row);
+
+        }
+        return $schools;
+
+    }
+
+
+    public static function getVacanciesAvailable(){
+        $user_id=Auth::user()->id;
+
+        $query="SELECT school_id,school_name,max_no_student FROM school WHERE school_id=?";
+
+        $connection=DatabaseController::db_connect();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
+        if(mysqli_num_rows($result)){
+
+            $row=mysqli_fetch_row($result);
+            mysqli_close($connection);
+            return $row;
+
+        }
+    }
+
+    public static function saveVacanciesAvailable($num_students){
+
+        $user_id=Auth::user()->id;
+
+        $connection=DatabaseController::db_connect();
+        $query="UPDATE school SET max_no_student=?  WHERE school_id=?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("ii",$num_students,$user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
+
+
+    }
+
 }

@@ -70,13 +70,18 @@
                         </div>
                         <div class="input-field col s4">
                             <select name="school" id="school" class="browser-default">
-                                {{--<option disabled selected>District</option>--}}
 
                                 @foreach($school_name as $school)
                                     <option>{{$school[0]}}-{{$school[1]}}</option>
                                 @endforeach
 
                             </select>
+                        </div>
+                        <div class="col s1">
+                            <button class="btn-floating btn-large" type="submit" name="action">
+                                <i class="material-icons">search</i>
+                            </button>
+                            <input type="hidden" name="_token" value="{{Session::token()}}">
                         </div>
                     </div>
                 </div>
@@ -117,14 +122,7 @@
                             <td>{{$applicant[1]}}</td>
                             <td>{{$applicant[2]}}</td>
                             <td>{{$applicant[3][0]}}</td>
-                            {{--<td>--}}
-                                {{--<button class="btn waves-effect waves-light" type="submit" name="view_appplication">View--}}
-                                    {{--Application--}}
-                                    {{--<i class="material-icons right">send</i>--}}
-                                {{--</button>--}}
-                                {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
 
-                            {{--</td>--}}
                         </tr>
                     @endforeach
 
@@ -167,14 +165,7 @@
                         <td>{{$applicant[1]}}</td>
                         <td>{{$applicant[2]}}</td>
                         <td>{{$applicant[3]}}</td>
-                        {{--<td>--}}
-                        {{--<button class="btn waves-effect waves-light" type="submit" name="view_appplication">View--}}
-                        {{--Application--}}
-                        {{--<i class="material-icons right">send</i>--}}
-                        {{--</button>--}}
-                        {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
 
-                        {{--</td>--}}
                     </tr>
                 @endforeach
 
