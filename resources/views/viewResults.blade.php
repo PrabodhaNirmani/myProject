@@ -59,10 +59,11 @@
         <br><br><br>
     </div>
     @if($user[0]=='admin')
+
         <h1 class="header center teal-text text-darken-2 ">Evaluation Results</h1>
         <div class="container">
             {{--route--}}
-            <form action="{{route('submitApplicant')}}" method="post">
+            <form action="{{route('adminViewResults')}}" method="post">
                 <div class="col s10">
                     <div class="row">
                         <div class="input-field col s4">
@@ -87,6 +88,45 @@
                 </div>
             </form>
             <br><br>
+            @if($error!=null)
+                <div class="container">
+                    <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+                </div>
+                <br>
+            @elseif($applicant!=null)
+                <h1 class="header center teal-text text-darken-2 ">Selected Students- {{$school_name}}</h1>
+
+
+                <div class="container">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th data-field="applicant_id">Applicant ID</th>
+                            <th data-field="first_name">First Name</th>
+                            <th data-field="last_name">Last Name</th>
+                            <th data-field="marks">Marks</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        @foreach($applicants as $applicant)
+
+                            <tr>
+                                <td>{{$applicant[0]}}</td>
+                                <td>{{$applicant[1]}}</td>
+                                <td>{{$applicant[2]}}</td>
+                                <td>{{$applicant[3]}}</td>
+
+                            </tr>
+                        @endforeach
+
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+            @endif
             <br><br>
         </div>
 
@@ -102,7 +142,7 @@
         @else
             <h1 class="header center teal-text text-darken-2 ">Selected School- {{$school_name}}</h1>
 
-<div class="container">
+            <div class="container">
 
                 <table>
                     <thead>
@@ -174,7 +214,7 @@
             </table>
 
 
-</div>
+        </div>
         @endif
 
 

@@ -220,7 +220,29 @@ class HomeController extends Controller
             return view('viewResults',compact('user','error','applicants','school_name'));
         }
     }
+    public function postAdminViewResults(Request $request){
+        $user=array();
+        array_push($user,Auth::user()->user_name);
+        array_push($user,Auth::user()->id);
 
+        $id=(explode("-",$request['school']));
+        $school_id=$id[0];
+        $connection=DatabaseController::db_connect();
+        $school_name=$id[1];
+        $applicants=$this->getDetails($school_id,$connection);
+        if($applicants!=null){
+            $error=null;
+            DatabaseController::closeConnection($connection);
+            return view('viewResults',compact('user','error','applicants','school_name'));
+            
+        }
+        $error="No applicants found";
+        $applicants=null;
+        return view('viewResults',compact('user','error','applicants','school_name'));
+        
+    }
+    
+    
     private function getSelectedSchool($connection,$applicant_id){
         $query="SELECT selected_school FROM applicant WHERE applicant_id=?";
         $stmt = $connection->prepare($query);
