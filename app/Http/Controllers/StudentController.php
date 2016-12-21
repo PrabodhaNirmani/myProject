@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\District;
+use App\Models\School;
 use App\Models\Error;
 use App\Models\User;
 use Auth;
@@ -56,7 +57,7 @@ class StudentController extends Controller
     public function getApplicantGuardian()
     {
         $error = null;
-        $applicant_id = 2;
+        $applicant_id = 5;
         $districts = District::getDistrict();
         return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
     }
@@ -81,6 +82,7 @@ class StudentController extends Controller
         }
         $error = null;
         $district = $request['district'];
+        echo $district;
         $schools = District::getSchool($district);
         return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
     }
@@ -88,10 +90,64 @@ class StudentController extends Controller
     public function getApplicantPriority()
     {
         $error = null;
-        $applicant_id = 2;
-        $schools=[[1,'convent']];
+        $applicant_id = 35;
+        $connection = DatabaseController::db_connect();
+        $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
+        $data = mysqli_query($connection, $sql);
+        $district = mysqli_fetch_row($data);
+        $schools = District::getSchool($district[0]);
         return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
     }
+//    public function postApplicantPriority(Request $request)
+//    {   $connection = DatabaseController::db_connect();
+//        //$applicant_priority = new ApplicantPriority();
+//        $applicant_id = $request['applicant_id'];
+//        $val = [];
+//        $temp = ['1','2','3','4','5'];
+//        foreach ($temp as $i) {
+//            if ($request['distance'.$i] != null) {
+//                $rest=[];
+//                $id=(explode("-",$request['school'.$i]));
+//                $id=$id[0];
+//                array_push($rest,$id);
+//                array_push($rest, $request['no'.$i]);
+//                array_push($rest, $request['distance'.$i]);
+//                array_push($rest, $request['no_schools'.$i]);
+//                array_push($val, $rest);
+//            }
+//        }
+//        foreach ($val as $i) {
+//            //$values = implode("','", $i);
+//            //$values="'".$values."'";
+//            $stmt = $connection->prepare("INSERT  INTO applicant_priority (applicant_id,school_id,priority,distance,num_between_school) VALUES (?,?,?,?,?)");
+//            echo $i[0],111,$i[2];
+//            $stmt->bind_param("iiiii", $i[0],$i[1],$i[2],$i[3],$i[4]);
+//            $stmt->execute();
+//            $result = $stmt->get_result();
+//            if (mysqli_errno($connection) != 0) {
+//                $applicant_id = $request['applicant_id'];
+//                $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
+//                $data = mysqli_query($connection, $sql);
+//                $district = mysqli_fetch_row($data);
+//                echo $district[0];
+//                $schools = District::getSchool($district[0]);
+//                $err = new Error(mysqli_error($connection), mysqli_errno($connection));
+//                if ($err->error_no == 1062) {
+//                    $error = 'Duplicate Data Entry';
+//                    return view('applicationSection3', compact('error', 'applicant_id','schools'));
+//                } elseif ($err->error_no == 1644) {
+//                    $error = 'Invalid School type';
+//                    return view('applicationSection3', compact('error', 'applicant_id','schools'));
+//                } else {
+//                    $error = "Invalid Entry";
+//                    return view('applicationSection3', compact('error', 'applicant_id','schools'));
+//                }
+//            }
+//        }
+//        $error = null;
+//        return view('applicationSection4', compact('error', 'applicant_id'));
+//
+//    }
 
     public function postApplicantPriority(Request $request)
     {   $connection = DatabaseController::db_connect();
@@ -114,13 +170,14 @@ class StudentController extends Controller
         foreach ($val as $i) {
             $values = implode("','", $i);
             $sql = "INSERT  INTO applicant_priority (applicant_id,school_id,priority,distance,num_between_school) VALUES "."('".$applicant_id." ','".$values."')";
+            echo $sql;
             mysqli_query($connection, $sql);
             if (mysqli_errno($connection) != 0) {
                 $applicant_id = $request['applicant_id'];
                 $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
                 $data = mysqli_query($connection, $sql);
                 $district = mysqli_fetch_row($data);
-                $schools = District::getSchool($district);
+                $schools = District::getSchool($district[0]);
                 $err = new Error(mysqli_error($connection), mysqli_errno($connection));
                 if ($err->error_no == 1062) {
                     $error = 'Duplicate Data Entry';
@@ -129,7 +186,7 @@ class StudentController extends Controller
                     $error = 'Invalid School type';
                     return view('applicationSection3', compact('error', 'applicant_id','schools'));
                 } else {
-                    $error = $err->error_description;
+                    $error = 'Invalid Entry';
                     return view('applicationSection3', compact('error', 'applicant_id','schools'));
                 }
             }
@@ -198,7 +255,7 @@ class StudentController extends Controller
             $sibling_id=$request['admission_no' . $i];
 //            echo $sibling_id;
             if ($sibling_id != null) {
-                $sql = "SELECT present_stu_id from present_student where (present_stu_id = " . "$sibling_id".")";
+                $sql = "SELECT present_stu_id from present_student where (present_stu_id = ". $sibling_id.")";
 //                echo $sql;
                 $data = mysqli_query($connection, $sql);
                 if (mysqli_num_rows($data)==null) {
@@ -218,7 +275,7 @@ class StudentController extends Controller
                     $error = 'Invalid Duplicate Entry';
                     return view('applicationSection5', compact('error','applicant_id'));
                 } else {
-                    $error = $err->error_description;
+                    $error = 'Invalid Entry';
                     return view('applicationSection5', compact('error', 'applicant_id'));
                 }
             }

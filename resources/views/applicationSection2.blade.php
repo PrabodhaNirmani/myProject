@@ -10,13 +10,32 @@
                 <i class="material-icons">visibility</i>iSolve
             </a>
             <ul class="right hide-on-med-and-down">
+
+                <li>
+                    <div class="col">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                </li>
+                <li>
+                    <div class="col">
+                        <?php
+
+
+                        $user_name=Auth::user()->user_name;
+
+                        ?>
+
+                        {{$user_name}}
+                    </div>
+
+                </li>
                 <li>
                     <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
-                            <i class="material-icons">present_to_all</i></a></div>
+                            <i id="my" class="material-icons">present_to_all</i></a></div>
                 </li>
 
                 <li>
-                    <div class="col"><a  href="{{route('logout')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
+                    <div id="my" class="col"><a  href="{{route('logout')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
                             <i class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
@@ -24,6 +43,11 @@
         </div>
 
     </nav>
+    <style>
+        #my {
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -73,7 +97,7 @@
                         </div>
                         <div class="input-field col s5">
                             <input type="checkbox" class="filled-in" id="nationality_srilankan" name="nationality_srilankan" />
-                            <label for="nationality_srilankan">Whether Guardian is in SriLanka</label>
+                            <label for="nationality_srilankan">Whether the Guardian is a SriLankan</label>
                         </div>
                         <div class="input-field col s3">
 

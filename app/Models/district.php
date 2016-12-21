@@ -33,11 +33,15 @@ class District
 
     public static function getSchool($dist)
     {
-        $connection=DatabaseController::db_connect();
-        $sql="SELECT school_id,school_name from school where ( district = ".$dist.")";
-        $data=mysqli_query($connection,$sql);
+        $connection = DatabaseController::db_connect();
+        $sql="SELECT school_id,school_name from school where ( district = (?))";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("s",$dist);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        echo $sql;
         $district_row=array();
-        while($row=mysqli_fetch_row($data)){
+        while($row=mysqli_fetch_row($result)){
             array_push($district_row,$row);
 
         }
