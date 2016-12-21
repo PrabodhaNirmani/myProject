@@ -84,7 +84,7 @@ CREATE TABLE applicant_priority
 	applicant_id       INT NOT NULL,
 	school_id          INT NOT NULL,
 	priority           INT(5) NOT NULL,
-	marks              INT,
+	marks              INT DEFAULT 0,
 	distance           DOUBLE NOT NULL,
 	num_between_school INT NOT NULL,
 	confirmed          BOOLEAN DEFAULT 0,
