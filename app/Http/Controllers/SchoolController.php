@@ -88,7 +88,19 @@ class SchoolController extends Controller
 
     public function reviewApplication2($applicant_id){
 
-        return view('schoolApplicationReview2',compact('applicant','error'));
+        $result =School::reviewApplication2($applicant_id);
+
+        if ($result->num_rows > 0) {
+            $guardian = $result->fetch_assoc();
+
+        } else {
+            $error = "Cannot Load the results";
+            $guardian = null;
+
+        }
+        $error = null;
+        return view('schoolApplicationReview2',compact('guardian','error'));
+        
 
     }
     public function reviewApplication3($applicant_id){

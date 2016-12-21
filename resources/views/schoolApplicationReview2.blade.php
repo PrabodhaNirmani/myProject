@@ -37,98 +37,111 @@
         <h3 class="header center teal-text text-darken-2">Application Review</h3>
         <div class="container" align="center">
             <ul class="pagination">
-                <li class="disabled"><a href="reviewApplication/{{$applicant['applicant_id']}}"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active"><a href="reviewApplication/{{$applicant['applicant_id']}}">1</a></li>
-                <li class="waves-effect"><a href="2/{{$applicant['applicant_id']}}">2</a></li>
-                <li class="waves-effect"><a href="3/{{$applicant['applicant_id']}}">3</a></li>
-                <li class="waves-effect"><a href="4/{{$applicant['applicant_id']}}">4</a></li>
-                <li class="waves-effect"><a href="5/{{$applicant['applicant_id']}}">5</a></li>
-                <li class="waves-effect"><a href="3/{{$applicant['applicant_id']}}"><i class="material-icons">chevron_right</i></a></li>
+                <li class="disabled"><a href="reviewApplication/{{$guardian['applicant_id']}}"><i class="material-icons">chevron_left</i></a></li>
+                <li class="active"><a href="reviewApplication/{{$guardian['applicant_id']}}">1</a></li>
+                <li class="waves-effect"><a href="2/{{$guardian['applicant_id']}}">2</a></li>
+                <li class="waves-effect"><a href="3/{{$guardian['applicant_id']}}">3</a></li>
+                <li class="waves-effect"><a href="4/{{$guardian['applicant_id']}}">4</a></li>
+                <li class="waves-effect"><a href="5/{{$guardian['applicant_id']}}">5</a></li>
+                <li class="waves-effect"><a href="3/{{$guardian['applicant_id']}}"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         </div>
         <br>
         <form action="#" method="post" >
             <div class="row">
                 <div class="input-field col s3 offset-s2">
-                    <label for="applicant_id">Applicant ID</label>
+                    <label for="guardian_type">First Name</label>
                 </div>
                 <div class="col s3">
-                    <input name="applicant_id" id="applicant_id" type="text" class="validate" value="{{$applicant['applicant_id']}}"  readonly>
+                    <input name="guardian_type" id="guardian_type" type="text" class="validate" required value="{{$guardian['guardian_type']}}" readonly>
                 </div>
             </div>
-            <div class="row">
-                <div class="input-field col s3 offset-s2">
-                    <label for="category">Category applied for</label>
-                </div>
-                <div class="col s3">
-                    <input name="category" id="category" type="text">
-                </div>
-            </div>
-
-
             <div class="divider container" ></div>
             <br>
             <div class="container col s3 offset-s3">
-                <div class="header">Details of the Child</div>
+                <div class="header">Guardian Details</div>
             </div>
-
             <div class="row">
-                <div class="input-field col s3 offset-s2">
+                <div class="input-field col s2 offset-s1">
                     <label for="first_name">First Name</label>
                 </div>
-                <div class="col s3">
-                    <input name="first_name" id="first_name" type="text" class="validate" required value="{{$applicant['first_name']}}" readonly>
+                <div class="col s2">
+                    <input name="first_name" id="first_name" type="text" class="validate" value="{{$guardian['first_name']}}"  readonly>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s3 offset-s2">
+                <div class="input-field col s2">
                     <label for="last_name">Last Name</label>
                 </div>
-                <div class="col s3">
-                    <input name="last_name" id="last_name" type="text" class="validate" required value="{{$applicant['last_name']}}" readonly>
+                <div class="col s2">
+                    <input name="last_name" id="last_name" type="text" class="validate" value="{{$guardian['last_name']}}"  readonly>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s3 offset-s2">
+                <div class="input-field col s2 offset-s1">
                     <label for="religion">Religion</label>
                 </div>
-                <div class="col s3">
-                    <input name="religion" id="religion" type="text" class="validate" required value="{{$applicant['religion']}}" readonly>
+                <div class="col s1">
+                    <input name="religion" id="religion" type="text" class="validate" value="{{$guardian['religion']}}"  readonly>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s3 offset-s2">
-                    <label for="medium">Medium of learning</label>
+                <div class="input-field col s1">
+                    <label for="national_id_no">National ID</label>
                 </div>
-                <div class="col s3">
-                    <input name="medium" id="medium" type="text" class="validate" required value="{{$applicant['medium']}}" readonly>
+                <div class="col s1">
+                    <input name="national_id_no" id="national_id_no" type="text" class="validate" value="{{$guardian['national_id_no']}}"  readonly>
                 </div>
-            </div>
-
-
-            <div class="row">
-                <div class="input-field col s3 offset-s2">
-                    <label for="gender">Gender</label>
+                <div class="input-field col s1">
+                    <label for="nationality">Nationality</label>
                 </div>
-                <div class="col s3">
-                    <input name="sex" id="sex" type="text" class="validate" required value="{{$applicant['sex']}}" readonly>
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s3 offset-s2">
-                    <label for="birth_day">Date of Birth :</label>
-                </div>
-                <div class="col s3">
-                    <input id="birth_day" name="birth_day" type="date" class="validate" required value="{{$applicant['birth_day']}}" readonly>
+                <?php
+                    if ($guardian['national_id_no']){
+                        $nationality = "Sri Lankan";
+                    }
+                    else{
+                        $nationality = "Not a Sri Lankan";
+                    }
+                ?>
+                <div class="col s1">
+                    <input name="nationality" id="nationality" type="text" class="validate" value="{{$nationality}}"  readonly>
                 </div>
             </div>
 
-            {{--<button class="btn waves-effect waves-light" type="submit" name="action">Next--}}
-            {{--<i class="material-icons right">send</i>--}}
-            {{--</button>--}}
-            {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
+            <div class="row">
+                <div class="input-field col s2 offset-s1">
+                    <label for="religion">Address</label>
+                </div>
+                <div class="row">
+                    <label for="religion">{{$guardian['address_no']}},</label>
+                </div>
+                <div class="row">
+                    <label for="religion">{{$guardian['address_street']}},</label>
+                </div>
+                <div class="row">
+                    <label for="religion">{{$guardian['address_city']}}</label>
+                </div>
+                <div class="input-field col s2">
+                    <label for="tele_no">Telephone Number</label>
+                </div>
+                <div class="col s2">
+                    <input name="tele_no" id="tele_no" type="text" class="validate" value="{{$guardian['tele_no']}}"  readonly>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s2 offset-s1">
+                    <label for="div_sec_area">Divisional Secretariat</label>
+                </div>
+                <div class="col s2">
+                    <input name="div_sec_area" id="div_sec_area" type="text" class="validate" value="{{$guardian['div_sec_area']}}"  readonly>
+                </div>
+                <div class="input-field col s2">
+                    <label for="grama_nil_res_no">Grama Niladari Residence No</label>
+                </div>
+                <div class="col s2">
+                    <input name="grama_nil_res_no" id="grama_nil_res_no" type="text" class="validate" value="{{$guardian['grama_nil_res_no']}}"  readonly>
+                </div>
+            </div>
+
             <div align="center">
-                <a href ="3/{{$applicant['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Next</a>
+                <a href ="3/{{$guardian['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Next</a>
             </div>
         </form>
     </div>
