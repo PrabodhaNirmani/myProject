@@ -4,12 +4,33 @@
     Application Page
 @endsection
 @section('header')
+
+
     <nav class="teal" role="navigation">
         <div class="nav-wrapper ">
             <a id="logo-container" href="#" class="brand-logo left">
                 <i class="material-icons">visibility</i>iSolve
             </a>
             <ul class="right hide-on-med-and-down">
+                <li>
+                    <div class="col">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                </li>
+                <li>
+                    <div class="col">
+                        <?php
+
+
+                        $user_name=Auth::user()->user_name;
+
+                        ?>
+
+                        {{$user_name}}
+                    </div>
+
+                </li>
+
                 <li>
                     <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
                             <i class="material-icons">present_to_all</i></a></div>
