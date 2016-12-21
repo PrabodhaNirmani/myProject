@@ -55,31 +55,37 @@
     <div class="container">
         <h1 class="header center teal-text text-darken-2">Update Vacancies</h1>
         <div class="row">
-            <form class="col s12" name="action">
+            <form class="col s12" method="post" action="{{route('saveUpdateVacancies')}}" >
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="school_id" id="school_id" type="number" class="validate" value="{{ $vacancies }}"
+                        <input id="school_id" id="school_id" type="number" class="validate" value="{{$school[0]}}"
                                readonly>
                         <label for="school_id">School ID.</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input id="school_name" id="school_name" type="text" class="validate" value="{{ $vacancies }}"
+                        <input id="school_name" id="school_name" type="text" class="validate" value="{{ $school[1] }}"
                                readonly>
                         <label for="school_name">School Name</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <input name="current_value" id="current_value" type="number" class="validate"
-                               value="{{ $vacancies }}" readonly>
+                        <?php
+                        if($school[2]==null)
+                            $vacancies=0;
+                        else
+                            $vacancies=$school[2];
+
+                            ?>
+                        <input name="current_value" id="current_value" type="number" class="validate" value="{{ $vacancies }}" readonly>
                         <label for="current_value">Current Value</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s16">
-                        <input name="new_value" id="new_value" type="text" class="validate" required>
+                    <div class="input-field col s6">
+                        <input name="new_value" id="new_value" type="number" class="validate" required>
                         <label for="new_value">New Value</label>
                     </div>
                 </div>

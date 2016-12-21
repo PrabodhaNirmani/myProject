@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\District;
+use App\Models\Error;
 use App\Models\School;
 use App\Models\User;
 use Auth;
@@ -68,8 +69,55 @@ class SchoolController extends Controller
         return view('viewApplicants', compact('applicants', 'error'));
     }
     
-    public function reviewApplication1(){
+    public function reviewApplication1($applicant_id){
+
+        $result =School::reviewApplication1($applicant_id);
+
+        if ($result->num_rows > 0) {
+            $applicant = $result->fetch_assoc();
+
+        } else {
+            $error = "Cannot Load the results";
+            return redirect()->back();
+            
+        }
+        $error = null;
+        return view('schoolApplicationReview1',compact('applicant','error'));
         
+    }
+
+    public function reviewApplication2($applicant_id){
+
+        $result =School::reviewApplication2($applicant_id);
+
+        if ($result->num_rows > 0) {
+            $guardian = $result->fetch_assoc();
+
+        } else {
+            $error = "Cannot Load the results";
+            $guardian = null;
+
+        }
+        $error = null;
+        return view('schoolApplicationReview2',compact('guardian','error'));
+        
+
+    }
+    public function reviewApplication3($applicant_id){
+
+        return view('schoolApplicationReview3',compact('applicant','error'));
+
+    }
+
+    public function reviewApplication4($applicant_id){
+
+        return view('schoolApplicationReview4',compact('applicant','error'));
+
+    }
+    public function reviewApplication5($applicant_id){
+
+        return view('schoolApplicationReview5',compact('applicant','error'));
+
     }
 
     public function postGetApplication(Request $request){

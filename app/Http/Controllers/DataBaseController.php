@@ -35,14 +35,28 @@ class DatabaseController extends Controller
     }
 
     public static function insert($table,$fields,$values){
-
+        $i=0;
+        $val=[];
+        while($i<sizeof($fields)){
+            array_push($val,'?');
+            echo $values[$i];
+            $i=$i+1;
+        }
+        $val = implode(",", $val);
 
         $connection = DatabaseController::db_connect();
-        $values = implode("','", $values);
-        $fields = implode(',', $fields);
-        $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
-        echo $query;
-        mysqli_query($connection, $query);
+        $field = implode(',', $fields);
+        $sql="INSERT INTO " . $table . "("  .$field. ")" . "VALUES ("  . $val . ")";
+        echo $sql;
+        $stmt = $connection->prepare($sql);
+        $i=1;
+        //echo sizeof($fields);
+        while($i<=sizeof($fields)){
+            $stmt->bind_param($i,$values[$i-1]);
+            $i=$i+1;
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
         return $connection;
     }
     

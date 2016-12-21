@@ -87,7 +87,18 @@ class School
     public static function reviewApplication1($applicant_id){
 
         $connection = DatabaseController::db_connect();
-        $query = "SELECT * from applicant where application_id = ?";
+        $query = "SELECT * from applicant where applicant_id = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$applicant_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public static function reviewApplication2($applicant_id){
+        $applicant_id = intval($applicant_id);
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT * from applicant_guardian where applicant_id = ";
+//        $result = $connection->query($query);
         $stmt = $connection->prepare($query);
         $stmt->bind_param("i",$applicant_id);
         $stmt->execute();
@@ -95,8 +106,59 @@ class School
         return $result;
     }
 
-    
 
 
+
+    public static function getSchools(){
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT school_id,school_name FROM school";
+
+        $result = mysqli_query($connection,$query);
+        $schools=array();
+        while($row=mysqli_num_rows($result)){
+            array_push($schools,$row);
+
+        }
+        return $schools;
+
+    }
+
+
+    public static function getVacanciesAvailable(){
+        $user_id=Auth::user()->id;
+
+        $query="SELECT school_id,school_name,max_no_student FROM school WHERE school_id=?";
+
+        $connection=DatabaseController::db_connect();
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
+        if(mysqli_num_rows($result)){
+
+            $row=mysqli_fetch_row($result);
+            mysqli_close($connection);
+            return $row;
+
+        }
+    }
+
+    public static function saveVacanciesAvailable($num_students){
+
+        $user_id=Auth::user()->id;
+
+        $connection=DatabaseController::db_connect();
+        $query="UPDATE school SET max_no_student=?  WHERE school_id=?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("ii",$num_students,$user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+
+
+
+    }
 
 }
