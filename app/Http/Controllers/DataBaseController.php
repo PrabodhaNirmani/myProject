@@ -69,7 +69,6 @@ class DatabaseController extends Controller
         $values = implode("','", $values);
         $fields = implode(',', $fields);
         $query = "INSERT INTO " . $table . "("  .$fields. ")" . "VALUES ('"  . $values . "')";
-        echo $query;
         mysqli_query($connection, $query);
         return $connection;
     }
