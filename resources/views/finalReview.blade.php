@@ -60,7 +60,7 @@
                     <label for="marks">Final Marks</label>
                 </div>
                 <div class="col s2">
-                    <input name="marks" id="marks" type="text" class="validate" value=""  readonly>
+                    <input name="marks" id="marks" type="text" class="validate" value="" >
                 </div>
 
             </div>

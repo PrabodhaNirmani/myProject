@@ -364,6 +364,12 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
+    Route::post('/reviewApplication/2/3/4/5/final/{applicant_id}', [
+        'uses' => 'SchoolController@reviewFinal',
+        'as' => 'reviewFinal',
+        'middleware' => 'auth'
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
+
     Route::post('/viewApplication', [
         'uses' => 'SchoolController@postGetApplication',
         'as' => 'viewApplication',

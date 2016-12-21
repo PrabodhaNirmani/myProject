@@ -161,6 +161,13 @@ class SchoolController extends Controller
         return view('schoolApplicationReview5',compact('distance','error'));
 
     }
+    public function reviewFinal($applicant_id,Request $request){
+        echo $applicant_id;
+        echo $request;
+        
+        return view('finalReview');
+
+    }
 
     public function postGetApplication(Request $request){
 //        $district_row=District::getDistrict();
