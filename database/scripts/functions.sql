@@ -1,4 +1,4 @@
-----------------------------Generating Age------------------------------------------------------------------
+#----------------------------Generating Age------------------------------------------------------------------
 
 drop function if exists generate_age;
 
@@ -13,7 +13,7 @@ create function generate_age(birthday date) returns real
 
 delimiter ;
 
---------------------------Calculating Past Pupil Guardian Marks--------------------------------------------------------------
+#--------------------------Calculating Past Pupil Guardian Marks--------------------------------------------------------------
 
 drop function if exists guardian_mark;
 
@@ -51,7 +51,7 @@ begin
 
 delimiter ;
 
-------------------------Calculating Marks for the siblings in the school---------------------------------------------------------
+#------------------------Calculating Marks for the siblings in the school---------------------------------------------------------
 
 drop function if exists sibling_mark;
 
@@ -90,7 +90,7 @@ end@
 
 delimiter ;
 
------------------------Calculating marks for the schools in between the applicant's residence and the school------------------
+#-----------------------Calculating marks for the schools in between the applicant's residence and the school------------------
 
 drop function if exists location_mark;
 
@@ -114,7 +114,7 @@ end@
 
 delimiter ;
 
----------------------Calculating final marks for an applicant----------------------------------------------------------------
+#---------------------Calculating final marks for an applicant----------------------------------------------------------------
 
  drop function if exists calculate_marks;
 
