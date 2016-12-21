@@ -100,7 +100,7 @@
             </div>
             <br>
         @else
-            <h1 class="header center teal-text text-darken-2 ">Selected School- {{$school_name[0]}}</h1>
+            <h1 class="header center teal-text text-darken-2 ">Selected School- {{$school_name}}</h1>
 
 <div class="container">
 
@@ -121,7 +121,7 @@
                             <td>{{$applicant[0]}}</td>
                             <td>{{$applicant[1]}}</td>
                             <td>{{$applicant[2]}}</td>
-                            <td>{{$applicant[3][0]}}</td>
+                            <td>{{$applicant[3]}}</td>
 
                         </tr>
                     @endforeach
@@ -136,14 +136,14 @@
 
     @else
 
-        @if($error!=null)
+        @if($error!=null )
 
             <div class="container">
                 <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
             </div>
             <br>
         @else
-            <h1 class="header center teal-text text-darken-2 ">Selected Students- {{$school_name[0]}}</h1>
+            <h1 class="header center teal-text text-darken-2 ">Selected Students- {{$school_name}}</h1>
 
 
             <div class="container">
