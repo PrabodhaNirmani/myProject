@@ -29,6 +29,12 @@
 @section('body')
 
     <div class="container" xmlns="http://www.w3.org/1999/html">
+        @if($error!=null)<br>
+        <div class="container">
+            <div class="card-panel #ef9a9a red lighten-3" align="center"><h6>{{$error}}</h6></div>
+        </div>
+        <br>
+        @endif
         <h3 class="header center teal-text text-darken-2">Student Application Form</h3>
         <form method="post" action="{{route('submitApplicantSibling')}}">
             <div class="row">
@@ -55,7 +61,7 @@
                     <label for="no{{$i}}">{{$i}}</label>
                 </div>
                 <div class="input-field col s5">
-                    <input name="admission_no{{$i}}" id="admission_no{{$i}}" type="text" class="validate">
+                    <input name="admission_no{{$i}}" id="admission_no{{$i}}" type="number" class="validate">
 
                 </div>
 
