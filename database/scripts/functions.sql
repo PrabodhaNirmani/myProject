@@ -55,6 +55,8 @@ delimiter ;
 
 ------------------------Calculating Marks for the siblings in the school---------------------------------------------------------
 
+drop function if exists sibling_mark;
+
 delimiter @
 
 create function sibling_mark(applicant_id int,school_id int) returns int
@@ -81,7 +83,7 @@ begin
 	else
 
 	if(sibling_school_id!=school_id) then
-			select 0 into sibling_mark;
+			 set sibling_mark=0;
 		end if;
 
 	end if;
@@ -94,6 +96,8 @@ delimiter ;
 
 -----------------------Calculating marks for the schools in between the applicant's residence and the school------------------
 
+drop function if exists location_mark;
+
 delimiter @
 
 create function location_mark(applicant_id int,school_id int) returns int
@@ -101,8 +105,8 @@ begin
 	declare location_mark int;
 	declare num_school int;
 
-	set num_school = (select num_between_school from applicant_priority where (applicant.applicant_id,applicant.school_id)=(applicant_id,school_id);)
-	set location_mark = (select num_school*4;)
+	select num_between_school from applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=(applicant_id,school_id) into num_school;
+	select num_school*4 into location_mark;
 
 	return location_mark;
 
@@ -111,6 +115,8 @@ end@
 delimiter ;
 
 ---------------------Calculating final marks for an applicant----------------------------------------------------------------
+
+ drop function if exists calculate_marks;
 
 delimiter @
 
@@ -123,10 +129,22 @@ begin
 	declare location_mark int;
 
 	select guardian_mark(applicant_id,school_id) into guardian_mark;
-	select guardian_mark(applicant_id,school_id) into sibling_mark;
+	select sibling_mark(applicant_id,school_id) into sibling_mark;
 	select location_mark(applicant_id,school_id) into location_mark;
 
-	select guardian_mark+sibling_mark-location_mark+35 into marks;
+  if(guardian_mark=null) then
+	  select sibling_mark-location_mark into marks;
+	else
+	  if (sibling_mark=null) THEN
+	    select guardian_mark-location_mark5 into marks;
+	  else
+	    if(location_mark=null) THEN
+	      select sibling_mark+guardian_mark into marks;
+	    else
+	      select guardian_mark+sibling_mark-location_mark into marks;
+	    end if;
+    end if;
+  end if;
 
 	return marks;
 
