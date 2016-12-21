@@ -104,8 +104,27 @@ class SchoolController extends Controller
 
     }
     public function reviewApplication3($applicant_id){
+        
+        $result =School::reviewApplication3($applicant_id);
+        if ($result != null){
+            $reg_date = $result[0];
+            if ($result[1]->num_rows > 0) {
+                $guardian = $result[1]->fetch_assoc();
 
-        return view('schoolApplicationReview3',compact('applicant','error'));
+            } else {
+                $error = "Cannot Load the results";
+                $guardian = null;
+
+            }
+            $error = null;
+            return view('schoolApplicationReview3',compact('applicant_id','guardian','reg_date','error'));
+        }
+        $error = "Guardian is not a past pupil of this School";
+        $guardian = null;
+        $reg_date = null;
+        return view('schoolApplicationReview3',compact('applicant_id','guardian','reg_date','error'));
+        
+        
 
     }
 

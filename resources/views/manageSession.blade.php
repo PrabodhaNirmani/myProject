@@ -3,7 +3,49 @@
 @section('title')
     Manage Session Page
 @endsection
+<style>
+    #snackbar {
+        visibility: hidden;
+        min-width: 250px;
+        margin-left: -125px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 2px;
+        padding: 16px;
+        position: fixed;
+        z-index: 1;
+        left: 50%;
+        top: 30px;
+        font-size: 17px;
+    }
 
+    .show {
+        visibility: visible !important;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @-webkit-keyframes fadein {
+        from {top: 0; opacity: 0;}
+        to {top: 30px; opacity: 1;}
+    }
+
+    @keyframes fadein {
+        from {top: 0; opacity: 0;}
+        to {top: 30px; opacity: 1;}
+    }
+
+    @-webkit-keyframes fadeout {
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
+    }
+
+    @keyframes fadeout {
+        from {top: 30px; opacity: 1;}
+        to {top: 0; opacity: 0;}
+    }
+</style>
 @section('header')
     <nav class="teal" role="navigation">
         <div class="nav-wrapper ">
@@ -88,7 +130,7 @@
                 {{--</button>--}}
                 {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
                 <a href="{{route('deactivateSession')}}" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Deactivate</a>
-                <a href="{{route('evaluateResults')}}" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Deactivate</a>
+                <a href="{{route('evaluateResults')}}" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Evaluate Results</a>
             </form>
         </div>
         <br><br><br>
@@ -99,6 +141,20 @@
     {{--selectYears: 15 // Creates a dropdown of 15 years to control year--}}
     {{--});--}}
     {{--</script>--}}
+@endsection
+
+@section('javascript')
+<div id="snackbar">          Results evaluated successfully..          </div>
+@if($done=="done")
+    <script>
+        window.onload =function myFunction() {
+            var x = document.getElementById("snackbar")
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+@endif
+
 @endsection
 
 

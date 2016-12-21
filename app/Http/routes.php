@@ -156,6 +156,14 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\AdminMiddleware::class);
 
+    Route::post('/adminViewResults', [
+        'uses' => 'homeController@postAdminViewResults',
+        'as' => 'adminViewResults',
+        'middleware' => 'auth'
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
+    
+    
+    
     ////////////student_controller
     Route::get('/getApplicant', [
         'uses' => 'StudentController@getApplicant',
