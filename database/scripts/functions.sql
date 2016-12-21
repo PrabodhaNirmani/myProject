@@ -41,9 +41,7 @@ begin
 
 	else
 
-		if(guardian_school_id!=school_id) then
-			select (0) into guardian_mark;
-		end if;
+			select 0 into guardian_mark;
 
 	end if;
 
@@ -76,15 +74,13 @@ begin
 		select registered_date from student where admission_no=sibling_pre_id into sib_reg_date;
 		select CURDATE() into today_date;
 
-		select floor(datediff(current_date,sib_reg_date)/365) into sibling_years;
+		select floor(datediff(today_date,sib_reg_date)/365) into sibling_years;
 
 		select sibling_years*3 into sibling_mark;
 
 	else
 
-	if(sibling_school_id!=school_id) then
-			 set sibling_mark=0;
-		end if;
+			 select 0 into sibling_mark;
 
 	end if;
 
@@ -132,19 +128,7 @@ begin
 	select sibling_mark(applicant_id,school_id) into sibling_mark;
 	select location_mark(applicant_id,school_id) into location_mark;
 
-  if(guardian_mark=null) then
-	  select sibling_mark-location_mark into marks;
-	else
-	  if (sibling_mark=null) THEN
-	    select guardian_mark-location_mark5 into marks;
-	  else
-	    if(location_mark=null) THEN
-	      select sibling_mark+guardian_mark into marks;
-	    else
-	      select guardian_mark+sibling_mark-location_mark into marks;
-	    end if;
-    end if;
-  end if;
+	select guardian_mark+sibling_mark-location_mark+35 into marks;
 
 	return marks;
 
