@@ -7,7 +7,9 @@ use App\Models\District;
 use App\Models\School;
 use App\Models\User;
 use Auth;
+use Illuminate\Database\Connection;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Connectors\DatabaseConnector;
 
 class AdminController extends Controller
 {
@@ -17,31 +19,31 @@ class AdminController extends Controller
         $district_row = District::getDistrict();
         $error = null;
         $done = null;
-        return view('registerSchool', compact('district_row','error','done'));
+        return view('registerSchool', compact('district_row', 'error', 'done'));
     }
 
-    public function registerSchool(Request $request){
+    public function registerSchool(Request $request)
+    {
 
         $district_row = District::getDistrict();
         $user = School::addSchool($request);
-        if (get_class($user) == 'App\Models\Error'){
+        if (get_class($user) == 'App\Models\Error') {
 
-            if ($user->error_no == 1062){
+            if ($user->error_no == 1062) {
 
                 $error = "Username of school already exists! SignUp with a different username";
-            }
-
-            else{
+            } else {
                 $error = $user->error_description;
             }
             $done = null;
-            return view('registerSchool', compact('district_row','error','done'));
+            return view('registerSchool', compact('district_row', 'error', 'done'));
         }
 
         $done = "School was successfully added";
         $error = null;
-        return view('registerSchool', compact('district_row','error','done'));
+        return view('registerSchool', compact('district_row', 'error', 'done'));
     }
+
     public function getManageSession()
     {
 
@@ -105,13 +107,36 @@ class AdminController extends Controller
         $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
 
 
+        $this->update_marks($connection);
+
+
         return view('manageSession', compact('year', 'flag', 'date'));
 
     }
 
-    public function getEvaluateResults(){
+    public function getEvaluateResults()
+    {
 
-        
+
+    }
+
+    public function update_marks(Connection $connection)
+    {
+
+        $app_scl = "select applicant_id, school_id from applicant_priority;";
+
+        $result = mysqli_query($connection, $app_scl);
+
+        $row = mysqli_fetch_row($result);
+
+        while ($row) {
+  
+            $applicant_id = $row[0];
+            $school_id = $row[1];
+            $func_cal_marks = "CALL calculate_marks(" . $applicant_id . "," . $school_id . ")";
+            mysqli_query($connection, $func_cal_marks);
+        }
+
     }
 
 }

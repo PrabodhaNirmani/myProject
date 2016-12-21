@@ -94,6 +94,8 @@ delimiter ;
 
 -----------------------Calculating marks for the schools in between the applicant's residence and the school------------------
 
+drop function if exists location_mark;
+
 delimiter @
 
 create function location_mark(applicant_id int,school_id int) returns int
@@ -101,8 +103,8 @@ begin
 	declare location_mark int;
 	declare num_school int;
 
-	set num_school = (select num_between_school from applicant_priority where (applicant.applicant_id,applicant.school_id)=(applicant_id,school_id);)
-	set location_mark = (select num_school*4;)
+	select num_between_school from applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=(applicant_id,school_id) into num_school;
+	select num_school*4 into location_mark;
 
 	return location_mark;
 
