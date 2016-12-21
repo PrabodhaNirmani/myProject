@@ -201,6 +201,16 @@ class AdminController extends Controller
                     }
                 }
             }
+        $temp=array_keys($applicantSchool);
+        foreach ($temp as $i) {
+            $sql = "SELECT school_id from applicant_priority where ( applicant_id,priority )=($i,$applicantSchool[$i])";
+            $data = mysqli_query($con, $sql);
+            if (mysqli_num_rows($data)) {
+                $row=mysqli_fetch_row($data);
+                $sql =  "UPDATE applicant set selected_school = $row[0] where (applicant_id=$i)";
+                $data = mysqli_query($con, $sql);
+            }
+        }
 
         $year_raw = mysqli_query($con, "select YEAR (year_boundary) from session_date;");
         $flag_raw = mysqli_query($con, "select activate from session_date;");

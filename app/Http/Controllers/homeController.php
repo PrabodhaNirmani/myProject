@@ -272,7 +272,7 @@ class HomeController extends Controller
 //                if(mysqli_num_rows($result)>0){
 //                    $data=mysqli_fetch_row($result);
 //                    array_push($applicants, $data[0]);
-//
+//UPDATE applicant set selected_school = 1 where applicant_id=2
 //                }
 //
 //            }
