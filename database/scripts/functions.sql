@@ -14,6 +14,9 @@ create function generate_age(birthday date) returns real
 delimiter ;
 
 --------------------------Calculating Past Pupil Guardian Marks--------------------------------------------------------------
+
+drop function if exists guardian_mark;
+
 delimiter @
 
 create function guardian_mark(applicant_id int,school_id int) returns int
@@ -23,25 +26,25 @@ begin
 	declare guardian_past_id int;
 
 	set guardian_past_id=(select past_stu_id from guardian_past_pupil,applicant_guardian where (guardian_past_pupil.guardian_id,applicant_id)=(applicant_guardian.guardian_id,applicant_guardian.applicant_id);)
-	set guardian_school_id = (select school_id from student where admission_no=guardian_past_id;)
+	set guardian_school_id = (select school_id from student where student.admission_no=guardian_past_id;)
 
 	if(guardian_school_id=school_id) then
 
-		declare past_date date;
+		declare left_date date;
 		declare start_date date;
 
-		set past_date =(select school_left_date from past_student where past_stu_id=guardian_past_id;)
-		set start_date = (select registered_date from student where admission_no=guardian_past_id;)
+		set left_date =(select school_left_date from past_student where past_student.past_stu_id=guardian_past_id into left_date;)
+		set start_date = (select registered_date from student where student.admission_no=guardian_past_id into start_date;)
 
 		declare guardian_years int;
-		set guardian_years = (select floor(select datediff(past_date,start_date)/365);)
+		set guardian_years = (select floor(select datediff(left_date,start_date)/365);)
 
 		set guardian_mark = (select guardian_years*2;)
 
 	else
 		if (guardian_school_id!=school_id) then
 
-			set guardian_mark = select 0;
+			set guardian_mark = (select 0;)
 
 	end if;
 

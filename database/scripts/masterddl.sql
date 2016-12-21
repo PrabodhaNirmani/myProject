@@ -9,11 +9,11 @@ USE ministry_of_education;
 
 CREATE TABLE user
 (
-	id   INT NOT NULL auto_increment PRIMARY KEY,
-	user_name VARCHAR(255) NOT NULL,
-	password  VARCHAR(255) NOT NULL,
-	user_type VARCHAR(10) NOT NULL,
-	remember_token VARCHAR(100) NOT NULL,
+	id             INT NOT NULL auto_increment PRIMARY KEY,
+	user_name      VARCHAR(255) NOT NULL,
+	password       VARCHAR(255) NOT NULL,
+	user_type      VARCHAR(10) NOT NULL,
+	remember_token VARCHAR(100) DEFAULT NULL,
 	UNIQUE (user_name)
 )
 	engine = innodb
@@ -70,6 +70,7 @@ CREATE TABLE school
 	school_type    VARCHAR(6) NOT NULL,
 	street         VARCHAR(50),
 	city           VARCHAR(20) NOT NULL,
+	district       VARCHAR(20) NOT NULL,
 	max_no_student INT,
 	FOREIGN KEY(school_id) REFERENCES user(id) ON DELETE CASCADE
 )
@@ -82,11 +83,11 @@ CREATE TABLE applicant_priority
 (
 	applicant_id       INT NOT NULL,
 	school_id          INT NOT NULL,
-	priority           INT NOT NULL,
+	priority           INT(5) NOT NULL,
 	marks              INT,
 	distance           DOUBLE NOT NULL,
 	num_between_school INT NOT NULL,
-	confirmed          BOOLEAN,
+	confirmed          BOOLEAN DEFAULT 0,
 	FOREIGN KEY(applicant_id) REFERENCES applicant(applicant_id) ON DELETE
 	CASCADE,
 	FOREIGN KEY(school_id) REFERENCES school(school_id) ON DELETE CASCADE,
@@ -123,7 +124,7 @@ CREATE TABLE present_student
 CREATE TABLE past_student
 (
 	past_stu_id      INT NOT NULL PRIMARY KEY REFERENCES student (admission_no),
-	membership_id    INT NOT NULL,
+	membership_id    INT NOT NULL PRIMARY KEY,
 	school_left_date DATE,
 	membership_date  DATE
 )
@@ -158,7 +159,7 @@ CREATE TABLE guardian_past_pupil
 
 -------------------------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE session_date
+CREATE TABLE session
 (
 	session_id    INT NOT NULL auto_increment PRIMARY KEY,
 	year_boundary DATE NOT NULL,
@@ -170,14 +171,14 @@ CREATE TABLE session_date
 -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE district (
-	city VARCHAR(20) NOT NULL
+	city VARCHAR(20) PRIMARY KEY NOT NULL
 )
 	engine = innodb
 	DEFAULT charset = utf8;
 
 
 /////////////updates//////////////////////////
-added a new field remember_token to user
+--added a new field remember_token to user--
 
 #district is added to applicant_guardian table
 #confirmed is added to applicant priority
