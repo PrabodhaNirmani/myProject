@@ -15,15 +15,16 @@ class SchoolController extends Controller
 {
 
     public function getUpdateVacancies(){
-        $vacancies=null;
-
-        return view('updateVacancies',compact('vacancies'));
+        $school=School::getVacanciesAvailable();
+        $done=null;
+        return view('updateVacancies',compact('school','done'));
     }
-
-    public function postUpdateVacancies(Request $request){
-//        $district_row=District::getDistrict();
-//
-//        return view('registerSchool',compact('district_row'));
+    public function saveUpdateVacancies(Request $request){
+        $num_students=$request['new_value'];
+        School::saveVacanciesAvailable($num_students);
+        $school=School::getVacanciesAvailable();
+        $done="Changes were saved successfully";
+        return view('updateVacancies',compact('school','done'));
     }
 
    public function getApplicantList()

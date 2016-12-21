@@ -22,7 +22,7 @@ class District
         $connection=DatabaseController::db_connect();
         $sql="SELECT * from district ORDER by (city)";
         $data=mysqli_query($connection,$sql);
-        //echo $data;
+       
         $district_row=array();
         while($row=mysqli_fetch_row($data)){
             array_push($district_row,$row);
@@ -44,7 +44,7 @@ class District
             array_push($district_row,$row);
 
         }
-        echo sizeof($district_row);
+        
         return $district_row;
     }
 

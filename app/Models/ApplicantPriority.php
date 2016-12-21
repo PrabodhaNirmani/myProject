@@ -19,7 +19,7 @@ class ApplicantPriority
     private $fieldNames = ['school_id','applicant_id','priority','distance','num_between_school'];
 
     public function createApplicantPriority(Request $request){
-        echo $request;
+        
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];

@@ -116,7 +116,7 @@
                             <label for="change_row">Change Date :</label>
                         </div>
                         <div class="input-field col s3">
-                            <input id="session_date" name="session_date" type="date" class="datepicker">
+                            <input id="session_date" name="session_date" type="date" class="datepicker" required>
                         </div>
                     </div>
                 </div>
@@ -124,23 +124,15 @@
                     <i class="material-icons right">done</i>
                 </button>
                 <input type="hidden" name="_token" value="{{Session::token()}}">
-                {{----}}
-                {{--<button class="btn waves-effect waves-light" type="submit" name="action">Activate--}}
-                {{--<i class="material-icons right">send</i>--}}
-                {{--</button>--}}
-                {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
                 <a href="{{route('deactivateSession')}}" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Deactivate</a>
                 <a href="{{route('evaluateResults')}}" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Evaluate Results</a>
+
             </form>
+
         </div>
         <br><br><br>
     </div>
-    {{--<script>--}}
-    {{--$('.datepicker').pickadate({--}}
-    {{--selectMonths: true, // Creates a dropdown to control month--}}
-    {{--selectYears: 15 // Creates a dropdown of 15 years to control year--}}
-    {{--});--}}
-    {{--</script>--}}
+
 @endsection
 
 @section('javascript')
