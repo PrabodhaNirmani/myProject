@@ -109,7 +109,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m3">
+                    <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{ route('getApplicant') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
@@ -124,7 +124,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m3">
+                    <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
@@ -137,20 +137,20 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col s12 m3">
-                        <div class="icon-block">
-                            <h2 class="center brown-text">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
-                                    <i class="material-icons">mode_edit</i></a></h2>
-                            <h5 class="center">
-                                <a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">
-                                    Edit</a></h5>
+                    {{--<div class="col s12 m3">--}}
+                        {{--<div class="icon-block">--}}
+                            {{--<h2 class="center brown-text">--}}
+                                {{--<a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">--}}
+                                    {{--<i class="material-icons">mode_edit</i></a></h2>--}}
+                            {{--<h5 class="center">--}}
+                                {{--<a href="#" data-activates="nav-mobile" class="waves-button-input teal-text">--}}
+                                    {{--Edit</a></h5>--}}
 
-                            <p class="light" align="center">
-                                Editing submitted application form
-                            </p>
-                        </div>
-                    </div>
+                            {{--<p class="light" align="center">--}}
+                                {{--Editing submitted application form--}}
+                            {{--</p>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
                 </div>
             @elseif($user[1]=='admin')
                 <div class="row">
