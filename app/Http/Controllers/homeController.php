@@ -178,9 +178,7 @@ class HomeController extends Controller
         $user=array();
         array_push($user,Auth::user()->user_type,Auth::user()->id);
         if($user[0]=='admin'){
-            $error=null;
-            $applicants=null;
-            $school_name=School::getSchools();
+
             return view('viewResults',compact('user','error','applicants','school_name'));            
 
         }
@@ -276,6 +274,19 @@ class HomeController extends Controller
         }
     }
 
+    private function adminViewResults(){
+        $error=null;
+        $applicants=null;
+        $school_name=School::getSchools();
+    }
+
+    private function schoolViewResults(){
+
+    }
+
+    private function studentViewResults(){
+
+    }
 
 
 
