@@ -39,7 +39,6 @@ class District
         $stmt->bind_param("s",$dist);
         $stmt->execute();
         $result = $stmt->get_result();
-        echo $sql;
         $district_row=array();
         while($row=mysqli_fetch_row($result)){
             array_push($district_row,$row);
