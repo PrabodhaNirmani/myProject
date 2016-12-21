@@ -95,15 +95,15 @@ class School
         return $result;
     }
     public static function reviewApplication2($applicant_id){
-        $applicant_id = intval($applicant_id);
+
         $connection = DatabaseController::db_connect();
-        $query = "SELECT * from applicant_guardian where applicant_id = ";
-//        $result = $connection->query($query);
+        $query = "SELECT * from applicant_guardian where applicant_id = ?";
         $stmt = $connection->prepare($query);
         $stmt->bind_param("i",$applicant_id);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
+
     }
 
 

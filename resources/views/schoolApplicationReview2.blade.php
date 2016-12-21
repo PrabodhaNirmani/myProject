@@ -49,18 +49,19 @@
         <br>
         <form action="#" method="post" >
             <div class="row">
-                <div class="input-field col s3 offset-s2">
-                    <label for="guardian_type">First Name</label>
+                <div class="input-field col s3 offset-s1">
+                    <label for="guardian_type">Gaurdian</label>
                 </div>
                 <div class="col s3">
                     <input name="guardian_type" id="guardian_type" type="text" class="validate" required value="{{$guardian['guardian_type']}}" readonly>
                 </div>
             </div>
-            <div class="divider container" ></div>
+            <div class="divider" ></div>
             <br>
-            <div class="container col s3 offset-s3">
+            <div class="col s3 offset-s1">
                 <div class="header">Guardian Details</div>
             </div>
+            <br><br>
             <div class="row">
                 <div class="input-field col s2 offset-s1">
                     <label for="first_name">First Name</label>
@@ -79,16 +80,19 @@
                 <div class="input-field col s2 offset-s1">
                     <label for="religion">Religion</label>
                 </div>
-                <div class="col s1">
+                <div class="col s2">
                     <input name="religion" id="religion" type="text" class="validate" value="{{$guardian['religion']}}"  readonly>
                 </div>
-                <div class="input-field col s1">
+                <div class="input-field col s2">
                     <label for="national_id_no">National ID</label>
                 </div>
-                <div class="col s1">
+                <div class="col s2">
                     <input name="national_id_no" id="national_id_no" type="text" class="validate" value="{{$guardian['national_id_no']}}"  readonly>
                 </div>
-                <div class="input-field col s1">
+            </div>
+            <div class="row">
+
+                <div class="input-field col s2 offset-s1">
                     <label for="nationality">Nationality</label>
                 </div>
                 <?php
@@ -99,28 +103,31 @@
                         $nationality = "Not a Sri Lankan";
                     }
                 ?>
-                <div class="col s1">
+                <div class="input-field col s2">
                     <input name="nationality" id="nationality" type="text" class="validate" value="{{$nationality}}"  readonly>
                 </div>
             </div>
 
             <div class="row">
+
                 <div class="input-field col s2 offset-s1">
                     <label for="religion">Address</label>
                 </div>
-                <div class="row">
-                    <label for="religion">{{$guardian['address_no']}},</label>
-                </div>
-                <div class="row">
-                    <label for="religion">{{$guardian['address_street']}},</label>
-                </div>
-                <div class="row">
-                    <label for="religion">{{$guardian['address_city']}}</label>
+                <div class="col s2">
+                    <div class="input-field row">
+                        <label for="religion">{{$guardian['address_no']}},</label>
+                    </div>
+                    <div class="input-field row">
+                        <label for="religion">{{$guardian['address_street']}},</label>
+                    </div>
+                    <div class="input-field row">
+                        <label for="religion">{{$guardian['address_city']}}</label>
+                    </div>
                 </div>
                 <div class="input-field col s2">
                     <label for="tele_no">Telephone Number</label>
                 </div>
-                <div class="col s2">
+                <div class="input-field col s2">
                     <input name="tele_no" id="tele_no" type="text" class="validate" value="{{$guardian['tele_no']}}"  readonly>
                 </div>
             </div>
@@ -139,7 +146,7 @@
                     <input name="grama_nil_res_no" id="grama_nil_res_no" type="text" class="validate" value="{{$guardian['grama_nil_res_no']}}"  readonly>
                 </div>
             </div>
-
+<br><br>
             <div align="center">
                 <a href ="3/{{$guardian['applicant_id']}}" class="waves-effect waves-light btn"><i class="material-icons right">send</i>Next</a>
             </div>
@@ -149,7 +156,6 @@
 
 
 
-    <br><br><br>
 
 
 
