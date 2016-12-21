@@ -64,6 +64,7 @@
                 {{--</button>--}}
                 {{--<input type="hidden" name="_token" value="{{Session::token()}}">--}}
                 <a href="{{route('deactivateSession')}}" class="waves-effect waves-light btn"> <i class="material-icons right">lock_outline</i>Deactivate</a>
+                <a href="{{route('evaluateResults')}}" class="waves-effect waves-light btn"> <i class="material-icons right">Evaluate Results</i>Deactivate</a>
             </form>
         </div>
         <br><br><br>

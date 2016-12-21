@@ -137,6 +137,13 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
 
     ])->middleware(App\Http\Middleware\AdminMiddleware::class);
+
+    Route::get('/evaluateResults', [
+        'uses' => 'AdminController@getEvaluateResults',
+        'as' => 'evaluateResults',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\AdminMiddleware::class);
     ////////////student_controller
     Route::get('/getApplicant', [
         'uses' => 'StudentController@getApplicant',
