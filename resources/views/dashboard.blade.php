@@ -155,7 +155,7 @@
             @elseif($user[1]=='admin')
                 <div class="row">
 
-                    <div class="col s12 m6">
+                    <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{ route('registerSchoolView') }}" data-activates="nav-mobile" class="waves-button-input teal-text">
@@ -170,7 +170,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m6">
+                    <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{route('manageSession')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
@@ -183,12 +183,25 @@
                             </p>
                         </div>
                     </div>
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center brown-text">
+                                <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
+                                    <i class="material-icons">grade</i></a></h2>
+                            <h5 class="center">
+                                <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a></h5>
+
+                            <p class="light" align="center">
+                                Checking results of grade one entries
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
             @elseif($user[1]=='school')
                 <div class="row">
 
-                    <div class="col s12 m6">
+                    <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{ route('viewApplicants')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
@@ -203,7 +216,7 @@
                         </div>
                     </div>
 
-                    <div class="col s12 m6">
+                    <div class="col s12 m4">
                         <div class="icon-block">
                             <h2 class="center brown-text">
                                 <a href="{{route('updateVacancies')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
@@ -213,6 +226,19 @@
 
                             <p class="light" align="center">
                                 Updating the number of vacancies left for the school in this year
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <h2 class="center brown-text">
+                                <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">
+                                    <i class="material-icons">grade</i></a></h2>
+                            <h5 class="center">
+                                <a href="{{route('viewResults')}}" data-activates="nav-mobile" class="waves-button-input teal-text">Results</a></h5>
+
+                            <p class="light" align="center">
+                                Checking results of grade one entries
                             </p>
                         </div>
                     </div>

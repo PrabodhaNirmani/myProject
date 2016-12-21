@@ -115,7 +115,7 @@ class School
 
         $result = mysqli_query($connection,$query);
         $schools=array();
-        while($row=mysqli_num_rows($result)){
+        while($row=mysqli_fetch_row($result)){
             array_push($schools,$row);
 
         }
