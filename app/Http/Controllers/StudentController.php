@@ -24,93 +24,9 @@ use App\Models\ApplicantSibling;
 class StudentController extends Controller
 {
     public function getApplicant()
-        //////////////////
     {
-        $array = [
-        "foo" => "bar",
-        "a" => "s",
-    ];
-        $array['vv']='a ';
-        $array['f']='s';
-        echo $array['vv'];
-        echo $array['f'];
-       $con = DatabaseController::db_connect();
-//        $applicantSchool=array();
-//        $sql="select distinct applicant_id from applicant_priority";
-//        $res=mysqli_query($con,$sql);
-//    while($row=mysqli_fetch_row($res)){
-//        $applicantSchool[$row[0]]=0;
-//        //echo array_keys($applicantSchool)[0];
-//        //echo $applicantSchool[$row[0]];
-//	}
-        $setSchool=mysqli_query($con,"select * from school");
-    if($setSchool->num_rows > 0){
-    $schoolMax=array();
-    while($row=mysqli_fetch_row($setSchool)){
-        $temp=array();
-	array_push($temp,$row[0],$row[6]);
-	array_push($schoolMax,$temp);
-	}
-        echo $schoolMax[1][1];
-    }
-
- $applicantSchool=array();
-        $sql="select distinct applicant_id from applicant_priority";
-        $res=mysqli_query($con,$sql);
-    while($row=mysqli_fetch_row($res)){
-        $applicantSchool[$row[0]]=0;
-        $a=array_keys($applicantSchool);
-    }
-//        echo $a[1];
-//        echo $applicantSchool[$a[1]];
-//        echo $a[2];
-//        echo $applicantSchool[$a[2]];
-//        echo $a[3];
-//        echo $applicantSchool[$a[3]];
-//        echo $a[4];
-//        echo $applicantSchool[$a[4]];
-       // echo array_keys($applicantSchool)[3];
-
-
-$applicantMark=array();
-for($i=0;$i<sizeof($schoolMax);$i++){
-    $query1="select applicant_id,priority,marks from applicant_priority where school_id=".$schoolMax[$i][0]." order by(marks)";
-	$res=mysqli_query($con,$query1);
-	if($res->num_rows > 0){
-        $applicants_in_school=array();
-        while($row=mysqli_fetch_row($res)){
-            array_push($applicants_in_school,$row);
-        }
-        array_push($applicantMark,$applicants_in_school);
-	}
-}
-        //echo $applicantMark[0][2][0];
-        $change=true;
-//        while($change){
-//            $change=false;
-//            for($k=0;$k<sizeof($schoolMax);$k++){
-//                $j=0;
-//                echo sizeof($applicantMark[$k]);
-//                echo $schoolMax[$k][1];
-//                while($j<max($schoolMax[$k][1],sizeof($applicantMark[$k]))){
-//                    if($applicantSchool[$applicantMark[$k][$j][0]]==0){
-//                        $change=true;
-//                        $applicantSchool[$applicantMark[$k][$j][0]]=$applicantMark[$k][$j][1];
-//                        $j++;
-//                    }
-//                    elseif($applicantMark[$k][$j][1]<$applicantSchool[$applicantMark[$k][$j][0]]){
-//                        $change=true;
-//                        $applicantSchool[$applicantMark[$k][$j][0]]=$applicantMark[$k][$j][1];
-//                        $j++;
-//                    }
-//                    elseif($applicantMark[$k][$j][1]==$applicantSchool[$applicantMark[$k][$j][0]]){
-//                        $j++;
-//                    }
-//                }
-//            }
-//        }
-////////////////////////////
-        $applicant_id = Auth::user()->id;
+       // $applicant_id = Auth::user()->id;
+        $applicant_id = 56;
         $error = null;
         return view('applicationSection1', compact('error', 'applicant_id'));
     }
@@ -142,7 +58,7 @@ for($i=0;$i<sizeof($schoolMax);$i++){
     public function getApplicantGuardian()
     {
         $error = null;
-        $applicant_id = 5;
+        $applicant_id = Auth::user()->id;
         $districts = District::getDistrict();
         return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
     }
@@ -152,7 +68,6 @@ for($i=0;$i<sizeof($schoolMax);$i++){
         $applicant_guardian = new ApplicantGuardian();
         $result = $applicant_guardian->createApplicantGuardian($request);
         $applicant_id = $request['applicant_id'];
-//        echo mysqli_errno($result);
         if (mysqli_errno($result) != 0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             $districts = District::getDistrict();
@@ -175,10 +90,15 @@ for($i=0;$i<sizeof($schoolMax);$i++){
     public function getApplicantPriority()
     {
         $error = null;
-        $applicant_id = 35;
+        $applicant_id = Auth::user()->id;
         $connection = DatabaseController::db_connect();
-        $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
-        $data = mysqli_query($connection, $sql);
+
+        $sql = "SELECT district from applicant_guardian where ( applicant_id =(?) )";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i",$applicant_id);
+        $stmt->execute();
+        $data = $stmt->get_result();
+
         $district = mysqli_fetch_row($data);
         $schools = District::getSchool($district[0]);
         return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
@@ -259,8 +179,12 @@ for($i=0;$i<sizeof($schoolMax);$i++){
             mysqli_query($connection, $sql);
             if (mysqli_errno($connection) != 0) {
                 $applicant_id = $request['applicant_id'];
-                $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
-                $data = mysqli_query($connection, $sql);
+
+                $sql = "SELECT district from applicant_guardian where ( applicant_id =(?) )";
+                $stmt = $connection->prepare($sql);
+                $stmt->bind_param("i",$applicant_id);
+                $stmt->execute();
+                $data = $stmt->get_result();
                 $district = mysqli_fetch_row($data);
                 $schools = District::getSchool($district[0]);
                 $err = new Error(mysqli_error($connection), mysqli_errno($connection));
@@ -283,7 +207,7 @@ for($i=0;$i<sizeof($schoolMax);$i++){
 
     public function getGuardianPastPupil()
     {
-        $applicant_id = 2;
+        $applicant_id = Auth::user()->id;
         $error = null;
         return view('applicationSection4', compact('error', 'applicant_id'));
     }
@@ -293,14 +217,21 @@ for($i=0;$i<sizeof($schoolMax);$i++){
         $connection = DatabaseController::db_connect();
         $applicant_id = $request['applicant_id'];
         $mem=$request['membership_id'];
-        $sql = "SELECT past_stu_id from past_student where ( membership_id ="." $mem".")";
-//        echo $sql;
-        $data = mysqli_query($connection, $sql);
+        $sql = "SELECT past_stu_id from past_student where ( membership_id =(?))";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i",$mem);
+        $stmt->execute();
+        $data = $stmt->get_result();
         if (mysqli_num_rows($data)) {
             $past_student_id = mysqli_fetch_row($data);
             $past_student_id =$past_student_id [0];
-            $sql = "SELECT guardian_id from applicant_guardian where ( applicant_id ="." $applicant_id".")";
-            $data = mysqli_query($connection, $sql);
+
+            $sql = "SELECT guardian_id from applicant_guardian where ( applicant_id =(?))";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("i",$applicant_id);
+            $stmt->execute();
+            $data = $stmt->get_result();
+
             $guardian_id = mysqli_fetch_row($data);
             $error = null;
             $guardian_id= $guardian_id[0];
@@ -326,7 +257,7 @@ for($i=0;$i<sizeof($schoolMax);$i++){
     public function getApplicantSibling()
     {
         $error = null;
-        $applicant_id = 2;
+        $applicant_id = Auth::user()->id;
         return view('applicationSection5', compact('error', 'applicant_id'));
     }
 
@@ -340,9 +271,13 @@ for($i=0;$i<sizeof($schoolMax);$i++){
             $sibling_id=$request['admission_no' . $i];
 //            echo $sibling_id;
             if ($sibling_id != null) {
-                $sql = "SELECT present_stu_id from present_student where (present_stu_id = ". $sibling_id.")";
-//                echo $sql;
-                $data = mysqli_query($connection, $sql);
+
+                $sql = "SELECT present_stu_id from present_student where (present_stu_id = (?))";
+                $stmt = $connection->prepare($sql);
+                $stmt->bind_param("i",$sibling_id);
+                $stmt->execute();
+                $data = $stmt->get_result();
+
                 if (mysqli_num_rows($data)==null) {
                     $error = 'Invalid present student id';
                     return view('applicationSection5', compact('error', 'applicant_id'));
