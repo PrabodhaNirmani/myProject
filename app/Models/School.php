@@ -98,7 +98,7 @@ class School
         $applicant_id = intval($applicant_id);
         $connection = DatabaseController::db_connect();
         $query = "SELECT * from applicant_guardian where applicant_id = ";
-        $result = $connection->query($query);
+//        $result = $connection->query($query);
         $stmt = $connection->prepare($query);
         $stmt->bind_param("i",$applicant_id);
         $stmt->execute();
