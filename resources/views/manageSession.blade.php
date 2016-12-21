@@ -30,16 +30,22 @@
 
                 </li>
                 <li>
-                    <div class="col"><a href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom"
-                                        data-delay="10" data-tooltip="Back to home">
-                            <i class="material-icons">present_to_all</i></a></div>
+                    <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
+                            <i id="my" class="material-icons">present_to_all</i></a></div>
                 </li>
+
                 <li>
-                    <div class="col"><a href="{{route('logout')}}">Sign in</a></div>
+                    <div class="col"><a  href="{{route('logout')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
+                            <i id="my" class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
         </div>
     </nav>
+    <style>
+        #my {
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('body')
