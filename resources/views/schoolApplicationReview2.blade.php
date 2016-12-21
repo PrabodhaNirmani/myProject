@@ -37,12 +37,12 @@
         <h3 class="header center teal-text text-darken-2">Application Review</h3>
         <div class="container" align="center">
             <ul class="pagination">
-                <li class="disabled"><a href="reviewApplication/{{$guardian['applicant_id']}}"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active"><a href="reviewApplication/{{$guardian['applicant_id']}}">1</a></li>
-                <li class="waves-effect"><a href="2/{{$guardian['applicant_id']}}">2</a></li>
+                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="#!">1</a></li>
+                <li class="active""><a href="#!">2</a></li>
                 <li class="waves-effect"><a href="3/{{$guardian['applicant_id']}}">3</a></li>
-                <li class="waves-effect"><a href="4/{{$guardian['applicant_id']}}">4</a></li>
-                <li class="waves-effect"><a href="5/{{$guardian['applicant_id']}}">5</a></li>
+                <li class="waves-effect"><a href="#!">4</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
                 <li class="waves-effect"><a href="3/{{$guardian['applicant_id']}}"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         </div>
