@@ -373,4 +373,19 @@ for($i=0;$i<sizeof($schoolMax);$i++){
         return view('dashboard', compact('error', 'applicant_id','done','user'));
 
     }
+
+
+
+    public function getUpdateVacancies(){
+        $school=School::getVacanciesAvailable();
+        $done=null;
+        return view('updateVacancies',compact('school','done'));
+    }
+    public function saveUpdateVacancies(Request $request){
+        $num_students=$request['new_value'];
+        School::saveVacanciesAvailable($num_students);
+        $school=School::getVacanciesAvailable();
+        $done="Changes were saved successfully";
+        return view('updateVacancies',compact('school','done'));
+    }
 }

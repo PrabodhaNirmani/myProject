@@ -102,6 +102,18 @@ Route::post('/searchSchoolResults', [
 
 ]);
 Route::group(['middleware' => ['web']], function () {
+
+    /////alll
+    Route::get('/viewResults', [
+        'uses' => 'homeController@getViewResults',
+        'as' => 'viewResults',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\Middleware::class);
+
+
+
+
 ////////admin
     Route::get('/registerSchool', [
         'uses' => 'AdminController@getRegisterSchoolView',
@@ -207,6 +219,80 @@ Route::group(['middleware' => ['web']], function () {
         'middleware' => 'auth'
     ])->middleware(App\Http\Middleware\StudentMiddleware::class);
 
+//edit application routes
+    Route::get('/getEditApplication', [
+        'uses' => 'StudentController@getEditApplication',
+        'as' => 'getEditApplication',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::post('/postEditApplication', [
+        'uses' => 'StudentController@postEditApplication',
+        'as' => 'postEditApplication',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::get('/getEditApplicantGuardian', [
+        'uses' => 'StudentController@getEditApplicantGuardian',
+        'as' => 'getEditApplicantGuardian',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::post('/postEditApplicantGuardian', [
+        'uses' => 'StudentController@postEditApplicantGuardian',
+        'as' => 'postEditApplicantGuardian',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::get('/getEditApplicantPriority', [
+        'uses' => 'StudentController@getEditApplicantPriority',
+        'as' => 'getEditApplicantPriority',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::post('/postEditApplicantPriority', [
+        'uses' => 'StudentController@postEditApplicantPriority',
+        'as' => 'postEditApplicantPriority',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+    Route::get('/getEditGuardianPastPupil', [
+        'uses' => 'StudentController@getEditGuardianPastPupil',
+        'as' => 'getEditGuardianPastPupil',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::post('/postEditGuardianPastPupil', [
+        'uses' => 'StudentController@postEditGuardianPastPupil',
+        'as' => 'postEditGuardianPastPupil',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::get('/getEditApplicantSibling', [
+        'uses' => 'StudentController@getEditApplicantSibling',
+        'as' => 'getEditApplicantSibling',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+    Route::post('/postEditApplicantSibling', [
+        'uses' => 'StudentController@postEditApplicantSibling',
+        'as' => 'postEditApplicantSibling',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\StudentMiddleware::class);
+
+
+
+
+
     /////////////////////role school
 
     Route::get('/updateVacancies', [
@@ -277,6 +363,13 @@ Route::group(['middleware' => ['web']], function () {
 
     ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
+
+    Route::post('/saveUpdateVacancies', [
+        'uses' => 'SchoolController@saveUpdateVacancies',
+        'as' => 'saveUpdateVacancies',
+        'middleware' => 'auth'
+
+    ])->middleware(App\Http\Middleware\SchoolMiddleware::class);
 
 
 });
