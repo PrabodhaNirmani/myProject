@@ -19,29 +19,23 @@
                 <li>
                     <div class="col">
                         <?php
-
-
-                        $user_name=Auth::user()->user_name;
-
+                        $user_name = Auth::user()->user_name;
                         ?>
-
                         {{$user_name}}
                     </div>
-
                 </li>
                 <li>
-                    <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
+                    <div class="col"><a href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom"
+                                        data-delay="10" data-tooltip="Back to home">
                             <i id="my" class="material-icons">present_to_all</i></a></div>
                 </li>
-
                 <li>
-                    <div class="col"><a  href="{{route('logout')}}"  class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
+                    <div class="col"><a href="{{route('logout')}}" class="tooltipped" data-position="bottom"
+                                        data-delay="10" data-tooltip="Logout">
                             <i id="my" class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
-
         </div>
-
     </nav>
     <style>
         #my {
@@ -51,7 +45,6 @@
 @endsection
 
 @section('body')
-
     <div class="container">
         <h1 class="header center teal-text text-darken-2 ">Search School</h1>
         <br>
@@ -72,7 +65,6 @@
                                 @foreach($districts as $district)
                                     <option>{{$district[0]}}</option>
                                 @endforeach
-
                             </select>
                         </div>
                     </div>
@@ -85,7 +77,6 @@
                 </div>
             </div>
         </form>
-
 
         @if($error!=null)
             <div class="container col s10 offset-l1">
@@ -114,9 +105,9 @@
                     <tr>
                         <td>{{$school[0]}}</td>
                         <td>{{$school[1]}}</td>
-                        <td>{{$school[5]}}</td>
-                        <td>{{$school[3]}}</td>
                         <td>{{$school[2]}}</td>
+                        <td>{{$school[3]}}</td>
+                        <td>{{$school[6]}}</td>
                     </tr>
                 @endforeach
 

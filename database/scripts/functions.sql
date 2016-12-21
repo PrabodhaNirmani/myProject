@@ -55,6 +55,8 @@ delimiter ;
 
 ------------------------Calculating Marks for the siblings in the school---------------------------------------------------------
 
+drop function if exists sibling_mark;
+
 delimiter @
 
 create function sibling_mark(applicant_id int,school_id int) returns int
@@ -81,7 +83,7 @@ begin
 	else
 
 	if(sibling_school_id!=school_id) then
-			select 0 into sibling_mark;
+			 set sibling_mark=0;
 		end if;
 
 	end if;
@@ -114,6 +116,8 @@ delimiter ;
 
 ---------------------Calculating final marks for an applicant----------------------------------------------------------------
 
+ drop function if exists calculate_marks;
+
 delimiter @
 
 create function calculate_marks(applicant_id int,school_id int) returns int
@@ -125,10 +129,22 @@ begin
 	declare location_mark int;
 
 	select guardian_mark(applicant_id,school_id) into guardian_mark;
-	select guardian_mark(applicant_id,school_id) into sibling_mark;
+	select sibling_mark(applicant_id,school_id) into sibling_mark;
 	select location_mark(applicant_id,school_id) into location_mark;
 
-	select guardian_mark+sibling_mark-location_mark+35 into marks;
+  if(guardian_mark=null) then
+	  select sibling_mark-location_mark into marks;
+	else
+	  if (sibling_mark=null) THEN
+	    select guardian_mark-location_mark5 into marks;
+	  else
+	    if(location_mark=null) THEN
+	      select sibling_mark+guardian_mark into marks;
+	    else
+	      select guardian_mark+sibling_mark-location_mark into marks;
+	    end if;
+    end if;
+  end if;
 
 	return marks;
 
