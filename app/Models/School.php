@@ -58,10 +58,39 @@ class School
 
 
     }
+
+    public static function getApplicants($school_id){
+
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT a.applicant_id, a.first_name, a.last_name FROM applicant as a, applicant_priority as ap where (ap.applicant_id,ap.school_id)=(a.applicant_id,?)";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$school_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
     
-    public function searchSchool(Request $request){
+    public static function searchApplicants($school_id,$applicant_id){
+
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT a.applicant_id, a.first_name, a.last_name FROM applicant as a, applicant_priority as ap where (a.applicant_id,a.applicant_id,ap.school_id)=(?,ap.applicant_id,?)";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("ii",$applicant_id,$school_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
         
-        
+    }
+
+    public static function reviewApplication1($applicant_id){
+
+        $connection = DatabaseController::db_connect();
+        $query = "SELECT * from applicant where application_id = ?";
+        $stmt = $connection->prepare($query);
+        $stmt->bind_param("i",$applicant_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
     }
 
     

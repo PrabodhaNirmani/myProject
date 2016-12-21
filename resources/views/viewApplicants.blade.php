@@ -34,9 +34,10 @@
         <br><br><br>
     </div>
     <div class="container">
+        <div class="container">
         <form action="{{route('submitViewApplicants')}}" method="post">
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s11">
                     <input id="appno" name="applicant_id" type="search" class="validate" required>
                     <label for="appno">Application number</label>
                 </div>
@@ -46,6 +47,7 @@
                 <input type="hidden" name="_token" value="{{Session::token()}}">
             </div>
         </form>
+            </div>
         <br><br><br><br>
 
         @if($applicants != null)
@@ -64,9 +66,9 @@
                 @foreach($applicants as $applicant)
 
                     <tr>
-                        <td>{{$applicant[0]}}</td>
-                        <td>{{$applicant[1]}}</td>
-                        <td>{{$applicant[2]}}</td>
+                        <td>{{$applicant['applicant_id']}}</td>
+                        <td>{{$applicant['first_name']}}</td>
+                        <td>{{$applicant['last_name']}}</td>
                         <td>
                             <button class="btn waves-effect waves-light" type="submit" name="view_appplication">View
                                 Application
