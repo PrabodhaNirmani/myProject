@@ -66,6 +66,7 @@ class StudentController extends Controller
         $applicant_guardian = new ApplicantGuardian();
         $result = $applicant_guardian->createApplicantGuardian($request);
         $applicant_id = $request['applicant_id'];
+//        echo mysqli_errno($result);
         if (mysqli_errno($result) != 0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             $districts = District::getDistrict();
@@ -151,7 +152,7 @@ class StudentController extends Controller
         $applicant_id = $request['applicant_id'];
         $mem=$request['membership_id'];
         $sql = "SELECT past_stu_id from past_student where ( membership_id ="." $mem".")";
-        echo $sql;
+//        echo $sql;
         $data = mysqli_query($connection, $sql);
         if (mysqli_num_rows($data)) {
             $past_student_id = mysqli_fetch_row($data);
@@ -195,10 +196,10 @@ class StudentController extends Controller
         $temp = ['1', '2', '3'];
         foreach ($temp as $i) {
             $sibling_id=$request['admission_no' . $i];
-            echo $sibling_id;
+//            echo $sibling_id;
             if ($sibling_id != null) {
                 $sql = "SELECT present_stu_id from present_student where (present_stu_id = " . "$sibling_id".")";
-                echo $sql;
+//                echo $sql;
                 $data = mysqli_query($connection, $sql);
                 if (mysqli_num_rows($data)==null) {
                     $error = 'Invalid present student id';

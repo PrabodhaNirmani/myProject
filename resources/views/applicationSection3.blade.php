@@ -51,17 +51,17 @@
                             <label for="schools">Name of the School</label>
                         </div>
 
-                        <div class="input-field col s2">
+                        <div class="input-field col s3">
                             <label for="distance">Distance to the School from the place of residence</label>
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s3">
                             <label for="no_of_schools">No. of schools passing from residence</label>
                         </div>
                     </div>
                     <br><br><br>
 
             <div class="row">
-                <div class="input-field col s1">
+                <div class="input-field col s1" align="center">
                     <input name="no1" id="no1" type="text" class="validate" value="1" readonly>
                 </div>
                 <div class="input-field col s5">
@@ -69,28 +69,28 @@
                     <div class="row">
 
 
-                        <div class="input-field col s2">
+
                             <select name="school1" id="school1" class="browser-default">
                                 @foreach($schools as $school)
                                     <option>{{$school[0]}}-{{$school[1]}}</option>
 
                                 @endforeach
                             </select>
-                        </div>
+
                     </div>
                 </div>
 
-                <div class="input-field col s2">
+                <div class="input-field col s3">
                     <input name="distance1" id="distance1" type="text" class="validate" required>
                 </div>
-                <div class="input-field col s4">
+                <div class="input-field col s3">
                     <input name="no_schools1" id="no_schools1" type="text" class="validate" required>
                 </div>
             </div>
                     @for($i=2;$i<=5;$i++)
 
                     <div class="row">
-                        <div class="input-field col s1">
+                        <div class="input-field col s1" align="center">
                             <input name="no{{$i}}" id="no{{$i}}" type="text" class="validate" value="{{$i}}" readonly>
                         </div>
                         <div class="input-field col s5">
@@ -98,21 +98,21 @@
                             <div class="row">
 
 
-                                <div class="input-field col s2">
+
                                     <select name="school{{$i}}" id="guardian_type" class="browser-default">
                                         @foreach($schools as $school)
                                             <option>{{$school[0]}}-{{$school[1]}}</option>
 
                                         @endforeach
                                     </select>
-                                </div>
+
                             </div>
                         </div>
 
-                        <div class="input-field col s2">
+                        <div class="input-field col s3">
                             <input name="distance{{$i}}" id="distance{{$i}}" type="text" class="validate">
                         </div>
-                        <div class="input-field col s4">
+                        <div class="input-field col s3">
                             <input name="no_schools{{$i}}" id="no_schools{{$i}}" type="text" class="validate">
                         </div>
                     </div>

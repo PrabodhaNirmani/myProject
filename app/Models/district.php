@@ -34,14 +34,14 @@ class District
     public static function getSchool($dist)
     {
         $connection=DatabaseController::db_connect();
-        $sql="SELECT school_id,school_name from school where ( district = '$dist')";
+        $sql="SELECT school_id,school_name from school where ( district = ".$dist.")";
         $data=mysqli_query($connection,$sql);
         $district_row=array();
         while($row=mysqli_fetch_row($data)){
             array_push($district_row,$row);
 
         }
-//        echo $district_row[0][1];
+        echo sizeof($district_row);
         return $district_row;
     }
 

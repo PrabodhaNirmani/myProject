@@ -42,10 +42,10 @@
                     <input name="applicant_id" id="applicant_id" type="text" class="validate" value="{{$applicant_id}}"  readonly>
                     <label for="applicant_id">Applicant ID</label>
                 </div>
-                <div class="input-field col s4">
-                    <input name="category" id="category" type="text" class="validate" required>
-                    <label for="category">Category applied for</label>
-                </div>
+                {{--<div class="input-field col s4">--}}
+                    {{--<input name="category" id="category" type="text" class="validate" required>--}}
+                    {{--<label for="category">Category applied for</label>--}}
+                {{--</div>--}}
             </div>
             <div class="header">Details of the Child</div>
 
@@ -131,10 +131,10 @@
 
     <script>
 
-        $('.datepicker').pickadate({
-            selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15 // Creates a dropdown of 15 years to control year
-        });
+//        $('.datepicker').pickadate({
+//            selectMonths: true, // Creates a dropdown to control month
+//            selectYears: 15 // Creates a dropdown of 15 years to control year
+//        });
 
         $('.pushpin-demo-nav').each(function () {
             var $this = $(this);

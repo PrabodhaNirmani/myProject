@@ -31,7 +31,7 @@
 
     <div class="container">
         <h1 class="header center teal-text text-darken-2 ">Search School</h1>
-        <br><br><br>
+        <br>
     </div>
     <div class="container">
         {{--routes--}}
@@ -62,14 +62,13 @@
                 </div>
             </div>
         </form>
-        <br><br>
-        <br><br>
+
 
         @if($error!=null)
             <div class="container col s10 offset-l1">
                 <div class="card-panel #ef9a9a red lighten-3" align="center"><h5>{{$error}}</h5></div>
             </div>
-            <br><br><br><br>
+            <br><br>
 
         @elseif($schools!=null)
             <div class="container col s6 offset-l1">

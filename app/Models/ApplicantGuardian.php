@@ -24,8 +24,21 @@ class ApplicantGuardian
         $name=$this->tableName;
         $fields=$this->fieldNames;
         $values = [];
-        foreach ($fields as $field){
-            array_push($values,$request[$field]);
+        foreach ($fields as $field)
+        {   
+            if($field=='nationality_srilankan'){
+                if($request['nationality_srilankan']=='on'){
+                    array_push($values,1);        
+                }
+                else{
+                    array_push($values,0);
+                }
+            
+            }
+            else{
+                array_push($values,$request[$field]);    
+            }
+            
         }
         $row =DatabaseController::insert($name,$fields,$values);
 
