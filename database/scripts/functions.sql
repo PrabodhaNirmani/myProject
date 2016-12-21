@@ -102,7 +102,11 @@ begin
 	declare num_school int;
 
 	select num_between_school from applicant_priority where (applicant_priority.applicant_id,applicant_priority.school_id)=(applicant_id,school_id) into num_school;
-	select num_school*4 into location_mark;
+	if(num_school=0) THEN
+		  SELECT 0 into location_mark;
+	else
+	  select num_school*4 into location_mark;
+	end if;
 
 	return location_mark;
 
