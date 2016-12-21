@@ -13,6 +13,7 @@ class Error
 {
     public $error_description;
     public $error_no;
+    
     public function __construct($error,$error_no)
     {
         $this->error_description = $error;
