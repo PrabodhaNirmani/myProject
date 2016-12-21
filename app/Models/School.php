@@ -207,7 +207,6 @@ class School
 
     public static function confirm($applicant_id,Request $request){
 
-        echo $request;
         if ($request['confirm'] == "on"){;
             $school_id = Auth::user()->id;
             $connection = DatabaseController::db_connect();
