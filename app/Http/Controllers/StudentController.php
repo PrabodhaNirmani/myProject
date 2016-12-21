@@ -255,7 +255,7 @@ class StudentController extends Controller
             $sibling_id=$request['admission_no' . $i];
 //            echo $sibling_id;
             if ($sibling_id != null) {
-                $sql = "SELECT present_stu_id from present_student where (present_stu_id = " . "$sibling_id".")";
+                $sql = "SELECT present_stu_id from present_student where (present_stu_id = ". $sibling_id.")";
 //                echo $sql;
                 $data = mysqli_query($connection, $sql);
                 if (mysqli_num_rows($data)==null) {
@@ -275,7 +275,7 @@ class StudentController extends Controller
                     $error = 'Invalid Duplicate Entry';
                     return view('applicationSection5', compact('error','applicant_id'));
                 } else {
-                    $error = $err->error_description;
+                    $error = 'Invalid Entry';
                     return view('applicationSection5', compact('error', 'applicant_id'));
                 }
             }

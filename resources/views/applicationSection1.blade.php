@@ -103,7 +103,7 @@
                         <label for="birth_day">Date of Birth :</label>
                     </div>
                     <div class="input-field col s6">
-                        <input id="birth_day" name="birth_day" type="date" class="datepicker" required>
+                        <input id="birth_day" name="birth_day" type="date" class="datepicker" max="{{date("Y/m/d")}}" required>
                         {{--<input type="date" class="">--}}
                     </div>
 
