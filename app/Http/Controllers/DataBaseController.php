@@ -46,7 +46,8 @@ class DatabaseController extends Controller
 
         $connection = DatabaseController::db_connect();
         $field = implode(',', $fields);
-        $sql="INSERT INTO " . $table . "("  .$field. ")" . "VALUES ("  . $val . ")";
+        $sql="INSERT INTO " . $table . "("  .$field. ")" . " VALUES ("  . $val . ")";
+//$result= sqlite_query($connection,$sql);
         echo $sql;
         $stmt = $connection->prepare($sql);
         $i=1;

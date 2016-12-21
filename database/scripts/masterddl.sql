@@ -5,7 +5,7 @@ CREATE DATABASE ministry_of_education;
 
 USE ministry_of_education;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE user
 (
@@ -19,7 +19,24 @@ CREATE TABLE user
 	engine = innodb
 	DEFAULT charset = utf8;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE school
+(
+	school_id      INT NOT NULL PRIMARY KEY,
+	school_name    VARCHAR(50) NOT NULL,
+	school_type    VARCHAR(6) NOT NULL,
+	street         VARCHAR(50),
+	city           VARCHAR(20) NOT NULL,
+	district       VARCHAR(20) NOT NULL,
+	max_no_student INT,
+	FOREIGN KEY(school_id) REFERENCES user(id) ON DELETE CASCADE
+)
+	engine = innodb
+	DEFAULT charset = utf8;
+
+# -------------------------------------------------------------------------------------------------------------------------------
+
 
 CREATE TABLE applicant
 (
@@ -31,12 +48,14 @@ CREATE TABLE applicant
 	religion     VARCHAR(12) NOT NULL,
 	birth_day    DATE NOT NULL,
 	age          INT,
-	FOREIGN KEY(applicant_id) REFERENCES user(id) ON DELETE CASCADE
+	selected_school INT,
+	FOREIGN KEY (selected_school) REFERENCES school(school_id) ON DELETE CASCADE ,
+	FOREIGN KEY (applicant_id) REFERENCES user(id) ON DELETE CASCADE
 )
 	engine = innodb
 	DEFAULT charset = utf8;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE applicant_guardian
 (
@@ -57,27 +76,13 @@ CREATE TABLE applicant_guardian
 	grama_nil_res_no      INT(20) NOT NULL,
 	FOREIGN KEY(applicant_id) REFERENCES applicant(applicant_id) ON DELETE
 	CASCADE
+
 )
 	engine = innodb
 	DEFAULT charset = utf8;
 
---------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 
-CREATE TABLE school
-(
-	school_id      INT NOT NULL PRIMARY KEY,
-	school_name    VARCHAR(50) NOT NULL,
-	school_type    VARCHAR(6) NOT NULL,
-	street         VARCHAR(50),
-	city           VARCHAR(20) NOT NULL,
-	district       VARCHAR(20) NOT NULL,
-	max_no_student INT,
-	FOREIGN KEY(school_id) REFERENCES user(id) ON DELETE CASCADE
-)
-	engine = innodb
-	DEFAULT charset = utf8;
-
--------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE applicant_priority
 (
@@ -96,7 +101,7 @@ CREATE TABLE applicant_priority
 	engine = innodb
 	DEFAULT charset = utf8;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE student
 (
@@ -110,28 +115,30 @@ CREATE TABLE student
 	engine = innodb
 	DEFAULT charset = utf8;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE present_student
 (
-	present_stu_id INT NOT NULL PRIMARY KEY REFERENCES student (admission_no)
+	present_stu_id INT NOT NULL PRIMARY KEY,
+	FOREIGN KEY (present_stu_id) REFERENCES student(admission_no) ON DELETE CASCADE
 )
 	engine = innodb
 	DEFAULT charset = utf8;
 
---------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE past_student
 (
-	past_stu_id      INT NOT NULL PRIMARY KEY REFERENCES student (admission_no),
+	past_stu_id      INT NOT NULL,
 	membership_id    INT NOT NULL PRIMARY KEY,
 	school_left_date DATE,
-	membership_date  DATE
+	membership_date  DATE,
+	FOREIGN KEY (past_stu_id) REFERENCES student(admission_no) ON DELETE CASCADE
 )
 	engine = innodb
 	DEFAULT charset = utf8;
 
---------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE applicant_sibling
 (
@@ -144,7 +151,7 @@ CREATE TABLE applicant_sibling
 	engine = innodb
 	DEFAULT charset = utf8;
 
---------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE guardian_past_pupil
 (
@@ -157,7 +164,7 @@ CREATE TABLE guardian_past_pupil
 	engine = innodb
 	DEFAULT charset = utf8;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE session
 (
@@ -168,7 +175,7 @@ CREATE TABLE session
 	engine = innodb
 	DEFAULT charset = utf8;
 
--------------------------------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE district (
 	city VARCHAR(20) PRIMARY KEY NOT NULL
@@ -177,10 +184,10 @@ CREATE TABLE district (
 	DEFAULT charset = utf8;
 
 
-/////////////updates//////////////////////////
---added a new field remember_token to user--
-
-#district is added to applicant_guardian table
-#confirmed is added to applicant priority
-#user_id changed to id in user table
-#applicant_sibling and guardian_past_pupil changed
+# /////////////updates//////////////////////////
+# --added a new field remember_token to user--
+#
+# #district is added to applicant_guardian table
+# #confirmed is added to applicant priority
+# #user_id changed to id in user table
+# #applicant_sibling and guardian_past_pupil changed
