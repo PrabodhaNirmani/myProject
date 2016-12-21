@@ -33,18 +33,23 @@
 
                 <li>
                     <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
-                            <i class="material-icons">present_to_all</i></a></div>
+                            <i id="my" class="material-icons">present_to_all</i></a></div>
                 </li>
 
                 <li>
                     <div class="col"><a  href="{{route('logout')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
-                            <i class="material-icons">power_settings_new</i></a></div>
+                            <i id="my" class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
 
         </div>
 
     </nav>
+    <style>
+        #my {
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -73,11 +78,11 @@
             <div class="row">
                 <div class="input-field col s7">
                     <input name="first_name" id="first_name" type="text" class="validate" required>
-                    <label for="first_name">Name in full</label>
+                    <label for="first_name">First Name</label>
                 </div>
                 <div class="input-field col s5">
                     <input name="last_name" id="last_name" type="text" class="validate" required>
-                    <label for="last_name">Name with initials</label>
+                    <label for="last_name">Last Name</label>
                 </div>
             </div>
             <div class="row">

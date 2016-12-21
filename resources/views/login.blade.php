@@ -13,11 +13,11 @@
             <ul class="right hide-on-med-and-down">
                 <li>
                     <div class="col"><a  href="#" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
-                            <i class="material-icons">present_to_all</i></a></div>
+                            <i id="my" class="material-icons">present_to_all</i></a></div>
                 </li>
 
                 <li>
-                    <div class="col"><a  href="{{route('loginView')}}" >Sign in</a></div>
+                    <div class="col"><a id="my" href="{{route('loginView')}}" >Sign in</a></div>
                 </li>
             </ul>
 
@@ -25,7 +25,11 @@
 
     </nav>
 
-
+    <style>
+        #my {
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('body')
