@@ -36,7 +36,7 @@ class District
         $connection = DatabaseController::db_connect();
         $sql="SELECT school_id,school_name from school where ( district = (?))";
         $stmt = $connection->prepare($sql);
-        $stmt->bind_param("s",$dist[0]);
+        $stmt->bind_param("s",$dist);
         $stmt->execute();
         $result = $stmt->get_result();
         echo $sql;
