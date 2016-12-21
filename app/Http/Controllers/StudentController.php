@@ -59,7 +59,7 @@ class StudentController extends Controller
     public function getApplicantGuardian()
     {
         $error = null;
-        $applicant_id = 5;
+        $applicant_id = Auth::user()->id;
         $districts = District::getDistrict();
         return view('applicationSection2', compact('error', 'districts', 'applicant_id'));
     }
@@ -69,7 +69,6 @@ class StudentController extends Controller
         $applicant_guardian = new ApplicantGuardian();
         $result = $applicant_guardian->createApplicantGuardian($request);
         $applicant_id = $request['applicant_id'];
-//        echo mysqli_errno($result);
         if (mysqli_errno($result) != 0) {
             $err = new Error(mysqli_error($result), mysqli_errno($result));
             $districts = District::getDistrict();
@@ -92,10 +91,15 @@ class StudentController extends Controller
     public function getApplicantPriority()
     {
         $error = null;
-        $applicant_id = 35;
+        $applicant_id = Auth::user()->id;
         $connection = DatabaseController::db_connect();
-        $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
-        $data = mysqli_query($connection, $sql);
+
+        $sql = "SELECT district from applicant_guardian where ( applicant_id =(?) )";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i",$applicant_id);
+        $stmt->execute();
+        $data = $stmt->get_result();
+
         $district = mysqli_fetch_row($data);
         $schools = District::getSchool($district[0]);
         return view('applicationSection3', compact('error', 'applicant_id', 'schools'));
@@ -176,8 +180,12 @@ class StudentController extends Controller
             mysqli_query($connection, $sql);
             if (mysqli_errno($connection) != 0) {
                 $applicant_id = $request['applicant_id'];
-                $sql = "SELECT district from applicant_guardian where ( applicant_id = $applicant_id)";
-                $data = mysqli_query($connection, $sql);
+
+                $sql = "SELECT district from applicant_guardian where ( applicant_id =(?) )";
+                $stmt = $connection->prepare($sql);
+                $stmt->bind_param("i",$applicant_id);
+                $stmt->execute();
+                $data = $stmt->get_result();
                 $district = mysqli_fetch_row($data);
                 $schools = District::getSchool($district[0]);
                 $err = new Error(mysqli_error($connection), mysqli_errno($connection));
@@ -200,7 +208,7 @@ class StudentController extends Controller
 
     public function getGuardianPastPupil()
     {
-        $applicant_id = 2;
+        $applicant_id = Auth::user()->id;
         $error = null;
         return view('applicationSection4', compact('error', 'applicant_id'));
     }
@@ -210,14 +218,21 @@ class StudentController extends Controller
         $connection = DatabaseController::db_connect();
         $applicant_id = $request['applicant_id'];
         $mem=$request['membership_id'];
-        $sql = "SELECT past_stu_id from past_student where ( membership_id ="." $mem".")";
-//        echo $sql;
-        $data = mysqli_query($connection, $sql);
+        $sql = "SELECT past_stu_id from past_student where ( membership_id =(?))";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i",$mem);
+        $stmt->execute();
+        $data = $stmt->get_result();
         if (mysqli_num_rows($data)) {
             $past_student_id = mysqli_fetch_row($data);
             $past_student_id =$past_student_id [0];
-            $sql = "SELECT guardian_id from applicant_guardian where ( applicant_id ="." $applicant_id".")";
-            $data = mysqli_query($connection, $sql);
+
+            $sql = "SELECT guardian_id from applicant_guardian where ( applicant_id =(?))";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("i",$applicant_id);
+            $stmt->execute();
+            $data = $stmt->get_result();
+
             $guardian_id = mysqli_fetch_row($data);
             $error = null;
             $guardian_id= $guardian_id[0];
@@ -243,7 +258,7 @@ class StudentController extends Controller
     public function getApplicantSibling()
     {
         $error = null;
-        $applicant_id = 2;
+        $applicant_id = Auth::user()->id;
         return view('applicationSection5', compact('error', 'applicant_id'));
     }
 
@@ -257,9 +272,13 @@ class StudentController extends Controller
             $sibling_id=$request['admission_no' . $i];
 //            echo $sibling_id;
             if ($sibling_id != null) {
-                $sql = "SELECT present_stu_id from present_student where (present_stu_id = ". $sibling_id.")";
-//                echo $sql;
-                $data = mysqli_query($connection, $sql);
+
+                $sql = "SELECT present_stu_id from present_student where (present_stu_id = (?))";
+                $stmt = $connection->prepare($sql);
+                $stmt->bind_param("i",$sibling_id);
+                $stmt->execute();
+                $data = $stmt->get_result();
+
                 if (mysqli_num_rows($data)==null) {
                     $error = 'Invalid present student id';
                     return view('applicationSection5', compact('error', 'applicant_id'));
