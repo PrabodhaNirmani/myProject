@@ -76,6 +76,8 @@ class AdminController extends Controller
 
         $flag = mysqli_fetch_row(mysqli_query($connection, "select activate from session_date where session_id=1"));
         $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
+
+
         return view('manageSession', compact('year', 'flag', 'date'));
     }
 
@@ -93,25 +95,26 @@ class AdminController extends Controller
         $flag = mysqli_fetch_row(mysqli_query($connection, "select activate from session_date where session_id=1"));
         $date = mysqli_fetch_row(mysqli_query($connection, "select year_boundary from session_date;"));
 
+//Update marks--------------
 
         $app_scl = "select applicant_id, school_id from applicant_priority;";
 
         $result = mysqli_query($connection, $app_scl);
 
-        $row = mysqli_fetch_row($result);
 
-        while ($row) {
+        while ($row = mysqli_fetch_row($result)) {
 
             $applicant_id = $row[0];
             $school_id = $row[1];
-            $func_cal_marks = "CALL calculate_marks(" . $applicant_id . "," . $school_id . ")";
+            $func_cal_marks = "select calculate_marks(" . $applicant_id . "," . $school_id . ")";
             $result = mysqli_query($connection, $func_cal_marks);
-            $mark = mysqli_fetch_row($result);
 
-            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . ", school_id =" . $school_id;
+            $mark = mysqli_fetch_row($result);
+            $update = "update applicant_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . " and school_id =" . $school_id . ";";
             mysqli_query($connection, $update);
         }
 
+//----------------------------
 
         return view('manageSession', compact('year', 'flag', 'date'));
 
@@ -124,17 +127,15 @@ class AdminController extends Controller
 
         $result = mysqli_query($connection, $app_scl);
 
-        $row = mysqli_fetch_row($result);
-
-        while ($row) {
+        while ($row = mysqli_fetch_row($result)) {
 
             $applicant_id = $row[0];
             $school_id = $row[1];
-            $func_cal_marks = "CALL calculate_marks(" . $applicant_id . "," . $school_id . ")";
+            $func_cal_marks = "select calculate_marks(" . $applicant_id . "," . $school_id . ")";
             $result = mysqli_query($connection, $func_cal_marks);
             $mark = mysqli_fetch_row($result);
 
-            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . ", school_id =" . $school_id;
+            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . " and school_id =" . $school_id;
             mysqli_query($connection, $update);
         }
 
