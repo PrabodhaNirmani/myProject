@@ -10,19 +10,44 @@
             </a>
             <ul class="right hide-on-med-and-down">
                 <li>
+                    <div class="col">
+                        <i class="material-icons">perm_identity</i>
+                    </div>
+                </li>
+                <li>
+                    <div class="col">
+                        <?php
+
+
+                        $user_name=Auth::user()->user_name;
+
+                        ?>
+
+                        {{$user_name}}
+                    </div>
+
+                </li>
+
+
+                <li>
                     <div class="col"><a  href="{{route('getDashboard')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Back to home" >
-                            <i class="material-icons">present_to_all</i></a></div>
+                            <i id="my" class="material-icons">present_to_all</i></a></div>
                 </li>
 
                 <li>
                     <div class="col"><a  href="{{route('logout')}}" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="Logout" >
-                            <i class="material-icons">power_settings_new</i></a></div>
+                            <i id="my" class="material-icons">power_settings_new</i></a></div>
                 </li>
             </ul>
 
         </div>
 
     </nav>
+    <style>
+        #my {
+            color: white;
+        }
+    </style>
 @endsection
 
 @section('body')
@@ -42,9 +67,9 @@
                 <li class="waves-effect"><a href="#!">2</a></li>
                 <li class="waves-effect"><a href="#!">3</a></li>
                 <li class="active"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="5/{{$applicant_id}}">5</a></li>
+                <li class="waves-effect"><a href="#!">5</a></li>
                 <li class="waves-effect"><a href="#!">6</a></li>
-                <li class="waves-effect"><a href="5/{{$applicant_id}}"><i class="material-icons">chevron_right</i></a></li>
+                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         </div>
         <br>
