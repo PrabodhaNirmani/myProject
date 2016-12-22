@@ -99,46 +99,26 @@ class AdminController extends Controller
 //Update marks--------------
 
         $app_scl = "select applicant_id, school_id from applicant_priority;";
+        $res = mysqli_query($connection, $app_scl);
 
-        $result = mysqli_query($connection, $app_scl);
-
-
-        while ($row = mysqli_fetch_row($result)) {
+        while ($row = mysqli_fetch_row($res)) {
 
             $applicant_id = $row[0];
+//            echo $applicant_id;
             $school_id = $row[1];
+//            echo $school_id;
             $func_cal_marks = "select calculate_marks(" . $applicant_id . "," . $school_id . ")";
             $result = mysqli_query($connection, $func_cal_marks);
 
             $mark = mysqli_fetch_row($result);
+//            echo $mark[0];
             $update = "update applicant_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . " and school_id =" . $school_id . ";";
             mysqli_query($connection, $update);
         }
 
 //----------------------------
-        $done=null;
-        return view('manageSession', compact('year', 'flag', 'date','done'));
-
-    }
-
-    public function update_marks(Connection $connection)
-    {
-
-        $app_scl = "select applicant_id, school_id from applicant_priority;";
-
-        $result = mysqli_query($connection, $app_scl);
-
-        while ($row = mysqli_fetch_row($result)) {
-
-            $applicant_id = $row[0];
-            $school_id = $row[1];
-            $func_cal_marks = "select calculate_marks(" . $applicant_id . "," . $school_id . ")";
-            $result = mysqli_query($connection, $func_cal_marks);
-            $mark = mysqli_fetch_row($result);
-
-            $update = "update student_priority set marks =" . $mark[0] . " where applicant_id=" . $applicant_id . " and school_id =" . $school_id;
-            mysqli_query($connection, $update);
-        }
+        $done = null;
+        return view('manageSession', compact('year', 'flag', 'date', 'done'));
 
     }
 

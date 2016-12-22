@@ -15,11 +15,13 @@ use App\Models\Error;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Queue\Connectors\DatabaseConnector;
 use Illuminate\Routing\Controller;
 use App\Models\Applicant;
 use App\Models\ApplicantGuardian;
 use App\Models\ApplicantPriority;
 use App\Models\ApplicantSibling;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class StudentController extends Controller
 {
@@ -140,17 +142,21 @@ class StudentController extends Controller
                 $err = new Error(mysqli_error($connection), mysqli_errno($connection));
                 if ($err->error_no == 1062) {
                     $error = 'Duplicate Data Entry';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection3', compact('error', 'applicant_id','schools'));
                 } elseif ($err->error_no == 1644) {
                     $error = 'Invalid School type';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection3', compact('error', 'applicant_id','schools'));
                 } else {
                     $error = 'Invalid Entry';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection3', compact('error', 'applicant_id','schools'));
                 }
             }
         }
         $error = null;
+        DatabaseController::closeConnection($connection);
         return view('applicationSection4', compact('error', 'applicant_id'));
 
     }
@@ -197,15 +203,18 @@ class StudentController extends Controller
                 $err = new Error(mysqli_error($connection), mysqli_errno($connection));
                 if ($err->error_no == 1062) {
                     $error = 'Invalid Duplicate Entry';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection4', compact('error','applicant_id'));
                 } else {
+                    DatabaseController::closeConnection($connection);
                     $error = $err->error_description;
                     return view('applicationSection4', compact('error', 'applicant_id'));
                 }
-            }
+            }DatabaseController::closeConnection($connection);
             return view('applicationSection5', compact('error', 'applicant_id'));
         }
         $error = 'Invalid membership id';
+        DatabaseController::closeConnection($connection);
         return view('applicationSection4', compact('error', 'applicant_id'));
     }
 
@@ -236,6 +245,7 @@ class StudentController extends Controller
 
                 if (mysqli_num_rows($data)==null) {
                     $error = 'Invalid present student id';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection5', compact('error', 'applicant_id'));
                 }
                 array_push($val,$sibling_id);
@@ -249,9 +259,11 @@ class StudentController extends Controller
                 $err = new Error(mysqli_error($connection), mysqli_errno($connection));
                 if ($err->error_no == 1062) {
                     $error = 'Invalid Duplicate Entry';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection5', compact('error','applicant_id'));
                 } else {
                     $error = 'Invalid Entry';
+                    DatabaseController::closeConnection($connection);
                     return view('applicationSection5', compact('error', 'applicant_id'));
                 }
             }
@@ -261,6 +273,7 @@ class StudentController extends Controller
         array_push($user,Auth::user()->user_type);
         array_push($user,Auth::user()->id);
         $done='done';
+        DatabaseController::closeConnection($connection);
         return view('dashboard', compact('error', 'applicant_id','done','user'));
 
     }
