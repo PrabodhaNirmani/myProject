@@ -233,6 +233,7 @@ class HomeController extends Controller
         if($applicants!=null){
             $error=null;
             DatabaseController::closeConnection($connection);
+            echo $applicants;
             return view('viewResults',compact('user','error','applicants','school_name'));
             
         }
